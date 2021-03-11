@@ -7,23 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E07216D25F116F0003A7207 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07216C25F116F0003A7207 /* MainTabBarViewController.swift */; };
 		8E07217525F13EF8003A7207 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07217425F13EF8003A7207 /* SearchViewController.swift */; };
 		8E07217925F13F4E003A7207 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07217825F13F4E003A7207 /* WriteViewController.swift */; };
 		8E07217C25F13F5E003A7207 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07217B25F13F5E003A7207 /* CalenderViewController.swift */; };
 		8E07217F25F13F74003A7207 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07217E25F13F74003A7207 /* ProfileViewController.swift */; };
 		8E0721B625F16412003A7207 /* CustomNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0721B525F16412003A7207 /* CustomNoteTableViewCell.swift */; };
-		8E0721C025F1E6D7003A7207 /* CustomSideMenuNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0721BF25F1E6D7003A7207 /* CustomSideMenuNavigation.swift */; };
-		8E0721C325F1EA80003A7207 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0721C225F1EA80003A7207 /* ContainerController.swift */; };
-		8E0721C625F1EAA1003A7207 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0721C525F1EAA1003A7207 /* MenuViewController.swift */; };
-		8E0721CD25F1EF49003A7207 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0721CC25F1EF49003A7207 /* SideMenuViewController.swift */; };
 		8E33163B25DBCD69000D1306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E33163A25DBCD69000D1306 /* AppDelegate.swift */; };
 		8E33163D25DBCD69000D1306 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E33163C25DBCD69000D1306 /* SceneDelegate.swift */; };
-		8E33163F25DBCD69000D1306 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E33163E25DBCD69000D1306 /* LogInViewController.swift */; };
 		8E33164225DBCD69000D1306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E33164025DBCD69000D1306 /* Main.storyboard */; };
 		8E33164425DBCD70000D1306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E33164325DBCD70000D1306 /* Assets.xcassets */; };
 		8E33164725DBCD70000D1306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E33164525DBCD70000D1306 /* LaunchScreen.storyboard */; };
 		8E33165125DBD28C000D1306 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E33165025DBD28C000D1306 /* loginViewController.swift */; };
+		8EC498CD25F604B9004562E7 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC498CC25F604B9004562E7 /* MenuTableViewCell.swift */; };
+		8EC498DD25F61414004562E7 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC498DC25F61414004562E7 /* APICaller.swift */; };
 		8EDBDC8C25E170CD0051DF37 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBDC8B25E170CD0051DF37 /* Extension.swift */; };
 		8EDBDC8F25E17FF30051DF37 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBDC8E25E17FF30051DF37 /* CustomCollectionViewCell.swift */; };
 		8EDBDCA225E277180051DF37 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBDCA125E277180051DF37 /* HomeViewController.swift */; };
@@ -34,25 +30,21 @@
 /* Begin PBXFileReference section */
 		0A6AEF67F86A087A38E2653C /* Pods-ClubManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubManager.release.xcconfig"; path = "Target Support Files/Pods-ClubManager/Pods-ClubManager.release.xcconfig"; sourceTree = "<group>"; };
 		867015E45D3EE9912AD2A49A /* Pods-ClubManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubManager.debug.xcconfig"; path = "Target Support Files/Pods-ClubManager/Pods-ClubManager.debug.xcconfig"; sourceTree = "<group>"; };
-		8E07216C25F116F0003A7207 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		8E07217425F13EF8003A7207 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8E07217825F13F4E003A7207 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		8E07217B25F13F5E003A7207 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		8E07217E25F13F74003A7207 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8E0721B525F16412003A7207 /* CustomNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNoteTableViewCell.swift; sourceTree = "<group>"; };
-		8E0721BF25F1E6D7003A7207 /* CustomSideMenuNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSideMenuNavigation.swift; sourceTree = "<group>"; };
-		8E0721C225F1EA80003A7207 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
-		8E0721C525F1EAA1003A7207 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		8E0721CC25F1EF49003A7207 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		8E33163725DBCD69000D1306 /* ClubManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E33163A25DBCD69000D1306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E33163C25DBCD69000D1306 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8E33163E25DBCD69000D1306 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		8E33164125DBCD69000D1306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E33164325DBCD70000D1306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E33164625DBCD70000D1306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E33164825DBCD70000D1306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E33165025DBD28C000D1306 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		8EC498CC25F604B9004562E7 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		8EC498DC25F61414004562E7 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		8EDBDC8B25E170CD0051DF37 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		8EDBDC8E25E17FF30051DF37 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		8EDBDCA125E277180051DF37 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -113,24 +105,15 @@
 		8E33163925DBCD69000D1306 /* ClubManager */ = {
 			isa = PBXGroup;
 			children = (
+				8E33164825DBCD70000D1306 /* Info.plist */,
+				8EC498D225F60F77004562E7 /* storyBoard */,
+				8EC498D025F60F4B004562E7 /* setting */,
+				8EC498CF25F60F0F004562E7 /* Cell */,
 				8E07216F25F126AD003A7207 /* Controllers */,
 				8E33164F25DBD269000D1306 /* LoginViewController */,
-				8E33163A25DBCD69000D1306 /* AppDelegate.swift */,
-				8E0721CC25F1EF49003A7207 /* SideMenuViewController.swift */,
-				8E33163C25DBCD69000D1306 /* SceneDelegate.swift */,
-				8E33163E25DBCD69000D1306 /* LogInViewController.swift */,
-				8E33164025DBCD69000D1306 /* Main.storyboard */,
 				8E33164325DBCD70000D1306 /* Assets.xcassets */,
-				8E33164525DBCD70000D1306 /* LaunchScreen.storyboard */,
-				8E33164825DBCD70000D1306 /* Info.plist */,
-				8EDBDC8B25E170CD0051DF37 /* Extension.swift */,
 				8EF400B225E158410047AC18 /* showClubViewController.swift */,
-				8EDBDC8E25E17FF30051DF37 /* CustomCollectionViewCell.swift */,
-				8E07216C25F116F0003A7207 /* MainTabBarViewController.swift */,
-				8E0721B525F16412003A7207 /* CustomNoteTableViewCell.swift */,
-				8E0721BF25F1E6D7003A7207 /* CustomSideMenuNavigation.swift */,
-				8E0721C225F1EA80003A7207 /* ContainerController.swift */,
-				8E0721C525F1EAA1003A7207 /* MenuViewController.swift */,
+				8EC498DC25F61414004562E7 /* APICaller.swift */,
 			);
 			path = ClubManager;
 			sourceTree = "<group>";
@@ -141,6 +124,35 @@
 				8E33165025DBD28C000D1306 /* loginViewController.swift */,
 			);
 			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		8EC498CF25F60F0F004562E7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8EC498CC25F604B9004562E7 /* MenuTableViewCell.swift */,
+				8E0721B525F16412003A7207 /* CustomNoteTableViewCell.swift */,
+				8EDBDC8E25E17FF30051DF37 /* CustomCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8EC498D025F60F4B004562E7 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				8E33163C25DBCD69000D1306 /* SceneDelegate.swift */,
+				8EDBDC8B25E170CD0051DF37 /* Extension.swift */,
+				8E33163A25DBCD69000D1306 /* AppDelegate.swift */,
+			);
+			path = setting;
+			sourceTree = "<group>";
+		};
+		8EC498D225F60F77004562E7 /* storyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				8E33164525DBCD70000D1306 /* LaunchScreen.storyboard */,
+				8E33164025DBCD69000D1306 /* Main.storyboard */,
+			);
+			path = storyBoard;
 			sourceTree = "<group>";
 		};
 		FA028ED7976A358F347201C8 /* Pods */ = {
@@ -267,19 +279,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E07217C25F13F5E003A7207 /* CalenderViewController.swift in Sources */,
-				8E0721C025F1E6D7003A7207 /* CustomSideMenuNavigation.swift in Sources */,
-				8E0721CD25F1EF49003A7207 /* SideMenuViewController.swift in Sources */,
 				8EDBDCA225E277180051DF37 /* HomeViewController.swift in Sources */,
 				8E07217925F13F4E003A7207 /* WriteViewController.swift in Sources */,
+				8EC498DD25F61414004562E7 /* APICaller.swift in Sources */,
 				8E07217525F13EF8003A7207 /* SearchViewController.swift in Sources */,
 				8E33165125DBD28C000D1306 /* loginViewController.swift in Sources */,
 				8EDBDC8F25E17FF30051DF37 /* CustomCollectionViewCell.swift in Sources */,
-				8E07216D25F116F0003A7207 /* MainTabBarViewController.swift in Sources */,
 				8EF400B325E158410047AC18 /* showClubViewController.swift in Sources */,
-				8E33163F25DBCD69000D1306 /* LogInViewController.swift in Sources */,
 				8EDBDC8C25E170CD0051DF37 /* Extension.swift in Sources */,
-				8E0721C625F1EAA1003A7207 /* MenuViewController.swift in Sources */,
-				8E0721C325F1EA80003A7207 /* ContainerController.swift in Sources */,
+				8EC498CD25F604B9004562E7 /* MenuTableViewCell.swift in Sources */,
 				8E07217F25F13F74003A7207 /* ProfileViewController.swift in Sources */,
 				8E33163B25DBCD69000D1306 /* AppDelegate.swift in Sources */,
 				8E0721B625F16412003A7207 /* CustomNoteTableViewCell.swift in Sources */,
