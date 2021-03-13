@@ -49,6 +49,7 @@ function Web(){
       <h4>새 소식</h4>
       <Row>
         <Col>
+          <LinkContainer to='/post'>
           <Card>
             <Card.Body>
               <Card.Title>Card Title</Card.Title>
@@ -58,8 +59,10 @@ function Web(){
               </Card.Text>
             </Card.Body>
           </Card>
+          </LinkContainer>
         </Col>
         <Col>
+          <LinkContainer to='/post'>
           <Card>
             <Card.Body>
               <Card.Title>Card Title</Card.Title>
@@ -69,6 +72,7 @@ function Web(){
               </Card.Text>
             </Card.Body>
           </Card>
+          </LinkContainer>
         </Col>
       </Row>
       <Row>
