@@ -12,6 +12,17 @@ function Web(){
     <>
     <Container>
       <h4>내 모임</h4>
+      {/* {list.map(id => {
+        <Col>
+          <LinkContainer to={`/club/:${id}`}>
+            <Image src={cat} className="clubThumbnail" roundedCircle />
+          </LinkContainer>
+        </Col>
+      })
+      } */}
+      {/* {foodILike.map(dish => (
+        <Food key={dish.id} name={dish.name} picture={dish.image} />
+      ))} */}
       <Row>
         <Col>
           <LinkContainer to='/club'>
@@ -52,10 +63,9 @@ function Web(){
           <LinkContainer to='/post'>
           <Card>
             <Card.Body>
-              <Card.Title>Card Title</Card.Title>
+              <Card.Title>이번 총회는 온라인입니다</Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+              코로나 때문에 이번 총회도 온라인으로 진행될 예정임당~ 신사임당~ 감사함당~
               </Card.Text>
             </Card.Body>
           </Card>

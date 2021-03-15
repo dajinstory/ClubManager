@@ -30,6 +30,10 @@ Button {
 	margin-right: 2em;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
