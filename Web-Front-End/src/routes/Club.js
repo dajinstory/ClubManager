@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container'
+import { Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
@@ -7,6 +8,7 @@ import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import Sonnet from '../components/Sonnet'
+import Post from '../routes/Post'
 import cat from '../images/cat.jpg';
 
 function Club(){
@@ -28,9 +30,11 @@ function Club(){
         </Card>
         </Col>
         <Col>
-          <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+          <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
             <Tab eventKey="all" title="All">
-              <Sonnet />
+              <Link to='/post' style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Post />
+              </Link>
             </Tab>
             <Tab eventKey="schedule" title="Schedule">
               <Sonnet />
