@@ -1,15 +1,22 @@
 //
-//  ClubViewController.swift
-//  ClubManager
+//  HomeViewController.swift
+//  club_manager
 //
-//  Created by JoSoJeong on 2021/02/21.
+//  Created by JoSoJeong on 2021/03/24.
 //
-//
+
 import UIKit
 
 struct cellData{
+    let userName: String
     let title:String
     let content:String
+}
+
+struct NewsData{
+    var profileImage: String
+    var title: String
+    var content: String
 }
 
 
@@ -20,6 +27,8 @@ class HomeViewController: UIViewController {
     var settingArray = ["Profile","Favorite","Notification","Change Password","Logout"]
     
     private var data = [cellData]()
+    
+    
     var isPaging:Bool = false
     var hasNextPage: Bool = false
     
@@ -27,7 +36,7 @@ class HomeViewController: UIViewController {
     
 
     //menu button
-    @IBAction func onClickMenu(_ sender: Any) {
+    @objc func onClickMenu() {
         
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
@@ -56,19 +65,15 @@ class HomeViewController: UIViewController {
             self.tableViewM.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
         }, completion: nil)
     }
-    
-    
-    
-    //let toolbar = UIToolbar()
 
     
     private let tableView1: UITableView = {
         let table = UITableView()
-        table.register(CustomNoteTableViewCell.self, forCellReuseIdentifier: CustomNoteTableViewCell.identifier)
+        table.register(AllNoteTableViewCell.nib(), forCellReuseIdentifier: AllNoteTableViewCell.identifier)
         return table
     }()
     
-    //var scrollView: UIScrollView!
+    
     
     override func viewDidAppear(_ animated: Bool) {
         paging()
@@ -78,8 +83,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(didTapHome))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(onClickMenu))
+    
         view.addSubview(tableView1)
   
+        //toolbarSetup()
         setupMenu()
         setupTableView()
     }
@@ -87,7 +96,6 @@ class HomeViewController: UIViewController {
     //frame
     override func viewDidLayoutSubviews() {
         tableView1.frame = view.bounds
-   
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,14 +115,24 @@ class HomeViewController: UIViewController {
     }
     
 
+
     
     @objc func didTapHome(){
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "showClub") else{
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "Club") else{
             return
         }
         let navVC = UINavigationController(rootViewController: vc)
         UIApplication.shared.windows.first?.rootViewController = navVC
         UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
+    
+    private func createSpinnerFooter() -> UIView {
+        print("create spinner")
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        spinner.startAnimating()
+        return footerView
     }
     
 }
@@ -129,7 +147,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if tableView == tableView1 {
             let model = data[indexPath.row]
-            let cellforTableView1 = tableView.dequeueReusableCell(withIdentifier: CustomNoteTableViewCell.identifier, for: indexPath) as! CustomNoteTableViewCell
+            let cellforTableView1 = tableView.dequeueReusableCell(withIdentifier: AllNoteTableViewCell.identifier, for: indexPath) as! AllNoteTableViewCell
             cellforTableView1.configure(with: model)
             return cellforTableView1
         }
@@ -148,33 +166,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 0
 
     }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == tableView1 {
+            return 150
+        }
+        return 50
+    }
 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == tableViewM {
             return 50
         }else if tableView == tableView1 {
-            return 70
+            return 150
         }
         //default
         return 10
       
-        
     }
     
-    //for header
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "전체글"
-    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
        let lastSectionIndex = tableView.numberOfSections - 1
        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
-          // print("this is the last cell")
         if (tableView == tableView1){
             let spinner = UIActivityIndicatorView(style: .medium)
                spinner.startAnimating()
@@ -184,8 +200,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             tableView1.tableFooterView?.isHidden = false
            }
         }
-      
-   }
+      }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let vc = detalHomeViewController()
+//        present(vc, animated: true, completion: nil)
+    }
+    
+    
+    //for header
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "전체 글"
+    }
     
     
     //pagination 처리
@@ -193,7 +222,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let position = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
-        //print("position : \(position) contentHeight : \(contentHeight) height : \(height)")
+        
                
        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
        if position > (contentHeight - height) {
@@ -206,7 +235,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
            
    func beginPaging() {
-       isPaging = true
+       isPaging = true // 현재 페이징이 진행 되는 것을 표시
+ 
+       
        // 페이징 메소드 호출
        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
            self.paging()
@@ -217,7 +248,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let index = data.count
         var datas: [cellData] = []
         for i in index ..< (index + 20){
-            let data = cellData(title: "title:\(i)", content: "content\(i)")
+            let data = cellData(userName: "username\(i)", title: "title:\(i)", content: "content\(i)")
             datas.append(data)
         }
         
@@ -231,7 +262,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.tableView1.reloadData()
         }
     }
-}
 
+    }
 
 

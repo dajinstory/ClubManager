@@ -1,13 +1,13 @@
 //
 //  loginViewController.swift
-//  ClubManager
+//  club_manager
 //
-//  Created by JoSoJeong on 2021/02/16.
+//  Created by JoSoJeong on 2021/03/24.
 //
 
 import UIKit
 
-class loginViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     private let loginButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
@@ -29,13 +29,16 @@ class loginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         loginButton.center = view.center
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+       
 
     }
     
     //show all about club
     @objc func didTapLoginButton(){
-        let showClub = self.storyboard?.instantiateViewController(withIdentifier: "showClub")
+        let showClub = self.storyboard?.instantiateViewController(withIdentifier: "Club")
         self.navigationController?.pushViewController(showClub!, animated: true)
+//        let showClub = UIViewController()
+//        present(showClub, animated: true)
     }
     
 
