@@ -7,6 +7,7 @@ target 'club_manager' do
 
   # Pods for club_manager
 pod 'TagListView', '~> 1.0'
-pod "TTGTagCollectionView"
 pod 'FSCalendar'
+pod "TTGTagCollectionView"
+
 end

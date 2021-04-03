@@ -257,7 +257,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.tableView1.tableFooterView = nil
             
             self.data.append(contentsOf: datas)
-            self.hasNextPage = self.data.count > 300 ? false: true
+            self.hasNextPage = self.data.count > 50 ? false: true
             self.isPaging = false
             self.tableView1.reloadData()
         }

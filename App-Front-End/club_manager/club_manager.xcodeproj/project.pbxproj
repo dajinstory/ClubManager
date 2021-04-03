@@ -14,6 +14,7 @@
 		8E8E588626120D3D00DB274A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E588526120D3D00DB274A /* CalendarViewController.swift */; };
 		8E8E58B326130A9E00DB274A /* RecTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58B126130A9E00DB274A /* RecTableViewCell.swift */; };
 		8E8E58B426130A9E00DB274A /* RecTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */; };
+		8E8E58BC261366B100DB274A /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58BB261366B100DB274A /* AddViewController.swift */; };
 		8E9B84C3260B20C8000FE298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84C2260B20C8000FE298 /* AppDelegate.swift */; };
 		8E9B84C5260B20C8000FE298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84C4260B20C8000FE298 /* SceneDelegate.swift */; };
 		8E9B84CA260B20C8000FE298 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9B84C8260B20C8000FE298 /* Main.storyboard */; };
@@ -25,6 +26,9 @@
 		8E9B84F2260B32E3000FE298 /* clubCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84F0260B32E3000FE298 /* clubCollectionViewCell.swift */; };
 		8E9B84F3260B32E3000FE298 /* clubCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E9B84F1260B32E3000FE298 /* clubCollectionViewCell.xib */; };
 		8E9B84F7260B3C7A000FE298 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84F6260B3C7A000FE298 /* HomeViewController.swift */; };
+		8EA8416126170CFC00502C8A /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8416026170CFC00502C8A /* WriteViewController.swift */; };
+		8EA8416626183B2800502C8A /* SetScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8416426183B2800502C8A /* SetScheduleTableViewCell.swift */; };
+		8EA8416726183B2800502C8A /* SetScheduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA8416526183B2800502C8A /* SetScheduleTableViewCell.xib */; };
 		8ECD782C260C375B0019D9F2 /* AllNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECD782A260C375B0019D9F2 /* AllNoteTableViewCell.swift */; };
 		8ECD782D260C375B0019D9F2 /* AllNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECD782B260C375B0019D9F2 /* AllNoteTableViewCell.xib */; };
 		8ECD7833260C42570019D9F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECD7832260C42570019D9F2 /* SearchViewController.swift */; };
@@ -38,6 +42,7 @@
 		8E8E588526120D3D00DB274A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		8E8E58B126130A9E00DB274A /* RecTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecTableViewCell.swift; sourceTree = "<group>"; };
 		8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecTableViewCell.xib; sourceTree = "<group>"; };
+		8E8E58BB261366B100DB274A /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		8E9B84BF260B20C8000FE298 /* club_manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = club_manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9B84C2260B20C8000FE298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9B84C4260B20C8000FE298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +56,9 @@
 		8E9B84F0260B32E3000FE298 /* clubCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clubCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E9B84F1260B32E3000FE298 /* clubCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clubCollectionViewCell.xib; sourceTree = "<group>"; };
 		8E9B84F6260B3C7A000FE298 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8EA8416026170CFC00502C8A /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		8EA8416426183B2800502C8A /* SetScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		8EA8416526183B2800502C8A /* SetScheduleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetScheduleTableViewCell.xib; sourceTree = "<group>"; };
 		8ECD782A260C375B0019D9F2 /* AllNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNoteTableViewCell.swift; sourceTree = "<group>"; };
 		8ECD782B260C375B0019D9F2 /* AllNoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllNoteTableViewCell.xib; sourceTree = "<group>"; };
 		8ECD7832260C42570019D9F2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +137,8 @@
 				8ECD7832260C42570019D9F2 /* SearchViewController.swift */,
 				8E8E58822611D38500DB274A /* ProfileViewController.swift */,
 				8E8E588526120D3D00DB274A /* CalendarViewController.swift */,
+				8E8E58BB261366B100DB274A /* AddViewController.swift */,
+				8EA8416026170CFC00502C8A /* WriteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -152,6 +162,8 @@
 				8E8E58772611A14400DB274A /* ClubNewsTableViewCell.xib */,
 				8E8E58B126130A9E00DB274A /* RecTableViewCell.swift */,
 				8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */,
+				8EA8416426183B2800502C8A /* SetScheduleTableViewCell.swift */,
+				8EA8416526183B2800502C8A /* SetScheduleTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -225,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9B84F3260B32E3000FE298 /* clubCollectionViewCell.xib in Resources */,
+				8EA8416726183B2800502C8A /* SetScheduleTableViewCell.xib in Resources */,
 				8E9B84CF260B20CB000FE298 /* LaunchScreen.storyboard in Resources */,
 				8E9B84CC260B20CB000FE298 /* Assets.xcassets in Resources */,
 				8E9B84CA260B20C8000FE298 /* Main.storyboard in Resources */,
@@ -285,7 +298,10 @@
 			files = (
 				8E8E588626120D3D00DB274A /* CalendarViewController.swift in Sources */,
 				8E9B84E3260B2484000FE298 /* Extension.swift in Sources */,
+				8E8E58BC261366B100DB274A /* AddViewController.swift in Sources */,
+				8EA8416126170CFC00502C8A /* WriteViewController.swift in Sources */,
 				8E8E58B326130A9E00DB274A /* RecTableViewCell.swift in Sources */,
+				8EA8416626183B2800502C8A /* SetScheduleTableViewCell.swift in Sources */,
 				8E9B84DE260B233D000FE298 /* ClubViewController.swift in Sources */,
 				8E8E58782611A14500DB274A /* ClubNewsTableViewCell.swift in Sources */,
 				8E9B84C3260B20C8000FE298 /* AppDelegate.swift in Sources */,
@@ -430,6 +446,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -450,6 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Develop.club-manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -470,6 +488,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Develop.club-manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

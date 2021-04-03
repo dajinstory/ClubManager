@@ -9,11 +9,19 @@ import UIKit
 
 class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 
-    private let label: UILabel = {
+    private let userName: UILabel = {
         let label = UILabel()
-        label.text = "text"
+        label.text = "조소정"
+        label.textColor = .black
         return label
     }()
+    
+    private let sec = ["section1", "section2", "section3"]
+    var section1 = ["기본 정보"]
+    var section2 = ["다크 모드"]
+    var section3 = ["로그 아웃", "회원 탈퇴"]
+    
+    
     
     
     private let imageView: UIImageView = {
@@ -22,7 +30,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         imageView.tintColor = .lightGray
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: 40, y: 30, width: 70, height: 70)
+//        imageView.frame = CGRect(x: 40, y: 40, width: 70, height: 70)
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.layer.borderColor = UIColor.lightGray.cgColor
         imageView.layer.borderWidth = 1
@@ -48,10 +56,15 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLayoutSubviews()
         layoutTableView.delegate = self
         layoutTableView.dataSource = self
-        layoutTableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        imageView.frame = CGRect(x: view.bounds.width/2 - 35, y: 150, width: 70, height: 70)
+        userName.frame = CGRect(x: view.bounds.width/2, y: imageView.bottom + 10, width: 50, height: 25)
         
+        layoutTableView.frame = CGRect(x: 0, y: userName.bottom + 20, width: view.bounds.width, height: view.bounds.height - imageView.height - 30)
+        
+        view.addSubview(imageView)
         view.addSubview(layoutTableView)
-        layoutTableView.addSubview(imageView)
+        
+        
         
         
         imageView.isUserInteractionEnabled = true
@@ -70,25 +83,38 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return sec.count
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sec[section]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 1){
-            label.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
-            tableView.addSubview(label)
-            
+            return section1.count
+        }else if(section == 2){
+            return section2.count
+        }else {
+            return section3.count
         }
-        return 1
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! UITableViewCell
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        if indexPath.section == 1 {
+            cell.textLabel?.text = section1[indexPath.row]
+        }else if indexPath.section == 2 {
+            cell.textLabel?.text = section2[indexPath.row]
+        }else {
+            cell.textLabel?.text = section3[indexPath.row]
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height/3
+        return 50
     }
     
     

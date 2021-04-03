@@ -153,7 +153,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate {
         clubView.frame = CGRect(x: 0, y: 0, width: contentView.width, height: 200)
         clubNewsView.frame = CGRect(x: 0, y: clubView.bottom + 5, width: contentView.width, height: 500)
         recommendView.frame = CGRect(x: 0, y: clubNewsView.bottom + 5, width: contentView.width, height: 500)
-        clubNewsTableView.frame = CGRect(x: 0, y: 40, width: contentView.width, height: clubNewsView.height - 50)
+        clubNewsTableView.frame = CGRect(x: 0, y: 50, width: contentView.width, height: clubNewsView.height - 60)
         
         tagView.frame = CGRect(x: 0, y: 20, width: (contentView.width) * 2, height: 80)
         //tagView.backgroundColor = .systemPink
@@ -239,7 +239,6 @@ class ClubViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func filterRecClubList(tag: String){
-        print("filter")
         filtered = recClubList.filter { $0.category == tag}
         //print(filtered)
     }
@@ -300,11 +299,11 @@ extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == clubNewsTableView {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: ClubNewsTableViewCell.identifier) as! ClubNewsTableViewCell
             cell.configure(with: newsData[indexPath.row])
-            cell.backgroundColor = UIColor.white
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 1
-            cell.layer.cornerRadius = 8
-            cell.clipsToBounds = true
+//            cell.backgroundColor = UIColor.white
+//            cell.layer.borderColor = UIColor.black.cgColor
+//            cell.layer.borderWidth = 1
+//            cell.layer.cornerRadius = 8
+//            cell.clipsToBounds = true
             return cell
         }else if tableView == rectableView {
             let cellforRec = tableView.dequeueReusableCell(withIdentifier: RecTableViewCell.identifier) as! RecTableViewCell
@@ -324,14 +323,27 @@ extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == clubNewsTableView {
             let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
-
-            view.window?.rootViewController = tabBarViewController
-                  view.window?.makeKeyAndVisible()
+            
+//            let vc1 = UINavigationController(rootViewController: HomeViewController())
+//            let vc2 = UINavigationController(rootViewController: SearchViewController())
+//            let vc3 = UINavigationController(rootViewController: WriteViewController())
+//            let vc4 = UINavigationController(rootViewController: CalendarViewController())
+//            let vc5 = UINavigationController(rootViewController: ProfileViewController())
+//
+//            tabBarViewController.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
+            
+            //self.present(tabBarViewController, animated: true)
+            tabBarViewController.modalPresentationStyle = .fullScreen
+            present(tabBarViewController, animated: true)
+            
+            //view.window?.rootViewController = tabBarViewController
+            
+                  //view.window?.makeKeyAndVisible()
         }else if (tableView == rectableView) {
             let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
 
-            view.window?.rootViewController = tabBarViewController
-                  view.window?.makeKeyAndVisible()
+            //view.window?.rootViewController = tabBarViewController
+            //view.window?.makeKeyAndVisible()
         }
     }
     

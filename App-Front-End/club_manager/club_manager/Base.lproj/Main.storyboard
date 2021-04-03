@@ -177,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="2539.130434782609" y="1596.4285714285713"/>
         </scene>
-        <!--View Controller-->
+        <!--Write View Controller-->
         <scene sceneID="bC8-47-RGl">
             <objects>
-                <viewController id="Eda-N9-seD" sceneMemberID="viewController">
+                <viewController id="Eda-N9-seD" customClass="WriteViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LyB-I1-8wH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,7 +196,7 @@
         <!--Calender-->
         <scene sceneID="4JH-wn-Z23">
             <objects>
-                <navigationController id="CTj-3V-hSN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="3" id="CTj-3V-hSN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Calender" image="calendar" catalog="system" id="2wh-ua-e3B"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wWX-HN-5nz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -208,7 +208,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLI-0n-zJ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2539.130434782609" y="2287.5"/>
+            <point key="canvasLocation" x="2064" y="2320"/>
         </scene>
         <!--Calendar View Controller-->
         <scene sceneID="yex-y1-TS0">
@@ -217,38 +217,14 @@
                     <view key="view" contentMode="scaleToFill" id="PTm-C1-foY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOz-fb-nvf" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="98" width="414" height="271"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kQb-rm-KLY">
-                                <rect key="frame" x="0.0" y="369" width="414" height="444"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="p0f-If-LaU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="kQb-rm-KLY" firstAttribute="leading" secondItem="p0f-If-LaU" secondAttribute="leading" id="500-LC-wQt"/>
-                            <constraint firstItem="p0f-If-LaU" firstAttribute="trailing" secondItem="nOz-fb-nvf" secondAttribute="trailing" id="58q-ks-ZVA"/>
-                            <constraint firstItem="p0f-If-LaU" firstAttribute="bottom" secondItem="nOz-fb-nvf" secondAttribute="bottom" constant="444" id="CCz-rR-rnR"/>
-                            <constraint firstItem="nOz-fb-nvf" firstAttribute="top" secondItem="p0f-If-LaU" secondAttribute="top" constant="10" id="FUK-t3-30s"/>
-                            <constraint firstItem="nOz-fb-nvf" firstAttribute="leading" secondItem="p0f-If-LaU" secondAttribute="leading" id="Vnq-H6-Qrz"/>
-                            <constraint firstItem="kQb-rm-KLY" firstAttribute="top" secondItem="nOz-fb-nvf" secondAttribute="bottom" id="Zlc-zA-oTS"/>
-                            <constraint firstItem="p0f-If-LaU" firstAttribute="bottom" secondItem="kQb-rm-KLY" secondAttribute="bottom" id="pD2-oz-Ulb"/>
-                            <constraint firstItem="p0f-If-LaU" firstAttribute="trailing" secondItem="kQb-rm-KLY" secondAttribute="trailing" id="ur0-4s-0hE"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kO1-2u-8Gg"/>
-                    <connections>
-                        <outlet property="calendar" destination="nOz-fb-nvf" id="dDz-DW-ifM"/>
-                        <outlet property="setScheduledView" destination="kQb-rm-KLY" id="O8l-tW-YLi"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00t-hU-hrL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3363.7681159420295" y="2280.1339285714284"/>
+            <point key="canvasLocation" x="2769.5652173913045" y="2318.9732142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oSh-PH-mxE">
