@@ -6,16 +6,18 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import { LinkContainer } from 'react-router-bootstrap';
 import cat from '../images/cat.jpg';
+import cat2 from '../images/snow_leopard.png';
+
 
 function Web(){
   return (
     <>
-    <Container>
-      <h4>내 모임</h4>
+    <Container style={{ marginTop: '2em'}}>
+      <h4 style={{ marginBottom: '1em'}}>내 모임</h4>
       {/* {list.map(id => {
         <Col>
           <LinkContainer to={`/club/:${id}`}>
-            <Image src={cat} className="clubThumbnail" roundedCircle />
+            <Image src={cat} roundedCircle />
           </LinkContainer>
         </Col>
       })
@@ -23,44 +25,34 @@ function Web(){
       {/* {foodILike.map(dish => (
         <Food key={dish.id} name={dish.name} picture={dish.image} />
       ))} */}
-      <Row>
+      <div class="thumbnail-container">
+        <ul class="thumbnail-list">
+          <LinkContainer to='/club'>
+            <li><span><img class="thumbnail-image" src={cat}/></span>고양이집사</li>
+          </LinkContainer>
+          <li><span><img class="thumbnail-image" src={cat2}/></span>고양이house사</li>
+          <li><span><img class="thumbnail-image" src={cat}/></span>강아지집buy</li>
+          <li><span><img class="thumbnail-image" src={cat2}/></span>고슴도치집사</li>
+          <li><span><img class="thumbnail-image" src={cat}/></span>어쩌구집사</li>
+          <li><span><img class="thumbnail-image" src={cat2}/></span>뱀집사</li>
+          <li><span><img class="thumbnail-image" src={cat}/></span>웅앵웅</li>
+          <li><span><img class="thumbnail-image" src={cat2}/></span>잉잉</li>
+          <li><span><img class="thumbnail-image" src={cat}/></span>앙</li>
+        </ul>
+      </div>
+      {/* <Row className="scroll">
         <Col>
           <LinkContainer to='/club'>
-            <Image src={cat} className="clubThumbnail" roundedCircle />
+            <Image src={cat} roundedCircle />
           </LinkContainer>
         </Col>
-        <Col>
-          <LinkContainer to='/club'>
-            <Image src={cat} className="clubThumbnail" roundedCircle />
-          </LinkContainer>
-        </Col>
-        <Col>
-          <LinkContainer to='/club'>
-            <Image src={cat} className="clubThumbnail" roundedCircle />
-          </LinkContainer>
-        </Col>
-        <Col>
-          <LinkContainer to='/club'>
-            <Image src={cat} className="clubThumbnail" roundedCircle />
-          </LinkContainer>
-        </Col>
-        <Col>
-          <LinkContainer to='/club'>
-            <Image src={cat} className="clubThumbnail" roundedCircle />
-          </LinkContainer>
-        </Col>
-        <Col>
-          <LinkContainer to='/club'>
-            <Image src={cat} className="clubThumbnail" roundedCircle />
-          </LinkContainer>
-        </Col>
-      </Row>
+      </Row> */}
     </Container>
-    <Container>
-      <h4>새 소식</h4>
+    <Container style={{ marginTop: '2em', marginBottom: '2em'}}>
+      <h4 style={{ marginBottom: '1em'}}>새 소식</h4>
       <Row>
-        <Col>
-          <LinkContainer to='/post'>
+        <Col style={{ marginBottom: '1em'}}>
+          <LinkContainer to='/post' style={{ cursor: 'pointer' }}>
           <Card>
             <Card.Body>
               <Card.Title>이번 총회는 온라인입니다</Card.Title>
@@ -110,7 +102,6 @@ function Web(){
         </Col>
       </Row>
     </Container>
-
     </>
   )
 }

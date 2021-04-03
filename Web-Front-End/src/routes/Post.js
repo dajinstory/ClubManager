@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 function Post(){
   return (
-      <Container>
+      <Container style={{ marginTop: '2em' }}>
         <Card>
           <Card.Header>게시판이름</Card.Header>
           <Card.Body>

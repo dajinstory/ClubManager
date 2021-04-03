@@ -5,6 +5,8 @@ import Home from './routes/Home';
 import Web from './routes/Web';
 import Club from './routes/Club';
 import Post from './routes/Post';
+import Reserve from './routes/Reserve';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Route path="/web" component={Web}/>
       <Route path="/club" component={Club}/>
       <Route path="/post" component={Post}/>
+      <Route path="/reserve" component={Reserve}/>
+      <Footer />
     </HashRouter>
   );
 }
