@@ -12,13 +12,8 @@ struct cellData{
     let content:String
 }
 
-//class LoadingCell : UITableViewCell {
-//    func start(){
-//        acti
-//    }
-//}
 
-class HomeViewController: UIViewController, UIToolbarDelegate {
+class HomeViewController: UIViewController {
     
     var transparentView = UIView()
     var tableViewM = UITableView()
@@ -64,7 +59,7 @@ class HomeViewController: UIViewController, UIToolbarDelegate {
     
     
     
-    let toolbar = UIToolbar()
+    //let toolbar = UIToolbar()
 
     
     private let tableView1: UITableView = {
@@ -81,97 +76,22 @@ class HomeViewController: UIViewController, UIToolbarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let screensize: CGRect = UIScreen.main.bounds
-//        let screenWidth = screensize.width
-//        let screenHeight = screensize.height
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(didTapHome))
-        
-        //contentCView.isUserInteractionEnabled = true
-        
-//        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
-//        scrollView.clipsToBounds = true
-//        scrollView.contentSize = CGSize(width: screenWidth, height: (scrollView.width * 3) + 20)
-//        //scrollView.addSubview(contentCView)
-//        //contentCView.addSubview(tableView1)
-//        view.addSubview(scrollView)
         view.addSubview(tableView1)
   
-        toolbarSetup()
         setupMenu()
         setupTableView()
     }
     
     //frame
     override func viewDidLayoutSubviews() {
-
-        //scrollView.frame = view.bounds
-        //contentCView.frame = CGRect(x: 0, y: 30, width: view.bounds.size.width, height: 3000)
         tableView1.frame = view.bounds
-            //CGRect(x: 10 , y: 30, width: view.bounds.size.width, height: view.bounds.size.height - 10)
-        
-        
-//        apiCaller.fetchData(completion: { [weak self] result in
-//            switch result {
-//            case .success(let data):
-//                self?.data.append(contentsOf: data)
-//
-//                DispatchQueue.main.async {
-//                    self?.tableView1.reloadData()
-//                }
-//
-//            case .failure(_):
-//                break
-//            }})
    
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    
-    func toolbarSetup(){
-        // warning을 막기 위해 임의로 위치와 크기를 잡아준다.
-        let toolbar = UIToolbar(frame: .init(x: 0, y: 20, width: 100, height: 150))
-        view.addSubview(toolbar)
-        toolbar.barTintColor = .black
-
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 0).isActive = true
-        toolbar.bottomAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.bottomAnchor, multiplier: 0).isActive = true
-        toolbar.trailingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor, multiplier: 0).isActive = true
-
-        var items: [UIBarButtonItem] = []
-
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-
-        let toolbarItem1 = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
-        toolbarItem1.tag = 1
-       
-        
-        let toolbarItem2 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapWriteButton))
-        toolbarItem2.tag = 2
-        
-        let toolbarItem3 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapCalenderButton))
-        toolbarItem3.tag = 3
-        
-        let toolbarItem4 = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(didTapProfileButton))
-        toolbarItem3.tag = 4
-    
-        items.append(toolbarItem1)
-        items.append(flexibleSpace)
-        items.append(toolbarItem2)
-        items.append(flexibleSpace)
-        items.append(toolbarItem3)
-        items.append(flexibleSpace)
-        items.append(toolbarItem4)
-
-        items.forEach { (item) in
-            item.tintColor = .orange
-        }
-        
-        toolbar.setItems(items, animated: true)
     }
     
     private func setupMenu(){
@@ -187,30 +107,6 @@ class HomeViewController: UIViewController, UIToolbarDelegate {
     }
     
 
-    //toolbar move
-    @objc func didTapSearchButton(){
-        print("select 1")
-        let vc1 = SearchViewController()
-        present(vc1, animated: true)
-    }
-    
-    @objc func didTapWriteButton(){
-        print("select 2")
-        let vc2 = WriteViewController()
-        present(vc2, animated: true)
-    }
-    
-    @objc func didTapCalenderButton(){
-        print("select 3")
-        let vc3 = CalenderViewController()
-        present(vc3, animated: true)
-    }
-    
-    @objc func didTapProfileButton(){
-        print("select 3")
-        let vc4 = ProfileViewController()
-        present(vc4, animated: true)
-    }
     
     @objc func didTapHome(){
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "showClub") else{
@@ -219,15 +115,6 @@ class HomeViewController: UIViewController, UIToolbarDelegate {
         let navVC = UINavigationController(rootViewController: vc)
         UIApplication.shared.windows.first?.rootViewController = navVC
         UIApplication.shared.windows.first?.makeKeyAndVisible()
-    }
-    
-    private func createSpinnerFooter() -> UIView {
-        print("create spinner")
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-        let spinner = UIActivityIndicatorView()
-        spinner.center = footerView.center
-        spinner.startAnimating()
-        return footerView
     }
     
 }
@@ -275,6 +162,32 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    //for header
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "전체글"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+       let lastSectionIndex = tableView.numberOfSections - 1
+       let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+       if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+          // print("this is the last cell")
+        if (tableView == tableView1){
+            let spinner = UIActivityIndicatorView(style: .medium)
+               spinner.startAnimating()
+               spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+
+            tableView1.tableFooterView = spinner
+            tableView1.tableFooterView?.isHidden = false
+           }
+        }
+      
+   }
+    
+    
     //pagination 처리
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
@@ -284,7 +197,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                
        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
        if position > (contentHeight - height) {
-        print("call cause position is more than")
            if isPaging == false && hasNextPage {
                beginPaging()
            }
@@ -294,13 +206,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
            
    func beginPaging() {
-       isPaging = true // 현재 페이징이 진행 되는 것을 표시
-       // Section 1을 reload하여 로딩 셀을 보여줌 (페이징 진행 중인 것을 확인할 수 있도록)
-//        DispatchQueue.main.async {
-//            self.tableView1.reloadSections(IndexSet(integer: 1), with: .none)
-//        }
-
-       
+       isPaging = true
        // 페이징 메소드 호출
        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
            self.paging()
@@ -325,35 +231,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.tableView1.reloadData()
         }
     }
-
-//
-//        if position > (tableView1.contentSize.height - 100 - scrollView.frame.size.height) {
-//            guard !apiCaller.isPaginating else {
-//
-//                //we are already fetching more data
-//                return
-//            }
-//
-//            apiCaller.fetchData(pagination: true){ [weak self] result in
-//                DispatchQueue.main.async {
-//                    self?.tableView1.tableFooterView = nil
-//                }
-//
-//                switch result {
-//                case .success(let moreData):
-//                    self?.data.append(contentsOf: moreData)
-//                    DispatchQueue.main.async {
-//                        self?.tableView1.reloadData()
-//                    }
-//                    case .failure(_):
-//                        break;
-//                    }
-//
-//                }
-//
-//        }
-// 
-    }
+}
 
 
 

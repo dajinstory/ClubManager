@@ -36,8 +36,6 @@ class loginViewController: UIViewController {
     @objc func didTapLoginButton(){
         let showClub = self.storyboard?.instantiateViewController(withIdentifier: "showClub")
         self.navigationController?.pushViewController(showClub!, animated: true)
-//        let showClub = UIViewController()
-//        present(showClub, animated: true)
     }
     
 
