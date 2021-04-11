@@ -1,0 +1,91 @@
+PODS:
+  - Alamofire (5.4.1)
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - FSCalendar (2.8.2)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.1.0):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher (~> 1.4)
+  - GTMSessionFetcher (1.5.0):
+    - GTMSessionFetcher/Full (= 1.5.0)
+  - GTMSessionFetcher/Core (1.5.0)
+  - GTMSessionFetcher/Full (1.5.0):
+    - GTMSessionFetcher/Core (= 1.5.0)
+  - KakaoOpenSDK (1.23.8):
+    - KakaoOpenSDK/KakaoCommon (= 1.23.8)
+    - KakaoOpenSDK/KakaoLink (= 1.23.8)
+    - KakaoOpenSDK/KakaoMessageTemplate (= 1.23.8)
+    - KakaoOpenSDK/KakaoNavi (= 1.23.8)
+    - KakaoOpenSDK/KakaoOpenSDK (= 1.23.8)
+    - KakaoOpenSDK/KakaoPlusFriend (= 1.23.8)
+  - KakaoOpenSDK/KakaoCommon (1.23.8)
+  - KakaoOpenSDK/KakaoLink (1.23.8):
+    - KakaoOpenSDK/KakaoCommon
+    - KakaoOpenSDK/KakaoMessageTemplate
+  - KakaoOpenSDK/KakaoMessageTemplate (1.23.8)
+  - KakaoOpenSDK/KakaoNavi (1.23.8):
+    - KakaoOpenSDK/KakaoCommon
+  - KakaoOpenSDK/KakaoOpenSDK (1.23.8):
+    - KakaoOpenSDK/KakaoMessageTemplate
+  - KakaoOpenSDK/KakaoPlusFriend (1.23.8):
+    - KakaoOpenSDK/KakaoCommon
+  - KakaoSDKAuth (2.4.1):
+    - KakaoSDKCommon (= 2.4.1)
+  - KakaoSDKCommon (2.4.1):
+    - KakaoSDKCommon/Common (= 2.4.1)
+    - KakaoSDKCommon/Network (= 2.4.1)
+  - KakaoSDKCommon/Common (2.4.1)
+  - KakaoSDKCommon/Network (2.4.1):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.4.1)
+  - KakaoSDKUser (2.4.1):
+    - KakaoSDKAuth (= 2.4.1)
+    - KakaoSDKCommon (= 2.4.1)
+  - TTGTagCollectionView (1.11.1)
+
+DEPENDENCIES:
+  - FSCalendar
+  - GoogleSignIn
+  - KakaoOpenSDK
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
+  - TTGTagCollectionView
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AppAuth
+    - FSCalendar
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
+    - KakaoOpenSDK
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
+    - TTGTagCollectionView
+
+SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  KakaoOpenSDK: 1cfe7845475c14a23cf031a3d8ef5d76a90eeec5
+  KakaoSDKAuth: fcba1c9ede431683f5bdd84c835a96981cb115a5
+  KakaoSDKCommon: 0912aa0c7db051ae8dc07a35395cf644f7728f95
+  KakaoSDKUser: 11955811d99d1ff1f1dfd5428afe69937e31ccef
+  TTGTagCollectionView: 86fcbfa6a7493c9e860b01c2e693cffc8acf6de1
+
+PODFILE CHECKSUM: 53460aa3d7e028bb40413a09760566d05b73ca8f
+
+COCOAPODS: 1.10.1
