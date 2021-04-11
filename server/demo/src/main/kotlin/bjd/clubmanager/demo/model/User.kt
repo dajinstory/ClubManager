@@ -9,6 +9,8 @@ data class User (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@CsvBindByName(column = "id")
     val id: Long? = null,
+    //@CsvBindByName(column = "email")
+    val email: String,
     //@CsvBindByName(column = "name")
     val name: String,
     //@CsvBindByName(column = "clubs")
@@ -17,6 +19,7 @@ data class User (
     fun toDTO() : UserDTO {
         return UserDTO(
             id = id,
+            email = email,
             name = name,
             clubs = clubs
         )

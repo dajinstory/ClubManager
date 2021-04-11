@@ -7,4 +7,5 @@ import java.util.*
 interface UserRepository : CrudRepository<User, Long> {
     override fun findAll(): List<User>
     override fun findById(id: Long): Optional<User>
+    fun findByEmail(email: String): Optional<User>
 }

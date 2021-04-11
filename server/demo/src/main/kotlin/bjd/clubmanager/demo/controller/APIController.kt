@@ -34,15 +34,15 @@ class APIController {
     }
     // MYPAGE - 내 카페, 아이디
     @GetMapping("/user", produces = ["application/json"])
-    fun getUser(@RequestBody userIdDTO: UserIdDTO?): ResponseEntity<Any> {
+    fun getUser(@RequestBody userKeyDTO: UserKeyDTO?): ResponseEntity<Any> {
         // Get All
-        return if(userIdDTO == null){
+        return if (userKeyDTO == null) {
             return ResponseEntity
                 .ok()
                 .body(userService.getUsers())
         } else ResponseEntity
             .ok()
-            .body(userService.getUserById(userIdDTO))
+            .body(userService.getUserByKey(userKeyDTO))
     }
 
     // CLUB 생성 - create club
