@@ -11,22 +11,13 @@ import Badge from 'react-bootstrap/Badge'
 import Sonnet from '../components/Sonnet'
 import Post from '../routes/Post'
 import cat from '../images/cat.jpg';
+// dummy data
+import posts from '../dummy-data/posts.js';
+import schedules from '../dummy-data/schedules.js';
 
-const schedules = [
-  {
-    title: "합주",
-    date: "2020-01-01"
-  },
-  {
-    title: "스터디",
-    date: "2020-03-01"
-  },
-  {
-    title: "연습",
-    date: "2020-03-12"
-  },
-]
-function Club(){
+
+function Club({club}){
+  const posts = club.posts;
   return (
     <>
     <Container style={{ marginTop: '2em'}}>
@@ -35,7 +26,7 @@ function Club(){
         <Card style={{ width: '16rem'}}>
           <Card.Img variant="top" src={cat} />
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
+            <Card.Title>{club.name}</Card.Title>
             <Card.Text>
               Some quick example text to build on the card title and make up the bulk of
               the card's content.
@@ -50,9 +41,13 @@ function Club(){
               <Link to='/post' style={{ color: 'inherit', fontSize:'1rem'}}>
                 <span>전체 보기> </span>
               </Link>
-              <Link to='/post' style={{ textDecoration: 'none', color: 'inherit' }}>
-                <Post />
+              {
+              posts.map(item=>console.log(item))}
+              {/* {console.log(club.posts)} */}
+              <Link to='/post/:id' style={{ textDecoration: 'none', color: 'inherit' }}>
+                {/* <Post post={id:2, title:"dd", content:"asdfasd"}/> */}
               </Link>
+            
             </Tab>
             <Tab eventKey="schedule" title="Schedule">
               {
