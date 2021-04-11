@@ -5,9 +5,42 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import { LinkContainer } from 'react-router-bootstrap';
+import RecentCard from '../components/RecentCard.js';
 import cat from '../images/cat.jpg';
 import cat2 from '../images/snow_leopard.png';
 
+const posts = [
+  {
+    id: 1,
+    title: "앙!",
+    content: "어어아아아앙"
+  },
+  {
+    id: 2,
+    title: "애애애오옹!",
+    content: "야옹! 야옹! 야옹! 야옹! 야옹! 야옹! 야옹! 야옹! "
+  },
+  {
+    id: 3,
+    title: "월워러럴우렁루러!",
+    content: "멍! 멍! 멍! 멍! 멍! 멍! 멍! 멍! "
+  },
+  {
+    id: 4,
+    title: "앙!4",
+    content: "어어아아아앙"
+  },
+  {
+    id: 5,
+    title: "5애애애오옹!",
+    content: "야옹! 야옹! 야옹! 야옹! 야옹! 야옹! 야옹! 야옹! "
+  },
+  {
+    id: 6,
+    title: "6월워러럴우렁루러!",
+    content: "멍! 멍! 멍! 멍! 멍! 멍! 멍! 멍! "
+  },
+];
 
 function Web(){
   return (
@@ -22,9 +55,6 @@ function Web(){
         </Col>
       })
       } */}
-      {/* {foodILike.map(dish => (
-        <Food key={dish.id} name={dish.name} picture={dish.image} />
-      ))} */}
       <div class="thumbnail-container">
         <ul class="thumbnail-list">
           <LinkContainer to='/club'>
@@ -50,56 +80,17 @@ function Web(){
     </Container>
     <Container style={{ marginTop: '2em', marginBottom: '2em'}}>
       <h4 style={{ marginBottom: '1em'}}>새 소식</h4>
-      <Row>
-        <Col style={{ marginBottom: '1em'}}>
-          <LinkContainer to='/post' style={{ cursor: 'pointer' }}>
-          <Card>
-            <Card.Body>
-              <Card.Title>이번 총회는 온라인입니다</Card.Title>
-              <Card.Text>
-              코로나 때문에 이번 총회도 온라인으로 진행될 예정임당~ 신사임당~ 감사함당~
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          </LinkContainer>
-        </Col>
-        <Col>
-          <LinkContainer to='/post'>
-          <Card>
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          </LinkContainer>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
+      <Row xs={1} md={2}>
+      {posts.map(post => {
+        return (
+          <RecentCard
+            // id={post.id}
+            // title={post.title}
+            // content={post.content}
+            post={post}
+          />
+        );
+      })}
       </Row>
     </Container>
     </>
