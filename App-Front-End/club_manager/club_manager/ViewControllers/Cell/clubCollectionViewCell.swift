@@ -20,7 +20,7 @@ class clubCollectionViewCell: UICollectionViewCell {
    
     }
     
-    public func configure(with model: club){
+    public func configure(with model: Club){
         self.myImageView.image = UIImage(named: model.clubImage)
         self.myImageView.contentMode = .scaleAspectFill
         self.myImageView.clipsToBounds = true

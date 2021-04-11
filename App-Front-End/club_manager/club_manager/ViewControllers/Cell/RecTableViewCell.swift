@@ -34,7 +34,7 @@ class RecTableViewCell: UITableViewCell {
         return UINib(nibName: "RecTableViewCell", bundle: nil)
     }
     
-    public func configure(with model: recClub){
+    public func configure(with model: RecClub){
 //        self.recImage.image = UIImage(named: model.clubImage)
         self.recImage.image = UIImage(systemName: "person.fill")
         self.title.text = model.clubName

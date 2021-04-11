@@ -64,8 +64,9 @@
         <!--Home-->
         <scene sceneID="OFa-HL-zEr">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYw-rF-Rxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="nEJ-cu-ODG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="4eW-3d-n3m"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house.fill" id="4eW-3d-n3m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H4T-I0-PAL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -74,14 +75,13 @@
                         <segue destination="vuS-FG-Kcl" kind="relationship" relationship="rootViewController" id="lWs-Ly-Iyv"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cYw-rF-Rxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1629" y="180"/>
         </scene>
-        <!--Home View Controller-->
+        <!--home-->
         <scene sceneID="626-1v-BNu">
             <objects>
-                <viewController storyboardIdentifier="Home" id="vuS-FG-Kcl" customClass="HomeViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" title="home" id="vuS-FG-Kcl" customClass="HomeViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ef1-5U-9rU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
         <!--Search View Controller-->
         <scene sceneID="K6B-Oe-FDX">
             <objects>
-                <viewController id="LE7-5F-rj9" customClass="SearchViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="search" id="LE7-5F-rj9" customClass="SearchViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ndm-Ag-iY7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,7 +147,7 @@
         <!--Profile View Controller-->
         <scene sceneID="WDB-BW-Nog">
             <objects>
-                <viewController id="uUR-wq-BXJ" customClass="ProfileViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" id="uUR-wq-BXJ" customClass="ProfileViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w8J-RA-EQF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,7 +180,7 @@
         <!--Write View Controller-->
         <scene sceneID="bC8-47-RGl">
             <objects>
-                <viewController id="Eda-N9-seD" customClass="WriteViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="write" id="Eda-N9-seD" customClass="WriteViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LyB-I1-8wH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -213,7 +213,7 @@
         <!--Calendar View Controller-->
         <scene sceneID="yex-y1-TS0">
             <objects>
-                <viewController id="xlD-RS-3Ca" customClass="CalendarViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="calendar" id="xlD-RS-3Ca" customClass="CalendarViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PTm-C1-foY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,7 +229,7 @@
         <!--Navigation Controller-->
         <scene sceneID="oSh-PH-mxE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fdf-BN-gFz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="root" automaticallyAdjustsScrollViewInsets="NO" id="fdf-BN-gFz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UrC-aW-wGL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

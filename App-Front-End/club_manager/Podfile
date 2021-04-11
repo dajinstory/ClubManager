@@ -6,7 +6,14 @@ target 'club_manager' do
   use_frameworks!
 
   # Pods for club_manager
-pod 'TagListView', '~> 1.0'
+pod 'KakaoSDKAuth'  # 카카오 로그인
+pod 'KakaoSDKUser'
+pod 'KakaoSDKCommon'
+pod 'KakaoOpenSDK'
+
+pod 'GoogleSignIn' #구글 로그인
+
+
 pod 'FSCalendar'
 pod "TTGTagCollectionView"
 

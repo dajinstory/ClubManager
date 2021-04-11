@@ -8,13 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		5C2A9684C0B433BB5AB4AA96 /* Pods_club_manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FA2A8D19426417B75BE31A /* Pods_club_manager.framework */; };
+		8E42FE36261ABBE800763B61 /* DetailBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FE35261ABBE800763B61 /* DetailBoardViewController.swift */; };
+		8E42FE3A261ABC6500763B61 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FE39261ABC6500763B61 /* model.swift */; };
+		8E42FE3F261AC00700763B61 /* AddClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FE3E261AC00700763B61 /* AddClubViewController.swift */; };
+		8E42FE42261AC5DC00763B61 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FE41261AC5DC00763B61 /* EditProfileViewController.swift */; };
+		8E42FE45261ACB3C00763B61 /* SearchClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FE44261ACB3C00763B61 /* SearchClubViewController.swift */; };
+		8E42FF862621934000763B61 /* SearchClubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FF842621934000763B61 /* SearchClubTableViewCell.swift */; };
+		8E42FF872621934000763B61 /* SearchClubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */; };
 		8E8E58782611A14500DB274A /* ClubNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */; };
 		8E8E58792611A14500DB274A /* ClubNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8E58772611A14400DB274A /* ClubNewsTableViewCell.xib */; };
 		8E8E58832611D38500DB274A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58822611D38500DB274A /* ProfileViewController.swift */; };
 		8E8E588626120D3D00DB274A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E588526120D3D00DB274A /* CalendarViewController.swift */; };
 		8E8E58B326130A9E00DB274A /* RecTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58B126130A9E00DB274A /* RecTableViewCell.swift */; };
 		8E8E58B426130A9E00DB274A /* RecTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */; };
-		8E8E58BC261366B100DB274A /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58BB261366B100DB274A /* AddViewController.swift */; };
+		8E8E58BC261366B100DB274A /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58BB261366B100DB274A /* AddCalendarViewController.swift */; };
 		8E9B84C3260B20C8000FE298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84C2260B20C8000FE298 /* AppDelegate.swift */; };
 		8E9B84C5260B20C8000FE298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84C4260B20C8000FE298 /* SceneDelegate.swift */; };
 		8E9B84CA260B20C8000FE298 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9B84C8260B20C8000FE298 /* Main.storyboard */; };
@@ -36,13 +43,20 @@
 
 /* Begin PBXFileReference section */
 		76FA2A8D19426417B75BE31A /* Pods_club_manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_club_manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E42FE35261ABBE800763B61 /* DetailBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBoardViewController.swift; sourceTree = "<group>"; };
+		8E42FE39261ABC6500763B61 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
+		8E42FE3E261AC00700763B61 /* AddClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClubViewController.swift; sourceTree = "<group>"; };
+		8E42FE41261AC5DC00763B61 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		8E42FE44261ACB3C00763B61 /* SearchClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClubViewController.swift; sourceTree = "<group>"; };
+		8E42FF842621934000763B61 /* SearchClubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClubTableViewCell.swift; sourceTree = "<group>"; };
+		8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchClubTableViewCell.xib; sourceTree = "<group>"; };
 		8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubNewsTableViewCell.swift; sourceTree = "<group>"; };
 		8E8E58772611A14400DB274A /* ClubNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClubNewsTableViewCell.xib; sourceTree = "<group>"; };
 		8E8E58822611D38500DB274A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8E8E588526120D3D00DB274A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		8E8E58B126130A9E00DB274A /* RecTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecTableViewCell.swift; sourceTree = "<group>"; };
 		8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecTableViewCell.xib; sourceTree = "<group>"; };
-		8E8E58BB261366B100DB274A /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		8E8E58BB261366B100DB274A /* AddCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
 		8E9B84BF260B20C8000FE298 /* club_manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = club_manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9B84C2260B20C8000FE298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9B84C4260B20C8000FE298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +98,58 @@
 				76FA2A8D19426417B75BE31A /* Pods_club_manager.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E42FE38261ABC4100763B61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E42FE39261ABC6500763B61 /* model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8E42FF3326200C1900763B61 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8E9B84DA260B214F000FE298 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8E42FF7126217C7D00763B61 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				8E42FE3E261AC00700763B61 /* AddClubViewController.swift */,
+				8E42FE44261ACB3C00763B61 /* SearchClubViewController.swift */,
+				8E9B84DD260B233D000FE298 /* ClubViewController.swift */,
+			);
+			path = Club;
+			sourceTree = "<group>";
+		};
+		8E42FF7326217CFE00763B61 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8E42FE35261ABBE800763B61 /* DetailBoardViewController.swift */,
+				8E9B84F6260B3C7A000FE298 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8E42FF7426217D0D00763B61 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8ECD7832260C42570019D9F2 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		8E42FF7526217D1100763B61 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8E8E58BB261366B100DB274A /* AddCalendarViewController.swift */,
+				8E8E588526120D3D00DB274A /* CalendarViewController.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		8E9B84B6260B20C8000FE298 = {
@@ -130,15 +196,16 @@
 		8E9B84D9260B2106000FE298 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E42FF7526217D1100763B61 /* Calendar */,
+				8E42FF7426217D0D00763B61 /* Search */,
+				8E42FF7326217CFE00763B61 /* Home */,
+				8E42FF7126217C7D00763B61 /* Club */,
+				8E42FF3326200C1900763B61 /* Login */,
+				8E42FE38261ABC4100763B61 /* Model */,
 				8E9B84EF260B32C9000FE298 /* Cell */,
-				8E9B84DA260B214F000FE298 /* LoginViewController.swift */,
-				8E9B84DD260B233D000FE298 /* ClubViewController.swift */,
-				8E9B84F6260B3C7A000FE298 /* HomeViewController.swift */,
-				8ECD7832260C42570019D9F2 /* SearchViewController.swift */,
 				8E8E58822611D38500DB274A /* ProfileViewController.swift */,
-				8E8E588526120D3D00DB274A /* CalendarViewController.swift */,
-				8E8E58BB261366B100DB274A /* AddViewController.swift */,
 				8EA8416026170CFC00502C8A /* WriteViewController.swift */,
+				8E42FE41261AC5DC00763B61 /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -164,6 +231,8 @@
 				8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */,
 				8EA8416426183B2800502C8A /* SetScheduleTableViewCell.swift */,
 				8EA8416526183B2800502C8A /* SetScheduleTableViewCell.xib */,
+				8E42FF842621934000763B61 /* SearchClubTableViewCell.swift */,
+				8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -189,6 +258,7 @@
 				8E9B84BC260B20C8000FE298 /* Frameworks */,
 				8E9B84BD260B20C8000FE298 /* Resources */,
 				CAF6F06382C9DB692A505AFF /* [CP] Embed Pods Frameworks */,
+				485E826C19D05A22000F330A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,6 +312,7 @@
 				8E9B84CC260B20CB000FE298 /* Assets.xcassets in Resources */,
 				8E9B84CA260B20C8000FE298 /* Main.storyboard in Resources */,
 				8E8E58B426130A9E00DB274A /* RecTableViewCell.xib in Resources */,
+				8E42FF872621934000763B61 /* SearchClubTableViewCell.xib in Resources */,
 				8E8E58792611A14500DB274A /* ClubNewsTableViewCell.xib in Resources */,
 				8ECD782D260C375B0019D9F2 /* AllNoteTableViewCell.xib in Resources */,
 			);
@@ -250,6 +321,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		485E826C19D05A22000F330A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-club_manager/Pods-club_manager-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-club_manager/Pods-club_manager-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-club_manager/Pods-club_manager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		72BE94BCD366D77941345D6D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,20 +386,26 @@
 			files = (
 				8E8E588626120D3D00DB274A /* CalendarViewController.swift in Sources */,
 				8E9B84E3260B2484000FE298 /* Extension.swift in Sources */,
-				8E8E58BC261366B100DB274A /* AddViewController.swift in Sources */,
+				8E8E58BC261366B100DB274A /* AddCalendarViewController.swift in Sources */,
 				8EA8416126170CFC00502C8A /* WriteViewController.swift in Sources */,
 				8E8E58B326130A9E00DB274A /* RecTableViewCell.swift in Sources */,
 				8EA8416626183B2800502C8A /* SetScheduleTableViewCell.swift in Sources */,
 				8E9B84DE260B233D000FE298 /* ClubViewController.swift in Sources */,
+				8E42FE3A261ABC6500763B61 /* model.swift in Sources */,
+				8E42FE42261AC5DC00763B61 /* EditProfileViewController.swift in Sources */,
 				8E8E58782611A14500DB274A /* ClubNewsTableViewCell.swift in Sources */,
 				8E9B84C3260B20C8000FE298 /* AppDelegate.swift in Sources */,
 				8ECD7833260C42570019D9F2 /* SearchViewController.swift in Sources */,
 				8E9B84C5260B20C8000FE298 /* SceneDelegate.swift in Sources */,
+				8E42FE36261ABBE800763B61 /* DetailBoardViewController.swift in Sources */,
 				8E8E58832611D38500DB274A /* ProfileViewController.swift in Sources */,
 				8E9B84F2260B32E3000FE298 /* clubCollectionViewCell.swift in Sources */,
+				8E42FE3F261AC00700763B61 /* AddClubViewController.swift in Sources */,
+				8E42FE45261ACB3C00763B61 /* SearchClubViewController.swift in Sources */,
 				8ECD782C260C375B0019D9F2 /* AllNoteTableViewCell.swift in Sources */,
 				8E9B84F7260B3C7A000FE298 /* HomeViewController.swift in Sources */,
 				8E9B84DB260B214F000FE298 /* LoginViewController.swift in Sources */,
+				8E42FF862621934000763B61 /* SearchClubTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

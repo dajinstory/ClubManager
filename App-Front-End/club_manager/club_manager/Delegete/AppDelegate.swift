@@ -6,16 +6,20 @@
 //
 
 import UIKit
+import KakaoSDKCommon
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+   
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        KakaoSDKCommon.initSDK(appKey: "4c92d720720538d0f13c781259392a40") // native key
+        GIDSignIn.sharedInstance()?.clientID = "954166411147-jm29ktnk699nso8p4s4mhhngat5tfg9l.apps.googleusercontent.com"
         return true
     }
+    
 
     // MARK: UISceneSession Lifecycle
 

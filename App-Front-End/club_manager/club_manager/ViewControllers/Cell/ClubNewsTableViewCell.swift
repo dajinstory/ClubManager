@@ -34,10 +34,10 @@ class ClubNewsTableViewCell: UITableViewCell {
         return UINib(nibName: "ClubNewsTableViewCell", bundle: nil)
     }
     
-    public func configure(with model: NewsData){
-        self.ClubImage.image = UIImage(named: model.profileImage)
-        self.ClubTitle.text = model.title
-        self.ClubContent.text = model.content
+    public func configure(with model: Club){
+        self.ClubImage.image = UIImage(named: model.clubImage)
+        self.ClubTitle.text = model.clubName
+        self.ClubContent.text = model.note1
     
     }
     

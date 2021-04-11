@@ -17,15 +17,16 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     private let sec = ["section1", "section2", "section3"]
-    var section1 = ["기본 정보"]
-    var section2 = ["다크 모드"]
-    var section3 = ["로그 아웃", "회원 탈퇴"]
+    var section1 = ["회원 관리", "회계 장부"]
+    var section2 = ["다크 모드", "알림 설정"]
+    var section3 = ["로그 아웃", "회원 탈퇴", "앱 정보"]
     
     
     
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
+        //넘겨 받은 이미지
         imageView.image = UIImage(systemName: "person")
         imageView.tintColor = .lightGray
         imageView.layer.masksToBounds = true
@@ -38,6 +39,12 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         return imageView
     }()
     
+    private let darkModeSwitch: UISwitch = {
+        let mySwitch = UISwitch()
+        mySwitch.onTintColor = .systemBlue
+        return mySwitch
+    }()
+    
     private let layoutTableView: UITableView = {
         let layoutTableView = UITableView(frame: .zero, style: .grouped)
         layoutTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -47,6 +54,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.white
         title = "나의 정보"
         let image = UIImage(systemName: "square.and.arrow.up")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(didTapSetting))
@@ -56,27 +64,29 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLayoutSubviews()
         layoutTableView.delegate = self
         layoutTableView.dataSource = self
-        imageView.frame = CGRect(x: view.bounds.width/2 - 35, y: 150, width: 70, height: 70)
-        userName.frame = CGRect(x: view.bounds.width/2, y: imageView.bottom + 10, width: 50, height: 25)
+        imageView.frame = CGRect(x: view.bounds.width/2 - 35, y: 100, width: 70, height: 70)
+        userName.frame = CGRect(x: view.bounds.width/2 - 35, y: imageView.bottom + 10, width: 50, height: 25)
         
         layoutTableView.frame = CGRect(x: 0, y: userName.bottom + 20, width: view.bounds.width, height: view.bounds.height - imageView.height - 30)
         
+        darkModeSwitch.sizeToFit()
+        darkModeSwitch.frame = CGRect(x: view.frame.size.width - darkModeSwitch.frame.size.width - 20, y: (view.frame.size.height - darkModeSwitch.frame.size.width)/2, width: darkModeSwitch.frame.width, height: darkModeSwitch.frame.height)
+        
         view.addSubview(imageView)
+        view.addSubview(userName)
         view.addSubview(layoutTableView)
+        view.addSubview(darkModeSwitch)
         
+        darkModeSwitch.isOn = false
         
-        
-        
-        imageView.isUserInteractionEnabled = true
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangedProfilePic))
-        gesture.delegate = self
-        imageView.addGestureRecognizer(gesture)
     }
     
     @objc func didTapSetting(){
-        print("did tap setting button")
+        let vc = EditProfileViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
+    
    
 
 }
@@ -91,9 +101,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == 1){
+        if(section == 0){
             return section1.count
-        }else if(section == 2){
+        }else if(section == 1){
             return section2.count
         }else {
             return section3.count
@@ -103,9 +113,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
             cell.textLabel?.text = section1[indexPath.row]
-        }else if indexPath.section == 2 {
+        }else if indexPath.section == 1 {
             cell.textLabel?.text = section2[indexPath.row]
         }else {
             cell.textLabel?.text = section3[indexPath.row]
@@ -118,57 +128,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-}
-
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    
-    @objc func didTapChangedProfilePic(){
-        presentPhotoActionSheet()
-    }
-    
-    func presentPhotoActionSheet(){
-        let actionSheet = UIAlertController(title: "Profile picture",
-                                            message: "How would you like to select a picture?", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .cancel,
-                                            handler: nil))
-        actionSheet.addAction(UIAlertAction(title: "Take Photo",
-                                            style: .default,
-                                            handler: { [weak self] _ in self?.presentCamera()}))
-        actionSheet.addAction(UIAlertAction(title: "Choose Photo",
-                                            style: .default,
-                                            handler: { [weak self] _ in self?.presentPhoto()}))
-        
-        present(actionSheet, animated: true)
-    }
-    
-    func presentCamera(){
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func presentPhoto(){
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
-            return
-        }
-        self.imageView.image = selectedImage
-        
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
 }

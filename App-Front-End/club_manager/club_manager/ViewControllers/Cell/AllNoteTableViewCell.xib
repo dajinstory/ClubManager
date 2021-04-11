@@ -55,30 +55,20 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요 여러분 이번주 간식을 무엇을 먹어야 할지 투표를 받으려고 합니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-dj-8zp" userLabel="Content">
-                        <rect key="frame" x="30" y="138" width="367" height="41"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="kRR-Fd-C1N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="3Gm-A7-iZd"/>
-                    <constraint firstItem="P9a-dj-8zp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="8PH-hJ-H7f"/>
                     <constraint firstItem="0Eo-yQ-60d" firstAttribute="leading" secondItem="arc-Ek-7SP" secondAttribute="trailing" constant="10" id="BZy-sg-YPY"/>
-                    <constraint firstAttribute="trailing" secondItem="P9a-dj-8zp" secondAttribute="trailing" id="R6J-iS-Ftj"/>
                     <constraint firstItem="0Eo-yQ-60d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="TR6-n1-o4N"/>
                     <constraint firstItem="bJl-6g-fT6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="fKw-17-AHA"/>
                     <constraint firstItem="arc-Ek-7SP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="gqF-eK-PkQ"/>
                     <constraint firstItem="kRR-Fd-C1N" firstAttribute="top" secondItem="arc-Ek-7SP" secondAttribute="bottom" constant="10" id="iPq-wp-BKy"/>
                     <constraint firstItem="bJl-6g-fT6" firstAttribute="leading" secondItem="0Eo-yQ-60d" secondAttribute="trailing" constant="10" id="ixc-jz-KWz"/>
                     <constraint firstItem="arc-Ek-7SP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="tiE-le-Gre"/>
-                    <constraint firstItem="P9a-dj-8zp" firstAttribute="top" secondItem="kRR-Fd-C1N" secondAttribute="bottom" constant="20" id="vbg-uw-Lix"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="content" destination="P9a-dj-8zp" id="pGR-pz-RdC"/>
                 <outlet property="dateTime" destination="bJl-6g-fT6" id="5Xp-t0-lHo"/>
                 <outlet property="profileImage" destination="arc-Ek-7SP" id="XDa-ga-QWw"/>
                 <outlet property="title" destination="kRR-Fd-C1N" id="hCT-Sf-l9X"/>
