@@ -5,22 +5,28 @@ import org.springframework.beans.factory.annotation.Autowired
 
 data class UserDTO @Autowired constructor(
     val id: Long? = null,
+    val email: String,
     val name: String,
     val clubs: String
 ) {
     fun toEntity(): User {
         return User(
             name = name,
+            email = email,
             clubs = clubs
         )
     }
 }
 
-data class UserIdDTO @Autowired constructor(
-    val id: Long
+data class UserKeyDTO @Autowired constructor(
+    val id: Long,
+    val email: String
 ) {
-    fun toEntity(): Long {
+    fun toIdEntity(): Long {
         return id
+    }
+    fun toEmailEntity(): String {
+        return email
     }
 }
 
