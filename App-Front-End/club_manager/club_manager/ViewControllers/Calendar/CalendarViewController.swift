@@ -10,17 +10,11 @@ import EventKit
 import EventKitUI
 import FSCalendar
 
-struct setSchedule {
-    var title: String
-    var year: String
-    var month: String
-    var day: String
-    var date: Date
-}
 
 class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigationControllerDelegate {
     
     var calendar = FSCalendar()
+    //var allScheduled: [setScheduled] = []
     
     private let setScheduledView: UITableView = {
         let setScheduledView = UITableView()
@@ -36,6 +30,8 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
     var isAddClick = false
     let store = EKEventStore()
     var date = Date()
+    
+    
     
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
         controller.dismiss(animated: true, completion: nil)
@@ -56,6 +52,7 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
         
         view.addSubview(calendar)
         view.addSubview(setScheduledView)
+        //self.delegate?.AddCalendarViewcontrollerResponse()
        
     }
     
@@ -109,19 +106,27 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        setscheduled.append(setSchedule(title: "일정1", year: "2021", month: "4", day: "27", date: formatter.date(from: "2021-4-27")!))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-11")! , scTitle: "일정1", scHour: "2", scMinute: "20"))
         
-        setscheduled.append(setSchedule(title: "일정2", year: "2021", month: "5", day: "1", date: formatter.date(from: "2021-5-1")!))
-        setscheduled.append(setSchedule(title: "일정3", year: "2021", month: "6", day: "2", date: formatter.date(from: "2021-6-2")!))
-        setscheduled.append(setSchedule(title: "일정4", year: "2021", month: "4", day: "27", date: formatter.date(from: "2021-4-27")!))
-        setscheduled.append(setSchedule(title: "일정5", year: "2021", month: "4", day: "28", date: formatter.date(from: "2021-4-28")!))
-        setscheduled.append(setSchedule(title: "일정6", year: "2021", month: "5", day: "1", date: formatter.date(from: "2021-5-1")!))
-        setscheduled.append(setSchedule(title: "일정7", year: "2021", month: "6", day: "28", date: formatter.date(from: "2021-6-28")!))
-        setscheduled.append(setSchedule(title: "일정8", year: "2021", month: "4", day: "27",date: formatter.date(from: "2021-4-27")!) )
-        setscheduled.append(setSchedule(title: "일정9", year: "2021", month: "4", day: "29", date: formatter.date(from: "2021-4-29")!))
-        setscheduled.append(setSchedule(title: "일정10", year: "2021", month: "5", day: "30", date: formatter.date(from: "2021-5-30")!))
-        setscheduled.append(setSchedule(title: "일정11", year: "2021", month: "6", day: "2", date: formatter.date(from: "2021-6-2")!))
-        setscheduled.append(setSchedule(title: "일정12", year: "2021", month: "4", day: "4", date: formatter.date(from: "2021-4-4")!))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-12")!, scTitle: "일정2", scHour: "3", scMinute: "20"))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-13")!, scTitle: "일정3", scHour: "2", scMinute: "40"))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-14")!, scTitle: "일정4", scHour: "2", scMinute: "10"))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-14")!, scTitle: "일정5", scHour: "2", scMinute: "00"))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-15")!, scTitle: "일정6", scHour: "2", scMinute: "30"))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-16")!, scTitle: "일정7", scHour: "2", scMinute: "20"))
+        setscheduled.append(setSchedule(date: formatter.date(from: "2021-05-11")!, scTitle: "일정8", scHour: "2", scMinute: "20"))
+        
+//        setscheduled.append(setSchedule(title: "일정2", year: "2021", month: "5", day: "1", date: formatter.date(from: "2021-5-1")!))
+//        setscheduled.append(setSchedule(title: "일정3", year: "2021", month: "6", day: "2", date: formatter.date(from: "2021-6-2")!))
+//        setscheduled.append(setSchedule(title: "일정4", year: "2021", month: "4", day: "27", date: formatter.date(from: "2021-4-27")!))
+//        setscheduled.append(setSchedule(title: "일정5", year: "2021", month: "4", day: "28", date: formatter.date(from: "2021-4-28")!))
+//        setscheduled.append(setSchedule(title: "일정6", year: "2021", month: "5", day: "1", date: formatter.date(from: "2021-5-1")!))
+//        setscheduled.append(setSchedule(title: "일정7", year: "2021", month: "6", day: "28", date: formatter.date(from: "2021-6-28")!))
+//        setscheduled.append(setSchedule(title: "일정8", year: "2021", month: "4", day: "27",date: formatter.date(from: "2021-4-27")!) )
+//        setscheduled.append(setSchedule(title: "일정9", year: "2021", month: "4", day: "29", date: formatter.date(from: "2021-4-29")!))
+//        setscheduled.append(setSchedule(title: "일정10", year: "2021", month: "5", day: "30", date: formatter.date(from: "2021-5-30")!))
+//        setscheduled.append(setSchedule(title: "일정11", year: "2021", month: "6", day: "2", date: formatter.date(from: "2021-6-2")!))
+//        setscheduled.append(setSchedule(title: "일정12", year: "2021", month: "4", day: "4", date: formatter.date(from: "2021-4-4")!))
         filtered = setscheduled
     }
     
@@ -149,7 +154,7 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
     }
     
     func filtersetDayList(day: String){
-        filtered = setscheduled.filter { $0.day == day}
+        filtered = setscheduled.filter { String($0.date.day) == day}
 //        print("filter")
 //        print(filtered)
     }

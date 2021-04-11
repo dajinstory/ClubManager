@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -23,7 +28,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao4c92d720720538d0f13c781259392a40</string>
+				<string>com.googleusercontent.apps.954166411147-jm29ktnk699nso8p4s4mhhngat5tfg9l</string>
 			</array>
 		</dict>
 	</array>
@@ -82,18 +87,5 @@
 		<string>kakaolink</string>
 		<string>kakaokompassauth</string>
 	</array>
-    
-    <key>CFBundleURLTypes</key>
-       <array>
-         <dict>
-           <key>CFBundleTypeRole</key>
-           <string>Editor</string>
-           <key>CFBundleURLSchemes</key>
-           <array>
-             <string>com.googleusercontent.apps.954166411147-jm29ktnk699nso8p4s4mhhngat5tfg9l</string>
-           </array>
-         </dict>
-       </array>
-       
 </dict>
 </plist>

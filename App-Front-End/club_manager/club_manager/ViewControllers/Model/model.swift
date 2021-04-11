@@ -52,12 +52,21 @@ struct RecClub {
 }
 
 //승인 대기 클럽
-struct waitClub {
+struct WaitClub {
     var clubImage: String
     var clubName: String
     var clubSummary: String
     var category: String
     var note1: String
 }
+
+struct setSchedule {
+    var date: Date
+    var scTitle: String
+    var scHour: String
+    var scMinute: String
+}
+
+
 
 

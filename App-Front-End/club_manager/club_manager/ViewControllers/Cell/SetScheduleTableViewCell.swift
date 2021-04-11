@@ -31,7 +31,7 @@ class SetScheduleTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: setSchedule){
-        self.date.text = model.day
-        self.title.text = model.title
+        self.date.text = String(model.date.day)
+        self.title.text = model.scTitle
     }
 }

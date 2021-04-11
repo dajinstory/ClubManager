@@ -13,6 +13,8 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
     
+    var userName = ""
+    
     //연도. 시도시 불러오는 메소드
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -31,16 +33,46 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                 let givenName = user.profile.givenName,
                 let familyName = user.profile.familyName,
                 let email = user.profile.email {
-                    
+                userName = fullName
                 print("Token : \(idToken)")
                 print("User ID : \(userId)")
                 print("User Email : \(email)")
                 print("User Name : \((fullName))")
+                //postUSer()
          
             } else {
                 print("Error : User Data Not Found")
             }
         self.segueToClub()
+    }
+    
+    func postUSer(){
+        print("post user")
+        let json: [String: Any] = ["name": userName, "clubs" : ""]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        let url_URL = URL(string: "http://13.124.135.59:47000/user")
+        
+        var request = URLRequest(url: url_URL!)
+    
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.setValue(" application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            // Check for Error
+                    if let error = error {
+                        print("Error took place \(error)")
+                        return
+                    }
+             
+                    // Convert HTTP Response Data to a String
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        print("Response data string:\n \(dataString)")
+                    }
+        }
+        
+        task.resume()
     }
     
     // 구글 로그인 연동 해제했을때 불러오는 메소드

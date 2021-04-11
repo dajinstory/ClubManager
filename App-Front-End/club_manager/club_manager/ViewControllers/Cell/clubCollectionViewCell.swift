@@ -26,6 +26,13 @@ class clubCollectionViewCell: UICollectionViewCell {
         self.myImageView.clipsToBounds = true
         self.mytextView.text = model.clubName
     }
+    
+    public func configureForWait(with model: WaitClub){
+        self.myImageView.image = UIImage(named: model.clubImage)
+        self.myImageView.contentMode = .scaleAspectFill
+        self.myImageView.clipsToBounds = true
+        self.mytextView.text = model.clubName
+    }
   
 
 }

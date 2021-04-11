@@ -11,6 +11,14 @@ class SearchClubViewController: UIViewController, UITextFieldDelegate {
 
     var AllClubList: [Club] = []
     var FilteredClubList: [Club] = []
+    var waitClubList: [WaitClub] = []
+    
+    var club_name = ""
+    var categry = ""
+    var club_image = ""
+    var club_ummary = ""
+    var note = ""
+    
     
     private let AllClubTableView : UITableView = {
         let table = UITableView()
@@ -107,7 +115,38 @@ class SearchClubViewController: UIViewController, UITextFieldDelegate {
     
 }
 
-extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource, SearchClubTableViewCellDelegate {
+    func onTouchWaitButton(from cell: SearchClubTableViewCell) {
+          let alert = UIAlertController(title: "승인 요청", message: "가입 승인을 요청하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+          let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                      print("okAction clicked")
+                      // 클럽 이름, .. 정보 가져와서 대기 클럽에 추가
+                      // 클럽장이 승인 요청 클럽 승인하면 사용자의 클럽에 클럽 추가
+            
+//            print(cell.imageName!)
+            //print(String(cell.clubImage))
+                      //clubName으로 조회 and id로 조회 후
+        
+            
+            guard let club_Name = cell.clubName.text else {return}
+            guard let image_Name = cell.imageName else {return}
+            print(club_Name)
+            print(image_Name)
+            self.waitClubList.append(WaitClub(clubImage: image_Name, clubName: club_Name, clubSummary: "hey", category: "영화", note1: "공지사항 입니다"))
+            self.showToast(message: "\(club_Name) 클럽에 승인 요청을 하였습니다.", font: .boldSystemFont(ofSize: 10))
+                  }
+          let cancelAction = UIAlertAction(title: "CANCEL", style: .default) {(action) in
+
+              //nothing to do
+              print("cancelAction clicked")
+
+          }
+          alert.addAction(okAction)
+          alert.addAction(cancelAction)
+        self.present(alert, animated: false, completion: nil)
+   
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FilteredClubList.count
     }
@@ -118,16 +157,29 @@ extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell") as! SearchClubTableViewCell
         }
         cell.configure(with: FilteredClubList[indexPath.row])
-        let button = UIButton()
-        button.setTitle("승인 요청", for: .normal)
-        button.setTitleColor(UIColor.white, for: .highlighted)
-        button.backgroundColor = .systemBlue
-        button.frame = CGRect(x: 250, y: 40, width: 100, height: 50)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        cell.addSubview(button)
+        cell.delegate = self
+//        cell.btn.
+        
+//        let button = UIButton()
+//        button.setTitle("승인 요청", for: .normal)
+//        button.setTitleColor(UIColor.white, for: .highlighted)
+//        button.backgroundColor = .systemBlue
+//        button.frame = CGRect(x: 250, y: 40, width: 100, height: 50)
+//        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+//        cell.addSubview(button)
 
         return cell
     }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        var cell = tableView.dequeueReusableCell(withIdentifier: SearchClubTableViewCell.identifier) as! SearchClubTableViewCell
+//        
+//        club_name = self.AllClubList[indexPath.row].clubName
+//        categry = self.AllClubList[indexPath.row].category
+//        club_image = self.AllClubList[indexPath.row].clubImage
+//        club_ummary = self.AllClubList[indexPath.row].clubSummary
+//        note = self.AllClubList[indexPath.row].note1
+//        
+//    }
     
     @objc func didTapButton(){
         print("did tap button")
@@ -136,6 +188,8 @@ extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource {
                     print("okAction clicked")
                     // 클럽 이름, .. 정보 가져와서 대기 클럽에 추가
                     // 클럽장이 승인 요청 클럽 승인하면 사용자의 클럽에 클럽 추가
+
+            
                 }
         let cancelAction = UIAlertAction(title: "CANCEL", style: .default) {(action) in
             

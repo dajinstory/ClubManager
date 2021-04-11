@@ -15,6 +15,7 @@
 		8E42FE45261ACB3C00763B61 /* SearchClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FE44261ACB3C00763B61 /* SearchClubViewController.swift */; };
 		8E42FF862621934000763B61 /* SearchClubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FF842621934000763B61 /* SearchClubTableViewCell.swift */; };
 		8E42FF872621934000763B61 /* SearchClubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */; };
+		8E42FFB12622C35200763B61 /* WaitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FFB02622C35200763B61 /* WaitViewController.swift */; };
 		8E8E58782611A14500DB274A /* ClubNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */; };
 		8E8E58792611A14500DB274A /* ClubNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8E58772611A14400DB274A /* ClubNewsTableViewCell.xib */; };
 		8E8E58832611D38500DB274A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58822611D38500DB274A /* ProfileViewController.swift */; };
@@ -50,6 +51,7 @@
 		8E42FE44261ACB3C00763B61 /* SearchClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClubViewController.swift; sourceTree = "<group>"; };
 		8E42FF842621934000763B61 /* SearchClubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClubTableViewCell.swift; sourceTree = "<group>"; };
 		8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchClubTableViewCell.xib; sourceTree = "<group>"; };
+		8E42FFB02622C35200763B61 /* WaitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitViewController.swift; sourceTree = "<group>"; };
 		8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubNewsTableViewCell.swift; sourceTree = "<group>"; };
 		8E8E58772611A14400DB274A /* ClubNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClubNewsTableViewCell.xib; sourceTree = "<group>"; };
 		8E8E58822611D38500DB274A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				8E42FE3E261AC00700763B61 /* AddClubViewController.swift */,
 				8E42FE44261ACB3C00763B61 /* SearchClubViewController.swift */,
 				8E9B84DD260B233D000FE298 /* ClubViewController.swift */,
+				8E42FFB02622C35200763B61 /* WaitViewController.swift */,
 			);
 			path = Club;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				8E8E588626120D3D00DB274A /* CalendarViewController.swift in Sources */,
 				8E9B84E3260B2484000FE298 /* Extension.swift in Sources */,
 				8E8E58BC261366B100DB274A /* AddCalendarViewController.swift in Sources */,
+				8E42FFB12622C35200763B61 /* WaitViewController.swift in Sources */,
 				8EA8416126170CFC00502C8A /* WriteViewController.swift in Sources */,
 				8E8E58B326130A9E00DB274A /* RecTableViewCell.swift in Sources */,
 				8EA8416626183B2800502C8A /* SetScheduleTableViewCell.swift in Sources */,
