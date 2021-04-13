@@ -90,7 +90,7 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyy-MM-dd"
         //여기에 이벤트 날짜들 적어주면 되겠다.
-        let test = formatter.date(from: "2021-04-03")
+        //let test = formatter.date(from: "2021-04-03")
         
       
         print("event")

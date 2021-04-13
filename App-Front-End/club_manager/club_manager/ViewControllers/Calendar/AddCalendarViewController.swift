@@ -136,7 +136,6 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         datePicker.frame = CGRect(x: 50, y: 200, width: 280, height: 50)
-        var dateHeight = 25
         
         dateView.frame = CGRect(x: 50, y: datePicker.bottom + 50, width: view.bounds.width - 40, height: 25)
         use_textLabel.frame = CGRect(x: 50, y: 0, width: 100, height: 25)

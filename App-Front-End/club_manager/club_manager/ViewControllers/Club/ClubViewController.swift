@@ -429,7 +429,7 @@ extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
             
                   //view.window?.makeKeyAndVisible()
         }else if (tableView == rectableView) {
-            let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
+//            let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
 
             //view.window?.rootViewController = tabBarViewController
             //view.window?.makeKeyAndVisible()

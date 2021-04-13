@@ -30,8 +30,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             if let userId = user.userID,                  // For client-side use only!
                 let idToken = user.authentication.idToken, // Safe to send to the server
                 let fullName = user.profile.name,
-                let givenName = user.profile.givenName,
-                let familyName = user.profile.familyName,
+//                let givenName = user.profile.givenName,
+//                let familyName = user.profile.familyName,
                 let email = user.profile.email {
                 userName = fullName
                 print("Token : \(idToken)")
@@ -61,15 +61,15 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             // Check for Error
-                    if let error = error {
-                        print("Error took place \(error)")
-                        return
-                    }
-             
-                    // Convert HTTP Response Data to a String
-                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("Response data string:\n \(dataString)")
-                    }
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+     
+            // Convert HTTP Response Data to a String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                print("Response data string:\n \(dataString)")
+            }
         }
         
         task.resume()
@@ -111,7 +111,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
                         //do something
                         _ = oauthToken
-                        let accessToken = oauthToken?.accessToken
+                        //let accessToken = oauthToken?.accessToken
                         //토큰 발급 후 사용자 관리 api 호출
                         self.setUserInfo()
                     }
@@ -137,7 +137,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                 let userId = user?.id
                 let userName = user?.kakaoAccount?.profile?.nickname
                 let userEmail = user?.kakaoAccount?.email
-                print("user info : \(String(describing: userId)) \(userName) \(userEmail)")
+                print("user info : \(String(describing: userId)) \(userName!) \(userEmail!)")
                 
                 print("segueToClub")
                 self.segueToClub()

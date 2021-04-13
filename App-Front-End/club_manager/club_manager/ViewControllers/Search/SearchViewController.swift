@@ -93,12 +93,14 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     ///dummy
     func setUpallBoardData(){
-        allBoardData.append(BoardData(userName: "조소정", title: "11월 회의 안건", content: "11월 회의 안건은 ~~ 한 내용입니다"))
-        allBoardData.append(BoardData(userName: "공희재", title: "12월 회의 안건", content: "12월 회의 안건은 ~~ 한 내용입니다"))
-        allBoardData.append(BoardData(userName: "한다진", title: "1월 회의 안건", content: "1월 회의 안건은 ~~ 한 내용입니다"))
-        allBoardData.append(BoardData(userName: "김민주", title: "2월 회의 안건", content: "2월 회의 안건은 ~~ 한 내용입니다"))
-        allBoardData.append(BoardData(userName: "이정인", title: "3월 회의 안건", content: "3월 회의 안건은 ~~ 한 내용입니다"))
-        allBoardData.append(BoardData(userName: "김현아", title: "4월 회의 안건", content: "4월 회의 안건은 ~~ 한 내용입니다"))
+        let dateFormatter = DateFormatter()
+        let dateToDate = dateFormatter.date(from: "2021.04.11 21:09")
+        allBoardData.append(BoardData(BoardCategory: ["전체글"], title: "11월 회의 안건", content: "11월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
+        allBoardData.append(BoardData(BoardCategory: ["회의록"], title: "12월 회의 안건", content: "12월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
+        allBoardData.append(BoardData(BoardCategory: ["장부"], title: "1월 회의 안건", content: "1월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
+        allBoardData.append(BoardData(BoardCategory: ["전체글"], title: "2월 회의 안건", content: "2월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
+        allBoardData.append(BoardData(BoardCategory: ["전체글"], title: "3월 회의 안건", content: "3월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
+        allBoardData.append(BoardData(BoardCategory: ["전체글"], title: "4월 회의 안건", content: "4월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
         FilteredBoardData = allBoardData
     }
     

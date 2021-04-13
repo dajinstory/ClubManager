@@ -14,33 +14,29 @@ class HomeViewController: UIViewController {
     var settingArray = ["Profile","Favorite","Notification","Change Password","Logout"]
     
     private var data = [BoardData]()
+    private var user = [User]()
     
-    var isPaging:Bool = false
+    var isPaging: Bool = false
     var hasNextPage: Bool = false
-    
-    let height: CGFloat = 250
     
 
     //menu button
     @objc func onClickMenu() {
-        
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
         transparentView.frame = self.view.frame
         window?.addSubview(transparentView)
 
         let screenSize = UIScreen.main.bounds.size
-        tableViewM.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: height)
+        tableViewM.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: 250)
         window?.addSubview(tableViewM)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickTransparentView))
         transparentView.addGestureRecognizer(tapGesture)
-        
         transparentView.alpha = 0
-        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.transparentView.alpha = 0.5
-            self.tableViewM.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: self.height)
+            self.tableViewM.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: 250)
         }, completion: nil)
     }
     
@@ -48,7 +44,7 @@ class HomeViewController: UIViewController {
         let screenSize = UIScreen.main.bounds.size
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.transparentView.alpha = 0
-            self.tableViewM.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
+            self.tableViewM.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 250)
         }, completion: nil)
     }
 
@@ -64,14 +60,9 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         paging()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        print("titleName will : \(titleName)")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view didLoad")
-        print("titleName : \(titleName)")
         navigationItem.title = titleName
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(didTapHome))
         
@@ -82,6 +73,8 @@ class HomeViewController: UIViewController {
         setupMenu()
         setupTableView()
     }
+    
+    
     
     //frame
     override func viewDidLayoutSubviews() {
@@ -130,15 +123,18 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         if tableView == tableViewM {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = settingArray[indexPath.row]
             return cell
         } else if tableView == tableView1 {
-            let model = data[indexPath.row]
+            print("here")
+            let modelBoard = data[indexPath.row]
+            print(modelBoard)
+            let modelUser = user[indexPath.row]
+            print(modelUser)
             let cellforTableView1 = tableView.dequeueReusableCell(withIdentifier: AllNoteTableViewCell.identifier, for: indexPath) as! AllNoteTableViewCell
-            cellforTableView1.configure(with: model)
+            cellforTableView1.configure(with: modelBoard, modelUser: modelUser)
             return cellforTableView1
         }
         
@@ -152,6 +148,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return settingArray.count
         }else if tableView == tableView1 {
             if(section == 0){
+                print("numberOfRowsInSection : ", data.count)
                 return data.count
             }else if section == 1 && isPaging && hasNextPage {
                 return 1
@@ -197,8 +194,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let vc = DetailBoardViewController()
-        vc.temp = "not yo"
+        let userName = user[indexPath.row].userName
+        let dateForDate = data[indexPath.row].date
+        
+        let title = data[indexPath.row].title
+        let content = data[indexPath.row].content
+        vc.note.append(BoardData(BoardCategory: ["전체글"], title: title, content: content, comment: ["좋은 정보 감사합니다", "확인했어요"], count: 1, date: dateForDate))
+        vc.userData.append(User(userImage: "person.crop.circle", userName: userName, userEmail: ""))
+        //detailView show시 tabbar hide
+        vc.hidesBottomBarWhenPushed = true
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -238,15 +244,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
        }
    }
     
-    func paging(){
+    func paging() {
+        print("func paging called")
         let index = data.count
+        let dataFormatter = DateFormatter()
+        
         var datas: [BoardData] = []
         for i in index ..< (index + 20){
-            let data = BoardData(userName: "username\(i)", title: "title:\(i)", content: "content\(i)")
+            let dateNow = dataFormatter.date(from: "2021.04.1\(i) 21:09")
+            let data = BoardData(BoardCategory: ["전체글"], title: "title:\(i)", content: "content\(i) content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)", comment: ["좋은 글 감사합니다.", "확인 완료"], count: 1, date: dateNow ?? Date())
             datas.append(data)
+            user.append(User(userImage: "person.crop.circle", userName: "조소정", userEmail: ""))
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 
             self.tableView1.tableFooterView = nil
             self.data.append(contentsOf: datas)

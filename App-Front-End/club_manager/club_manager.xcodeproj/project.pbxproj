@@ -16,6 +16,12 @@
 		8E42FF862621934000763B61 /* SearchClubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FF842621934000763B61 /* SearchClubTableViewCell.swift */; };
 		8E42FF872621934000763B61 /* SearchClubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */; };
 		8E42FFB12622C35200763B61 /* WaitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42FFB02622C35200763B61 /* WaitViewController.swift */; };
+		8E6C085326257E79009CE9C3 /* DetailSection1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C085126257E79009CE9C3 /* DetailSection1TableViewCell.swift */; };
+		8E6C085426257E79009CE9C3 /* DetailSection1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E6C085226257E79009CE9C3 /* DetailSection1TableViewCell.xib */; };
+		8E6C086526259567009CE9C3 /* DetailSection2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C086326259567009CE9C3 /* DetailSection2TableViewCell.swift */; };
+		8E6C086626259568009CE9C3 /* DetailSection2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E6C086426259567009CE9C3 /* DetailSection2TableViewCell.xib */; };
+		8E6C086A2625980B009CE9C3 /* DetailSection3TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C08682625980B009CE9C3 /* DetailSection3TableViewCell.swift */; };
+		8E6C086B2625980B009CE9C3 /* DetailSection3TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E6C08692625980B009CE9C3 /* DetailSection3TableViewCell.xib */; };
 		8E8E58782611A14500DB274A /* ClubNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */; };
 		8E8E58792611A14500DB274A /* ClubNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8E58772611A14400DB274A /* ClubNewsTableViewCell.xib */; };
 		8E8E58832611D38500DB274A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58822611D38500DB274A /* ProfileViewController.swift */; };
@@ -52,6 +58,12 @@
 		8E42FF842621934000763B61 /* SearchClubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClubTableViewCell.swift; sourceTree = "<group>"; };
 		8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchClubTableViewCell.xib; sourceTree = "<group>"; };
 		8E42FFB02622C35200763B61 /* WaitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitViewController.swift; sourceTree = "<group>"; };
+		8E6C085126257E79009CE9C3 /* DetailSection1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSection1TableViewCell.swift; sourceTree = "<group>"; };
+		8E6C085226257E79009CE9C3 /* DetailSection1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSection1TableViewCell.xib; sourceTree = "<group>"; };
+		8E6C086326259567009CE9C3 /* DetailSection2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSection2TableViewCell.swift; sourceTree = "<group>"; };
+		8E6C086426259567009CE9C3 /* DetailSection2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSection2TableViewCell.xib; sourceTree = "<group>"; };
+		8E6C08682625980B009CE9C3 /* DetailSection3TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSection3TableViewCell.swift; sourceTree = "<group>"; };
+		8E6C08692625980B009CE9C3 /* DetailSection3TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSection3TableViewCell.xib; sourceTree = "<group>"; };
 		8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubNewsTableViewCell.swift; sourceTree = "<group>"; };
 		8E8E58772611A14400DB274A /* ClubNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClubNewsTableViewCell.xib; sourceTree = "<group>"; };
 		8E8E58822611D38500DB274A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +167,36 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		8E6C07F82623FF39009CE9C3 /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				8EA8416026170CFC00502C8A /* WriteViewController.swift */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		8E6C07F92623FF44009CE9C3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8E8E58822611D38500DB274A /* ProfileViewController.swift */,
+				8E42FE41261AC5DC00763B61 /* EditProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8E6C085026257E34009CE9C3 /* DetailNoteCell */ = {
+			isa = PBXGroup;
+			children = (
+				8E6C085126257E79009CE9C3 /* DetailSection1TableViewCell.swift */,
+				8E6C085226257E79009CE9C3 /* DetailSection1TableViewCell.xib */,
+				8E6C086326259567009CE9C3 /* DetailSection2TableViewCell.swift */,
+				8E6C086426259567009CE9C3 /* DetailSection2TableViewCell.xib */,
+				8E6C08682625980B009CE9C3 /* DetailSection3TableViewCell.swift */,
+				8E6C08692625980B009CE9C3 /* DetailSection3TableViewCell.xib */,
+			);
+			path = DetailNoteCell;
+			sourceTree = "<group>";
+		};
 		8E9B84B6260B20C8000FE298 = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +241,8 @@
 		8E9B84D9260B2106000FE298 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E6C07F92623FF44009CE9C3 /* Profile */,
+				8E6C07F82623FF39009CE9C3 /* Write */,
 				8E42FF7526217D1100763B61 /* Calendar */,
 				8E42FF7426217D0D00763B61 /* Search */,
 				8E42FF7326217CFE00763B61 /* Home */,
@@ -206,9 +250,6 @@
 				8E42FF3326200C1900763B61 /* Login */,
 				8E42FE38261ABC4100763B61 /* Model */,
 				8E9B84EF260B32C9000FE298 /* Cell */,
-				8E8E58822611D38500DB274A /* ProfileViewController.swift */,
-				8EA8416026170CFC00502C8A /* WriteViewController.swift */,
-				8E42FE41261AC5DC00763B61 /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -224,6 +265,7 @@
 		8E9B84EF260B32C9000FE298 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8E6C085026257E34009CE9C3 /* DetailNoteCell */,
 				8E9B84F0260B32E3000FE298 /* clubCollectionViewCell.swift */,
 				8E9B84F1260B32E3000FE298 /* clubCollectionViewCell.xib */,
 				8ECD782A260C375B0019D9F2 /* AllNoteTableViewCell.swift */,
@@ -311,10 +353,13 @@
 			files = (
 				8E9B84F3260B32E3000FE298 /* clubCollectionViewCell.xib in Resources */,
 				8EA8416726183B2800502C8A /* SetScheduleTableViewCell.xib in Resources */,
+				8E6C086B2625980B009CE9C3 /* DetailSection3TableViewCell.xib in Resources */,
 				8E9B84CF260B20CB000FE298 /* LaunchScreen.storyboard in Resources */,
 				8E9B84CC260B20CB000FE298 /* Assets.xcassets in Resources */,
 				8E9B84CA260B20C8000FE298 /* Main.storyboard in Resources */,
+				8E6C086626259568009CE9C3 /* DetailSection2TableViewCell.xib in Resources */,
 				8E8E58B426130A9E00DB274A /* RecTableViewCell.xib in Resources */,
+				8E6C085426257E79009CE9C3 /* DetailSection1TableViewCell.xib in Resources */,
 				8E42FF872621934000763B61 /* SearchClubTableViewCell.xib in Resources */,
 				8E8E58792611A14500DB274A /* ClubNewsTableViewCell.xib in Resources */,
 				8ECD782D260C375B0019D9F2 /* AllNoteTableViewCell.xib in Resources */,
@@ -387,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6C085326257E79009CE9C3 /* DetailSection1TableViewCell.swift in Sources */,
 				8E8E588626120D3D00DB274A /* CalendarViewController.swift in Sources */,
 				8E9B84E3260B2484000FE298 /* Extension.swift in Sources */,
 				8E8E58BC261366B100DB274A /* AddCalendarViewController.swift in Sources */,
@@ -394,6 +440,7 @@
 				8EA8416126170CFC00502C8A /* WriteViewController.swift in Sources */,
 				8E8E58B326130A9E00DB274A /* RecTableViewCell.swift in Sources */,
 				8EA8416626183B2800502C8A /* SetScheduleTableViewCell.swift in Sources */,
+				8E6C086A2625980B009CE9C3 /* DetailSection3TableViewCell.swift in Sources */,
 				8E9B84DE260B233D000FE298 /* ClubViewController.swift in Sources */,
 				8E42FE3A261ABC6500763B61 /* model.swift in Sources */,
 				8E42FE42261AC5DC00763B61 /* EditProfileViewController.swift in Sources */,
@@ -406,6 +453,7 @@
 				8E9B84F2260B32E3000FE298 /* clubCollectionViewCell.swift in Sources */,
 				8E42FE3F261AC00700763B61 /* AddClubViewController.swift in Sources */,
 				8E42FE45261ACB3C00763B61 /* SearchClubViewController.swift in Sources */,
+				8E6C086526259567009CE9C3 /* DetailSection2TableViewCell.swift in Sources */,
 				8ECD782C260C375B0019D9F2 /* AllNoteTableViewCell.swift in Sources */,
 				8E9B84F7260B3C7A000FE298 /* HomeViewController.swift in Sources */,
 				8E9B84DB260B214F000FE298 /* LoginViewController.swift in Sources */,

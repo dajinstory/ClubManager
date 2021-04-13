@@ -152,13 +152,9 @@ extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: SearchClubTableViewCell.identifier) as! SearchClubTableViewCell
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell") as! SearchClubTableViewCell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchClubTableViewCell.identifier) as! SearchClubTableViewCell
         cell.configure(with: FilteredClubList[indexPath.row])
         cell.delegate = self
-//        cell.btn.
         
 //        let button = UIButton()
 //        button.setTitle("승인 요청", for: .normal)

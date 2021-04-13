@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        //넘겨 받은 이미지
+        //dummy
         imageView.image = UIImage(systemName: "person")
         imageView.tintColor = .lightGray
         imageView.layer.masksToBounds = true

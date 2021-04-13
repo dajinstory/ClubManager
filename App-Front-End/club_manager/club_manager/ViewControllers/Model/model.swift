@@ -19,11 +19,26 @@ struct Storyboard {
 }
 }
 
+struct User {
+    let userImage: String 
+    let userName: String
+    let userEmail: String
+}
+
 
 struct BoardData{
-    let userName: String
+    let BoardCategory: [String]
     let title:String
     let content:String
+    let comment: [String]
+    // calculated property
+    let count: Int
+    let date :Date
+}
+
+//공지 보드
+struct StarNote {
+    let starNote: BoardData
 }
 
 //struct NewsData{
