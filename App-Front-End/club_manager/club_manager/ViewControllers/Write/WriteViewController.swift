@@ -18,6 +18,13 @@ class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         return contentCView
     }()
     
+    private let categoryButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("게시판 선택", for: .normal)
+        button.layer.borderWidth = 2
+        return button
+    }()
+    
     private var firstView: UIView = {
         let firstView = UIView()
         let cameraButton = UIButton(frame: CGRect(x: 10, y: 20, width: 150, height: 50))
@@ -56,7 +63,7 @@ class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
-        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+        guard (info[UIImagePickerController.InfoKey.editedImage] as? UIImage) != nil else {
             return
         }
 //        //collectionview imagecell로 넣기
@@ -86,6 +93,7 @@ class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 //        imageCollectionView.dataSource = self
         
         contentView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 2000)
+        categoryButton.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 100)
         firstView.frame = CGRect(x: 0, y: 0, width: contentView.width, height: 100)
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
         
@@ -93,6 +101,18 @@ class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         scrollView.contentSize = CGSize(width: view.bounds.size.width, height: (scrollView.width * 3) + 20)
         
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        
+        contentView.addSubview(firstView)
+        contentView.addSubview(categoryButton)
+        scrollView.addSubview(contentView)
+        view.addSubview(scrollView)
+        
+    
     }
     
     @objc func didTapClose(){
@@ -109,25 +129,18 @@ class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         super.didReceiveMemoryWarning()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
-        contentView.addSubview(firstView)
-        scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
-    }
+
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing \(textField.text)")
+        print("textFieldDidBeginEditing \(String(describing: textField.text))")
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing \(textField.text)")
+        print("textFieldDidEndEditing \(textField.text!)")
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn \(textField.text)")
+        print("textFieldShouldReturn \(textField.text!)")
         textField.resignFirstResponder()
         return true
 

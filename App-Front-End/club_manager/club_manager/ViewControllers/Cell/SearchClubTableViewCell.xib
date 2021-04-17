@@ -33,18 +33,33 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykv-zI-2Pt">
+                        <rect key="frame" x="360" y="40" width="71" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="71" id="c0h-xb-SKi"/>
+                            <constraint firstAttribute="height" constant="50" id="gqV-PD-saL"/>
+                        </constraints>
+                        <state key="normal" title="승인 요청"/>
+                        <connections>
+                            <action selector="acceptButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hgD-nt-D1U"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="ykv-zI-2Pt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="4aa-en-6ia"/>
                     <constraint firstItem="qDX-wY-mXk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="BEU-h7-uu6"/>
+                    <constraint firstItem="ykv-zI-2Pt" firstAttribute="leading" secondItem="dUL-zW-UML" secondAttribute="trailing" constant="50" id="GIe-dH-H9b"/>
                     <constraint firstItem="qDX-wY-mXk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="LeD-7d-AX0"/>
                     <constraint firstAttribute="bottom" secondItem="dUL-zW-UML" secondAttribute="bottom" constant="40" id="b03-7D-U9v"/>
                     <constraint firstAttribute="bottom" secondItem="qDX-wY-mXk" secondAttribute="bottom" constant="15" id="dZz-zA-mYb"/>
+                    <constraint firstAttribute="trailing" secondItem="ykv-zI-2Pt" secondAttribute="trailing" constant="7" id="gr4-Y0-SJ2"/>
                     <constraint firstItem="dUL-zW-UML" firstAttribute="leading" secondItem="qDX-wY-mXk" secondAttribute="trailing" constant="25" id="haP-Sy-VC3"/>
                     <constraint firstItem="dUL-zW-UML" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="ifV-lE-qff"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btn" destination="ykv-zI-2Pt" id="WxG-CI-bF6"/>
                 <outlet property="clubImage" destination="qDX-wY-mXk" id="X0y-fp-FXp"/>
                 <outlet property="clubName" destination="dUL-zW-UML" id="0EA-4C-RPT"/>
             </connections>

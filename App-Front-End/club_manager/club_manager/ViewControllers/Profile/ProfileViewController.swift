@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        //넘겨 받은 이미지
+        //dummy
         imageView.image = UIImage(systemName: "person")
         imageView.tintColor = .lightGray
         imageView.layer.masksToBounds = true
@@ -58,6 +58,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         title = "나의 정보"
         let image = UIImage(systemName: "square.and.arrow.up")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(didTapSetting))
+        getUserProfile()
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,6 +79,30 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(darkModeSwitch)
         
         darkModeSwitch.isOn = false
+        
+    }
+    
+    func getUserProfile(){
+        print("here")
+        let url  = URL(string: "http://13.124.135.59:47000/user")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue(" application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            // Check for Error
+                    if let error = error {
+                        print("Error took place \(error)")
+                        return
+                    }
+             
+                    // Convert HTTP Response Data to a String
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        print("Response data string:\n \(dataString)")
+                        //dataString.filter{$0.}
+                    }
+        }
+        task.resume()
         
     }
     

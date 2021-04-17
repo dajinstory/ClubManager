@@ -115,7 +115,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         let button = UIButton()
         button.setTitle("확인하기", for: .normal)
         button.frame = CGRect(x: 100, y: titleText.bottom + 20, width: 200, height: 30)
-        //button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapWaitButton), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.blue.cgColor
@@ -222,6 +222,12 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
+    }
+    
+    @objc func didTapWaitButton(){
+        print("did tap await button")
+        let waitVc = WaitViewController()
+        self.navigationController?.pushViewController(waitVc, animated: true)
     }
     
     @objc func didAddClub(){
@@ -423,7 +429,7 @@ extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
             
                   //view.window?.makeKeyAndVisible()
         }else if (tableView == rectableView) {
-            let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
+//            let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
 
             //view.window?.rootViewController = tabBarViewController
             //view.window?.makeKeyAndVisible()

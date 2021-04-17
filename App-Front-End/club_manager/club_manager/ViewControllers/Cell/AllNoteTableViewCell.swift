@@ -21,19 +21,21 @@ class AllNoteTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     
   
-
+    @IBOutlet weak var comment: UILabel!
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setting()
     }
     
-    public func configure(with model: BoardData){
-        self.title.text = model.title
+    public func configure(with modelBoard: BoardData, modelUser: User){
+        self.title.text = modelBoard.title
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd HH:mm"
         self.dateTime.text = dateFormat.string(from: Date())
-        self.userName.text = model.userName
+        self.userName.text = modelUser.userName
         self.profileImage.image = UIImage(systemName: "person.crop.circle")
+        self.comment.text = "댓글" 
     }
     
     override func awakeFromNib() {
