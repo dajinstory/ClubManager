@@ -4,7 +4,6 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card';
 
 function RecentCard({post}){
-  // console.log(post);
   return (
     <Col style={{ marginBottom: '1em'}}>
       <LinkContainer to={`/post/${post.id}`} style={{ cursor: 'pointer' }}>

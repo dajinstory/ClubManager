@@ -8,8 +8,10 @@ import Post from './routes/Post';
 import Reserve from './routes/Reserve';
 import Footer from './components/Footer';
 // dummy data
-import posts from './dummy-data/posts.js';
 import clubs from './dummy-data/clubs.js';
+
+const posts = [].concat(...clubs.map(club=>club.posts));
+// console.log(posts);
 
 function App() {
   return (
@@ -24,7 +26,6 @@ function App() {
       
       {/* <Route path="/post" component={Post}/> */}
       <Route path={"/post/:id"} render={ ({match}) => {
-        console.log(match);
         return <Post post={ posts.find(p => p.id === parseInt(match.params.id)) } />
       }} />
       <Route path="/reserve" component={Reserve}/>

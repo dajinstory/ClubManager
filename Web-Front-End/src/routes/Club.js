@@ -12,9 +12,8 @@ import Sonnet from '../components/Sonnet'
 import Post from '../routes/Post'
 import cat from '../images/cat.jpg';
 // dummy data
-import posts from '../dummy-data/posts.js';
+// import posts from '../dummy-data/posts.js';
 import schedules from '../dummy-data/schedules.js';
-
 
 function Club({club}){
   const posts = club.posts;
@@ -38,22 +37,23 @@ function Club({club}){
         <Col>
           <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
             <Tab eventKey="all" title="All">
-              <Link to='/post' style={{ color: 'inherit', fontSize:'1rem'}}>
-                <span>전체 보기> </span>
-              </Link>
-              {
-              posts.map(item=>console.log(item))}
-              {/* {console.log(club.posts)} */}
-              <Link to='/post/:id' style={{ textDecoration: 'none', color: 'inherit' }}>
-                {/* <Post post={id:2, title:"dd", content:"asdfasd"}/> */}
-              </Link>
+              {/* <Link to='/post' style={{ color: 'inherit', fontSize:'1rem'}}> */}
+                <span>전체 보기</span>
+              {/* </Link> */}
+              {posts.map((post,index) => {
+                return(
+                  <Link key={index} to={`/post/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Post post={post} />
+                  </Link>
+                )
+              })}
             
             </Tab>
             <Tab eventKey="schedule" title="Schedule">
               {
-              schedules.map(item => {
+              schedules.map((item,index) => {
                 return (
-                  <div>
+                  <div key={index}>
                     <Badge pill variant="primary">
                       {item.date}
                     </Badge>
@@ -64,7 +64,7 @@ function Club({club}){
               }
             </Tab>
             <Tab eventKey="reserve" title="Reserve">
-              <Link to='/reserve' style={{ color: 'inherit' }}>예약하러 가자 >></Link>
+              <Link to='/reserve' style={{ color: 'inherit' }}>예약하러 가자</Link>
             </Tab>
           </Tabs>
         </Col>
