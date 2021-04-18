@@ -5,10 +5,7 @@ import bjd.clubmanager.demo.service.*
 import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RequiredArgsConstructor
 @RestController
@@ -23,6 +20,8 @@ class APIController {
     private lateinit var boardService: BoardService
     @Autowired
     private lateinit var postService: PostService
+    @Autowired
+    private lateinit var scheduleService: ScheduleService
 
     // 회원가입 - create user
     @PostMapping("/user")
@@ -34,15 +33,16 @@ class APIController {
     }
     // MYPAGE - 내 카페, 아이디
     @GetMapping("/user", produces = ["application/json"])
-    fun getUser(@RequestBody userKeyDTO: UserKeyDTO?): ResponseEntity<Any> {
+    fun getUser(@RequestHeader id: Long?, @RequestHeader email: String?): ResponseEntity<Any> {
         // Get All
-        return if (userKeyDTO == null) {
+        return if (id == null && email == null) {
+            print("FindALL")
             return ResponseEntity
                 .ok()
                 .body(userService.getUsers())
         } else ResponseEntity
             .ok()
-            .body(userService.getUserByKey(userKeyDTO))
+            .body(userService.getUserByKey(UserKeyDTO(id!!, email!!)))
     }
 
     // CLUB 생성 - create club
@@ -55,13 +55,13 @@ class APIController {
     }
     // CLUB 홈페이지
     @GetMapping("/club", produces = ["application/json"])
-    fun getClubs(@RequestBody userClubsDTO: UserClubsDTO?): ResponseEntity<Any> {
-        return if(userClubsDTO == null){
+    fun getClubs(@RequestHeader clubs: String?): ResponseEntity<Any> {
+        return if(clubs == null){
             ResponseEntity.ok().body(clubService.getClubs())
         } else{
             ResponseEntity
                 .ok()
-                .body(clubService.getClubsById(userClubsDTO))
+                .body(clubService.getClubsById(UserClubsDTO(clubs!!)))
         }
     }
 
@@ -75,10 +75,10 @@ class APIController {
     }
     // BOARD LIST
     @GetMapping("/board", produces = ["application/json"])
-    fun getBoards(@RequestBody clubIdDTO: ClubIdDTO): ResponseEntity<Any> {
+    fun getBoards(@RequestHeader clubId: Long?): ResponseEntity<Any> {
         return ResponseEntity
             .ok()
-            .body(boardService.getBoardsByClubId(clubIdDTO))
+            .body(boardService.getBoardsByClubId(ClubIdDTO(clubId!!)))
     }
 
     // POST 생성 - create post
@@ -91,9 +91,26 @@ class APIController {
     }
     // POST LIST
     @GetMapping("/post", produces = ["application/json"])
-    fun getPosts(@RequestBody boardIdDTO: BoardIdDTO): ResponseEntity<Any> {
+    fun getPosts(@RequestHeader clubId: Long?, @RequestHeader boardId: Long?): ResponseEntity<Any> {
         return ResponseEntity
             .ok()
-            .body(postService.getPostsByBoardId(boardIdDTO))
+            .body(postService.getPostsByBoardId(BoardIdDTO(clubId!!, boardId!!)))
+    }
+
+    // Create Scheduler
+    @PostMapping("/schedule")
+    fun createSchedule(@RequestBody scheduleDTO: ScheduleDTO): ResponseEntity<Any> {
+        scheduleService.createSchedule(scheduleDTO)
+        return ResponseEntity
+            .ok()
+            .body(true)
+    }
+    // Search Schedule
+    @GetMapping("/schedule", produces = ["application/json"])
+    fun getSchedule(@RequestHeader clubId: Long?): ResponseEntity<Any> {
+        // Get All
+        return ResponseEntity
+            .ok()
+            .body(scheduleService.getSchedulesByClubId(ScheduleClubIdDTO(clubId!!)))
     }
 }
