@@ -21,7 +21,7 @@ function Web(){
         <ul className="thumbnail-list">
           {clubs.map((club, index) => {
             return (
-              <LinkContainer to={`club/${club.id}` } key={index}>
+              <LinkContainer to={`/${club.name}`} key={index}>
                 <li><span><img className="thumbnail-image" src={cat}/></span>{club.name}</li>
               </LinkContainer>
             )

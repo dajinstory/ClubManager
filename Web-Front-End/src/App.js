@@ -18,16 +18,20 @@ function App() {
     <HashRouter>
       <Navigation />
       <Route path="/" exact={true} component={Home}/>
-      <Route path="/web" component={Web}/>
-      {/* <Route path="/club" component={Club}/> */}
-      <Route path="/club/:id" render={ ({match}) => {
-        return <Club club={ clubs.find(c => c.id === parseInt(match.params.id)) } />
-      }}/>
-      
-      {/* <Route path="/post" component={Post}/> */}
+      <Route path="/web/welcome" exact={true} component={Web}/>
+      {/* <Route path="/:clubName" render={ ({match}) => {
+        return <Club club={ clubs.find(c => c.name === match.params.clubName) } />
+      }}
+      /> */}
+      {/* <Route path="/:clubName/posts" render={({match}) => {
+          const allPosts = (clubs.find(c=>c.name===match.params.clubName)).posts
+          return allPosts.map((post, index) => <Post key={index} post={post} />)
+        } }
+      /> */}
       <Route path={"/post/:id"} render={ ({match}) => {
         return <Post post={ posts.find(p => p.id === parseInt(match.params.id)) } />
-      }} />
+        }}
+      />
       <Route path="/reserve" component={Reserve}/>
       <Footer />
     </HashRouter>
