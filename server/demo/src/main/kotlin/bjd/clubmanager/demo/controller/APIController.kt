@@ -5,10 +5,7 @@ import bjd.clubmanager.demo.service.*
 import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RequiredArgsConstructor
 @RestController
@@ -36,15 +33,16 @@ class APIController {
     }
     // MYPAGE - 내 카페, 아이디
     @GetMapping("/user", produces = ["application/json"])
-    fun getUser(@RequestBody userKeyDTO: UserKeyDTO?): ResponseEntity<Any> {
+    fun getUser(@RequestHeader email: String?): ResponseEntity<Any> {
         // Get All
-        return if (userKeyDTO == null) {
+        return if (email == null) {
+            print("FindALL")
             return ResponseEntity
                 .ok()
                 .body(userService.getUsers())
         } else ResponseEntity
             .ok()
-            .body(userService.getUserByKey(userKeyDTO))
+            .body(userService.getUserByKey(UserKeyDTO(-1, email!!)))
     }
 
     // CLUB 생성 - create club
