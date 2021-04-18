@@ -33,16 +33,16 @@ class APIController {
     }
     // MYPAGE - 내 카페, 아이디
     @GetMapping("/user", produces = ["application/json"])
-    fun getUser(@RequestHeader email: String?): ResponseEntity<Any> {
+    fun getUser(@RequestHeader id: Long?, @RequestHeader email: String?): ResponseEntity<Any> {
         // Get All
-        return if (email == null) {
+        return if (id == null && email == null) {
             print("FindALL")
             return ResponseEntity
                 .ok()
                 .body(userService.getUsers())
         } else ResponseEntity
             .ok()
-            .body(userService.getUserByKey(UserKeyDTO(-1, email!!)))
+            .body(userService.getUserByKey(UserKeyDTO(id!!, email!!)))
     }
 
     // CLUB 생성 - create club
@@ -55,13 +55,13 @@ class APIController {
     }
     // CLUB 홈페이지
     @GetMapping("/club", produces = ["application/json"])
-    fun getClubs(@RequestBody userClubsDTO: UserClubsDTO?): ResponseEntity<Any> {
-        return if(userClubsDTO == null){
+    fun getClubs(@RequestHeader clubs: String?): ResponseEntity<Any> {
+        return if(clubs == null){
             ResponseEntity.ok().body(clubService.getClubs())
         } else{
             ResponseEntity
                 .ok()
-                .body(clubService.getClubsById(userClubsDTO))
+                .body(clubService.getClubsById(UserClubsDTO(clubs!!)))
         }
     }
 
@@ -75,10 +75,10 @@ class APIController {
     }
     // BOARD LIST
     @GetMapping("/board", produces = ["application/json"])
-    fun getBoards(@RequestBody clubIdDTO: ClubIdDTO): ResponseEntity<Any> {
+    fun getBoards(@RequestHeader clubId: Long?): ResponseEntity<Any> {
         return ResponseEntity
             .ok()
-            .body(boardService.getBoardsByClubId(clubIdDTO))
+            .body(boardService.getBoardsByClubId(ClubIdDTO(clubId!!)))
     }
 
     // POST 생성 - create post
@@ -91,10 +91,10 @@ class APIController {
     }
     // POST LIST
     @GetMapping("/post", produces = ["application/json"])
-    fun getPosts(@RequestBody boardIdDTO: BoardIdDTO): ResponseEntity<Any> {
+    fun getPosts(@RequestHeader clubId: Long?, @RequestHeader boardId: Long?): ResponseEntity<Any> {
         return ResponseEntity
             .ok()
-            .body(postService.getPostsByBoardId(boardIdDTO))
+            .body(postService.getPostsByBoardId(BoardIdDTO(clubId!!, boardId!!)))
     }
 
     // Create Scheduler
@@ -107,10 +107,10 @@ class APIController {
     }
     // Search Schedule
     @GetMapping("/schedule", produces = ["application/json"])
-    fun getSchedule(@RequestBody scheduleClubIdDTO: ScheduleClubIdDTO): ResponseEntity<Any> {
+    fun getSchedule(@RequestHeader clubId: Long?): ResponseEntity<Any> {
         // Get All
         return ResponseEntity
             .ok()
-            .body(scheduleService.getSchedulesByClubId(scheduleClubIdDTO))
+            .body(scheduleService.getSchedulesByClubId(ScheduleClubIdDTO(clubId!!)))
     }
 }
