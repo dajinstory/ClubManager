@@ -23,6 +23,8 @@ class APIController {
     private lateinit var boardService: BoardService
     @Autowired
     private lateinit var postService: PostService
+    @Autowired
+    private lateinit var scheduleService: ScheduleService
 
     // 회원가입 - create user
     @PostMapping("/user")
@@ -95,5 +97,22 @@ class APIController {
         return ResponseEntity
             .ok()
             .body(postService.getPostsByBoardId(boardIdDTO))
+    }
+
+    // Create Scheduler
+    @PostMapping("/schedule")
+    fun createSchedule(@RequestBody scheduleDTO: ScheduleDTO): ResponseEntity<Any> {
+        scheduleService.createSchedule(scheduleDTO)
+        return ResponseEntity
+            .ok()
+            .body(true)
+    }
+    // Search Schedule
+    @GetMapping("/schedule", produces = ["application/json"])
+    fun getSchedule(@RequestBody scheduleClubIdDTO: ScheduleClubIdDTO): ResponseEntity<Any> {
+        // Get All
+        return ResponseEntity
+            .ok()
+            .body(scheduleService.getSchedulesByClubId(scheduleClubIdDTO))
     }
 }
