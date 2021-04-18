@@ -5,6 +5,9 @@ import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClic
 import Container from 'react-bootstrap/Container'
 
 function Reserve(){
+  const setState = (newState) => {
+    console.log('ㄱㄹㅎㄷ');
+  }
   const handleDateClick = (arg) => {
     console.log(arg)
     const event = prompt(`${arg.dateStr} enter your event`);

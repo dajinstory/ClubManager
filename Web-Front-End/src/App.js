@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './routes/Home';
 import Web from './routes/Web';
@@ -17,22 +17,24 @@ function App() {
   return (
     <HashRouter>
       <Navigation />
-      <Route path="/" exact={true} component={Home}/>
-      <Route path="/web/welcome" exact={true} component={Web}/>
-      {/* <Route path="/:clubName" render={ ({match}) => {
-        return <Club club={ clubs.find(c => c.name === match.params.clubName) } />
-      }}
-      /> */}
-      {/* <Route path="/:clubName/posts" render={({match}) => {
-          const allPosts = (clubs.find(c=>c.name===match.params.clubName)).posts
-          return allPosts.map((post, index) => <Post key={index} post={post} />)
-        } }
-      /> */}
-      <Route path={"/post/:id"} render={ ({match}) => {
-        return <Post post={ posts.find(p => p.id === parseInt(match.params.id)) } />
+      <Switch>
+        <Route path="/" exact={true} component={Home}/>
+        <Route path="/web" exact={true} component={Web}/>
+        <Route path="/post/:id" render={ ({match}) => {
+          return <Post post={ posts.find(p => p.id === parseInt(match.params.id)) } />
         }}
-      />
-      <Route path="/reserve" component={Reserve}/>
+        />
+        <Route path="/reserve" component={Reserve}/>
+        <Route path="/:clubName" exact={true} render={ ({match}) => {
+          return <Club club={ clubs.find(c => c.name === match.params.clubName) } />
+        }}
+        />
+        <Route path="/:clubName/posts" render={({match}) => {
+          const allPosts = (clubs.find(c=>c.name===match.params.clubName)).posts;
+          return allPosts.map((post, index) => <Post key={index} post={post} />)
+        }}
+        />
+      </Switch>
       <Footer />
     </HashRouter>
   );

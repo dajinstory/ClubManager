@@ -37,9 +37,9 @@ function Club({club}){
         <Col>
           <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
             <Tab eventKey="all" title="All">
-              {/* <Link to={`/${club.name}/posts`} style={{ color: 'inherit', fontSize:'1rem'}}> */}
+              <Link to={`/${club.name}/posts`} style={{ color: 'inherit', fontSize:'1rem'}}>
                 <span>전체 보기</span>
-              {/* </Link> */}
+              </Link>
               {posts.map((post,index) => {
                 return(
                   <Link key={index} to={`/post/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>

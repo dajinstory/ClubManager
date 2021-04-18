@@ -33,7 +33,7 @@ function Navigation() {
           <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      <LinkContainer to="/web/welcome">
+      <LinkContainer to="/web">
         <Button className='m-1' variant="outline-light">Web</Button>
       </LinkContainer>
       <LinkContainer to="/ios">
