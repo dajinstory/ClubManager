@@ -17,7 +17,7 @@ class clubCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-   
+        self.backgroundColor = .blue
     }
     
     public func configure(with model: Club){
@@ -27,7 +27,7 @@ class clubCollectionViewCell: UICollectionViewCell {
         self.mytextView.text = model.clubName
     }
     
-    public func configureForWait(with model: WaitClub){
+    public func configureForWait(with model: Club){
         self.myImageView.image = UIImage(named: model.clubImage)
         self.myImageView.contentMode = .scaleAspectFill
         self.myImageView.clipsToBounds = true

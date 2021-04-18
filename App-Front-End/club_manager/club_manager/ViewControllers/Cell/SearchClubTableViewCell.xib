@@ -12,50 +12,30 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="121" id="KGk-i7-Jjw" customClass="SearchClubTableViewCell" customModule="club_manager" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="438" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="438" height="121"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qDX-wY-mXk">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDX-wY-mXk">
                         <rect key="frame" x="15" y="15" width="90" height="90"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="90" id="Hcy-KG-cEo"/>
-                            <constraint firstAttribute="height" constant="90" id="V2B-eD-jC1"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUL-zW-UML">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUL-zW-UML">
                         <rect key="frame" x="130" y="40" width="180" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="180" id="KJF-cM-GZ1"/>
-                            <constraint firstAttribute="height" constant="35" id="ucp-Gn-gBr"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykv-zI-2Pt">
-                        <rect key="frame" x="360" y="40" width="71" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="71" id="c0h-xb-SKi"/>
-                            <constraint firstAttribute="height" constant="50" id="gqV-PD-saL"/>
-                        </constraints>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykv-zI-2Pt">
+                        <rect key="frame" x="282" y="35" width="71" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="승인 요청"/>
                         <connections>
                             <action selector="acceptButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hgD-nt-D1U"/>
                         </connections>
                     </button>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="ykv-zI-2Pt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="4aa-en-6ia"/>
-                    <constraint firstItem="qDX-wY-mXk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="BEU-h7-uu6"/>
-                    <constraint firstItem="ykv-zI-2Pt" firstAttribute="leading" secondItem="dUL-zW-UML" secondAttribute="trailing" constant="50" id="GIe-dH-H9b"/>
-                    <constraint firstItem="qDX-wY-mXk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="LeD-7d-AX0"/>
-                    <constraint firstAttribute="bottom" secondItem="dUL-zW-UML" secondAttribute="bottom" constant="40" id="b03-7D-U9v"/>
-                    <constraint firstAttribute="bottom" secondItem="qDX-wY-mXk" secondAttribute="bottom" constant="15" id="dZz-zA-mYb"/>
-                    <constraint firstAttribute="trailing" secondItem="ykv-zI-2Pt" secondAttribute="trailing" constant="7" id="gr4-Y0-SJ2"/>
-                    <constraint firstItem="dUL-zW-UML" firstAttribute="leading" secondItem="qDX-wY-mXk" secondAttribute="trailing" constant="25" id="haP-Sy-VC3"/>
-                    <constraint firstItem="dUL-zW-UML" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="ifV-lE-qff"/>
-                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

@@ -23,11 +23,10 @@ class SearchClubTableViewCell: UITableViewCell {
     
 
     @IBAction func acceptButton(_ sender: UIButton) {
-        
-        
         print("did tap button")
         self.delegate?.onTouchWaitButton(from: self)
     }
+    
     var buttonTapCallback: () -> ()  = { }
     
     override func awakeFromNib() {
@@ -55,10 +54,5 @@ class SearchClubTableViewCell: UITableViewCell {
 //        self.acceptButton.setTitleColor(UIColor.white, for: .normal)
 //        acceptButton.addTarget(self, action: #selector(didTapButton), for: .touchUpOutside)
     }
-    
-//    @objc func didTapButton(){
-//        print("didTapButton")
-//        buttonTapCallback()
-//
-//    }
+
 }

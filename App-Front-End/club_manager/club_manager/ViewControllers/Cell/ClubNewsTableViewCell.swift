@@ -29,6 +29,15 @@ class ClubNewsTableViewCell: UITableViewCell {
 
     }
     
+    var topInset: CGFloat = 0
+    var leftInset: CGFloat = 0
+    var bottomInset: CGFloat = 0
+    var rightInset: CGFloat = 0
+    
+    override func layoutMarginsDidChange() {
+        super.layoutMarginsDidChange()
+        self.layoutMargins = UIEdgeInsets(top: topInset, left: leftInset, bottom: leftInset, right: rightInset)
+    }
     
     static func nib() -> UINib{
         return UINib(nibName: "ClubNewsTableViewCell", bundle: nil)

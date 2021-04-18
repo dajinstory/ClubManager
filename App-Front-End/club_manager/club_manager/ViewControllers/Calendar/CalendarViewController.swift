@@ -14,7 +14,6 @@ import FSCalendar
 class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigationControllerDelegate {
     
     var calendar = FSCalendar()
-    //var allScheduled: [setScheduled] = []
     
     private let setScheduledView: UITableView = {
         let setScheduledView = UITableView()
@@ -26,12 +25,7 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
     var filtered: [setSchedule] = []
     var events: [Date] = []
     
-    
-    var isAddClick = false
-    let store = EKEventStore()
     var date = Date()
-    
-    
     
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
         controller.dismiss(animated: true, completion: nil)
@@ -40,6 +34,8 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendar.allowsMultipleSelection = true
+
         setUp()
         setupData()
         setUpCalendar()
@@ -52,14 +48,13 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
         
         view.addSubview(calendar)
         view.addSubview(setScheduledView)
-        //self.delegate?.AddCalendarViewcontrollerResponse()
        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         calendar.frame = CGRect(x: 0, y: 100, width: view.bounds.width, height: 300)
-        setScheduledView.frame = CGRect(x: 0, y: calendar.bottom + 10, width: view.bounds.width, height: view.bounds.height - calendar.height)
+        setScheduledView.frame = CGRect(x: 0, y: calendar.bottom + 10, width: view.bounds.width, height: view.bounds.height - calendar.height - 100)
     }
     
     func setUp(){
@@ -93,9 +88,9 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
         //let test = formatter.date(from: "2021-04-03")
         
       
-        print("event")
+        //print("event")
         events = setscheduled.map{$0.date}
-        print(events)
+        //print(events)
         
     }
 
@@ -139,9 +134,6 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
     
     var dateComponents = DateComponents()
     @objc func didTapAdd(){
-        isAddClick = true
-        print("button click")
-        //let vc = EKCalendarChooser()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         
@@ -173,8 +165,8 @@ extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        print("date")
-        print(date)
+//        print("date")
+//        print(date)
         if self.events.contains(date) {
             return 1
         } else {

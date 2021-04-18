@@ -110,7 +110,7 @@ class HomeViewController: UIViewController {
     }
     
     private func createSpinnerFooter() -> UIView {
-        print("create spinner")
+        //print("create spinner")
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
         let spinner = UIActivityIndicatorView()
         spinner.center = footerView.center
@@ -128,11 +128,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = settingArray[indexPath.row]
             return cell
         } else if tableView == tableView1 {
-            print("here")
+            //print("here")
             let modelBoard = data[indexPath.row]
-            print(modelBoard)
+            //print(modelBoard)
             let modelUser = user[indexPath.row]
-            print(modelUser)
+            //print(modelUser)
             let cellforTableView1 = tableView.dequeueReusableCell(withIdentifier: AllNoteTableViewCell.identifier, for: indexPath) as! AllNoteTableViewCell
             cellforTableView1.configure(with: modelBoard, modelUser: modelUser)
             return cellforTableView1
@@ -148,7 +148,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return settingArray.count
         }else if tableView == tableView1 {
             if(section == 0){
-                print("numberOfRowsInSection : ", data.count)
                 return data.count
             }else if section == 1 && isPaging && hasNextPage {
                 return 1
@@ -202,7 +201,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let title = data[indexPath.row].title
         let content = data[indexPath.row].content
         vc.note.append(BoardData(BoardCategory: ["전체글"], title: title, content: content, comment: ["좋은 정보 감사합니다", "확인했어요"], count: 1, date: dateForDate))
-        vc.userData.append(User(userImage: "person.crop.circle", userName: userName, userEmail: ""))
+        vc.userData.append(User(id: 1, userImage: "person.crop.circle", userName: userName, userEmail: ""))
         //detailView show시 tabbar hide
         vc.hidesBottomBarWhenPushed = true
 
@@ -245,7 +244,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
    }
     
     func paging() {
-        print("func paging called")
+        //print("func paging called")
         let index = data.count
         let dataFormatter = DateFormatter()
         
@@ -254,7 +253,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let dateNow = dataFormatter.date(from: "2021.04.1\(i) 21:09")
             let data = BoardData(BoardCategory: ["전체글"], title: "title:\(i)", content: "content\(i) content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)content\(i)", comment: ["좋은 글 감사합니다.", "확인 완료"], count: 1, date: dateNow ?? Date())
             datas.append(data)
-            user.append(User(userImage: "person.crop.circle", userName: "조소정", userEmail: ""))
+            user.append(User(id: 1, userImage: "person.crop.circle", userName: "조소정", userEmail: ""))
         }
         
     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

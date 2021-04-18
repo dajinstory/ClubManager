@@ -13,7 +13,15 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController, GIDSignInDelegate {
     
-    var userName = ""
+    
+    private let loginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("login", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = .red
+        button.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        return button
+    }()
     
     //연도. 시도시 불러오는 메소드
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -29,26 +37,64 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         // 사용자 정보 가져오기
             if let userId = user.userID,                  // For client-side use only!
                 let idToken = user.authentication.idToken, // Safe to send to the server
-                let fullName = user.profile.name,
-//                let givenName = user.profile.givenName,
-//                let familyName = user.profile.familyName,
-                let email = user.profile.email {
-                userName = fullName
-                print("Token : \(idToken)")
-                print("User ID : \(userId)")
-                print("User Email : \(email)")
-                print("User Name : \((fullName))")
-                //postUSer()
-         
+                let userName = user.profile.name,
+                let userEmail = user.profile.email {
+                
+                getUserByKey( userId: 1, userEmail: userEmail) {
+                    result in
+                    if result == "" {
+                        print("[Rest API] Create User\n")
+                        self.postUser(userName: userName, userEmail: userEmail)
+                    }
+                    else {
+                        print("[Rest API] User Already registered\n")
+
+                    }
+                }
+                
+               
             } else {
                 print("Error : User Data Not Found")
             }
+        
         self.segueToClub()
     }
     
-    func postUSer(){
-        print("post user")
-        let json: [String: Any] = ["name": userName, "clubs" : ""]
+//    typealias CompletionHandler = (_ result:String) -> (Void)
+    
+    func getUserByKey(userId: Int, userEmail: String, completionHandler: @escaping (_ result: String) -> ()) {
+        // check user if already registered
+        let url_URL = URL(string: "http://13.124.135.59:47000/user")
+        var request = URLRequest(url: url_URL!)
+        
+        request.httpMethod = "GET"
+        request.setValue(String(userId), forHTTPHeaderField: "id")
+        request.setValue(userEmail, forHTTPHeaderField: "email")
+        
+        let task = URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            
+            // Check for Error
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            // Convert HTTP Response Data to a String
+            if let data=data, let dataString = String(data: data, encoding: .utf8) {
+                
+                print("[Rest API] getUserByKey : \(dataString)")
+    
+                completionHandler(dataString)
+                
+            }
+        }
+        task.resume()
+    }
+    
+        
+    func postUser(userName: String, userEmail: String){
+        let json: [String: Any] = ["name": userName,"email" : userEmail, "clubs" : ""]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         let url_URL = URL(string: "http://13.124.135.59:47000/user")
@@ -68,14 +114,14 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
      
             // Convert HTTP Response Data to a String
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                print("Response data string:\n \(dataString)")
+                print("[Rest API] postUser : \(dataString)")
             }
         }
         
         task.resume()
     }
     
-    // 구글 로그인 연동 해제했을때 불러오는 메소드
+    // 구글 로그인 연동 해제시
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("Disconnect")
     }
@@ -92,38 +138,29 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     private let googleLoginButton: GIDSignInButton = {
         let button = GIDSignInButton()
         button.style = .standard
-        button.addTarget(self, action: #selector(onGoogleLoginByAppTouched), for: .touchUpInside)
         return button
     }()
     
+    //kakao login
     @objc func onKakaoLoginByAppTouched(_ sender: Any) {
-        print("enetered")
         if(UserApi.isKakaoTalkLoginAvailable()){ // 이용가능하다면
-            print("isKakaoTalkLoginAvailable")
-            
-            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                print("loginWithKakaoTalk")
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                     if let error = error {
-                        print("error : ", error)
+                        print(error)
                     }
                     else {
-                        print("loginWithKakaoTalk() success.")
+                        print("loginWithKakaoAccount() success.")
 
                         //do something
-                        _ = oauthToken
-                        //let accessToken = oauthToken?.accessToken
-                        //토큰 발급 후 사용자 관리 api 호출
+                        let token = oauthToken
+                        guard token != nil else {
+                            return
+                        }
+                        //print("login token \(gettoken)")
                         self.setUserInfo()
                     }
                 }
         }
-        
-//
-//        if kakaoLoginSuccess == true {
-//            print("here")
-//            let showClub = self.storyboard?.instantiateViewController(withIdentifier: "Club")
-//            self.navigationController?.pushViewController(showClub!, animated: true)
-//        }
     }
     
     
@@ -134,50 +171,40 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }else{
                 print("me() success")
                 _ = user
-                let userId = user?.id
-                let userName = user?.kakaoAccount?.profile?.nickname
-                let userEmail = user?.kakaoAccount?.email
-                print("user info : \(String(describing: userId)) \(userName!) \(userEmail!)")
-                
-                print("segueToClub")
+    
+                guard let userName = user?.kakaoAccount?.profile?.nickname else { return }
+                guard let userEmail = user?.kakaoAccount?.email else { return }
+                self.postUser(userName: userName, userEmail: userEmail)
                 self.segueToClub()
-//                let club = ClubViewController()
-//                club.modalPresentationStyle = .fullScreen
-//                self.present(club, animated: true)
-                //self.navigationController?.pushViewController(club, animated: true)
-                
+              
             }
         }
     }
-    
-    @objc func onGoogleLoginByAppTouched(){
-        
-    }
-    
+
     func segueToClub(){
-        print("segueToClub")
-        let club = ClubViewController()
-        self.navigationController?.pushViewController(club, animated: true)
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "Club") else{
+            return
+        }
+        let navVC = UINavigationController(rootViewController: vc)
+        UIApplication.shared.windows.first?.rootViewController = navVC
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+
+//        let club = ClubViewController()
+//        self.navigationController?.pushViewController(club, animated: true)
         
     }
-    
-//    private let loginButton: UIButton = {
-//        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
-//        button.setTitle("Log in", for: .normal)
-//        button.backgroundColor = .white
-//        button.setTitleColor(.black, for: .normal)
-//        return button
-//    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+      
         title = "Log In"
-        
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.delegate = self
         view.addSubview(kakaoTalkLoginButton)
         view.addSubview(googleLoginButton)
+        view.addSubview(loginButton)
         
         
     }
@@ -188,12 +215,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         kakaoTalkLoginButton.frame = CGRect(x: 0, y: 0, width: 250, height: 40)
         kakaoTalkLoginButton.center = view.center
         googleLoginButton.frame = CGRect(x: kakaoTalkLoginButton.frame.minX, y: kakaoTalkLoginButton.bottom + 30, width: 250, height: 40)
-       
-        
+        loginButton.frame = CGRect(x: kakaoTalkLoginButton.frame.minX, y: googleLoginButton.bottom + 30 , width: 250, height: 40)
     }
     
-
-    
-
+    @objc func didTapLoginButton(){
+        self.segueToClub()
+    }
 
 }

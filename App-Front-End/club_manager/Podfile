@@ -17,4 +17,8 @@ pod 'GoogleSignIn' #구글 로그인
 pod 'FSCalendar'
 pod "TTGTagCollectionView"
 
+#datePicker 
+pod 'DatePicker', '~> 1.3.0' 
+
+
 end

@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let logNAV = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: "root") as! UINavigationController
             window.rootViewController = logNAV
+            
             self.window = window
             window.makeKeyAndVisible()
         }

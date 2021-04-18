@@ -87,5 +87,7 @@
 		<string>kakaolink</string>
 		<string>kakaokompassauth</string>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>please allow access to save</string>
 </dict>
 </plist>

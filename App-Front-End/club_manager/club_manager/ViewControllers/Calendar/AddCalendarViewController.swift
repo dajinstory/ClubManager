@@ -92,19 +92,17 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
     }()
     
     @objc func didTapAddButton(){
-        
-//        self.navigationController?.popViewController(animated: true)
         let calendarVC = CalendarViewController()
         calendarVC.setscheduled.append(setSchedule(date: datePicker.date, scTitle: title_textField.text!, scHour: hour_textField.text!, scMinute: minute_textField.text!))
         self.navigationController?.popToViewController(calendarVC, animated: true)
         
-        print(datePicker.date)
-        print(title_textField.text!)
-        print(hour_textField.text!)
-        print(minute_textField.text!)
-        print(datePicker.date.year)
-        print(datePicker.date.month)
-        print(datePicker.date.day)
+//        print(datePicker.date)
+//        print(title_textField.text!)
+//        print(hour_textField.text!)
+//        print(minute_textField.text!)
+//        print(datePicker.date.year)
+//        print(datePicker.date.month)
+//        print(datePicker.date.day)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss EEE"
@@ -135,7 +133,8 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        datePicker.frame = CGRect(x: 50, y: 200, width: 280, height: 50)
+        datePicker.backgroundColor = .red
+        datePicker.frame = CGRect(x: 50, y: 200, width: view.bounds.width - 100, height: 100)
         
         dateView.frame = CGRect(x: 50, y: datePicker.bottom + 50, width: view.bounds.width - 40, height: 25)
         use_textLabel.frame = CGRect(x: 50, y: 0, width: 100, height: 25)

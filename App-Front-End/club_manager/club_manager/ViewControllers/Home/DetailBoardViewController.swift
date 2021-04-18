@@ -17,9 +17,15 @@ class DetailBoardViewController: UIViewController {
         table.register(DetailSection1TableViewCell.nib(), forCellReuseIdentifier: DetailSection1TableViewCell.identifier)
         table.register(DetailSection2TableViewCell.nib(), forCellReuseIdentifier: DetailSection2TableViewCell.identifier)
         table.register(DetailSection3TableViewCell.nib(), forCellReuseIdentifier: DetailSection3TableViewCell.identifier)
-        //table.register(UITableViewCell.self, forCellReuseIdentifier: "cell3")
         return table
     }()
+    
+//    var commentTableView: UITableView = {
+//        var table = UITableView()
+//        table.register(DetailSection3TableViewCell.nib(), forCellReuseIdentifier: DetailSection3TableViewCell.identifier)
+//        return table
+//    }()
+    
     let toolbar = UIToolbar()
     
     
@@ -44,7 +50,7 @@ class DetailBoardViewController: UIViewController {
     }
     
     func getUserInfo(){
-        userData.append(User(userImage: "multiply.circle.fil", userName: "조소정", userEmail: "spqjf12345"))
+        userData.append(User(id: 1, userImage: "multiply.circle.fil", userName: "조소정", userEmail: "spqjf12345"))
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,7 +58,7 @@ class DetailBoardViewController: UIViewController {
     }
     
     func toolbarSetup(){
-        toolbar.barTintColor = .black
+        toolbar.barTintColor = .white
 
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         toolbar.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 0).isActive = true
@@ -63,8 +69,8 @@ class DetailBoardViewController: UIViewController {
 
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 
-        let toolbarItem1 = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: nil)
-        let toolbarItem2 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let toolbarItem1 = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: nil)
+        let toolbarItem2 = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(didTapShareToolBar))
         let toolbarItem3 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
 
         items.append(toolbarItem1)
@@ -90,9 +96,14 @@ class DetailBoardViewController: UIViewController {
     }
     
     @objc func didPullRefresh(refresh: UIRefreshControl){
-        print("didPullRefresh")
         refresh.endRefreshing() // refresh end
         FrameTableView.reloadData()
+    }
+    
+    @objc func didTapShareToolBar(){
+        guard let image = UIImage(systemName: "bell.fill"), let url = URL(string: "https://google.com") else { return }
+        let shareSheetVc = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
+        present(shareSheetVc, animated: true, completion: nil)
     }
     
 
@@ -108,6 +119,7 @@ extension DetailBoardViewController: UITableViewDelegate, UITableViewDataSource 
         return 3
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("index \(indexPath.row)")
         let cell1 = tableView.dequeueReusableCell(withIdentifier: DetailSection1TableViewCell.identifier) as! DetailSection1TableViewCell
@@ -115,19 +127,16 @@ extension DetailBoardViewController: UITableViewDelegate, UITableViewDataSource 
         let cell3 = tableView.dequeueReusableCell(withIdentifier: DetailSection3TableViewCell.identifier) as! DetailSection3TableViewCell
         if(indexPath.row == 0){
             print("1")
-            cell1.configure(with: userData[0], modelBoard: note[0])
+            //cell1.configure(with: userData[0], modelBoard: note[0])
             return cell1
         }else if(indexPath.row == 1){
             print("2")
             cell2.configure(with: note[0])
             return cell2
         }else if(indexPath.row == 2){
-            
-            // 안에 또 tableview가 들어가야 할듯 
             print("3")
-            for cm in note[0].comment {
-                cell3.textLabel?.text = cm
-            }
+            let cell3Height:CGFloat = 500
+            cell3.size(width: cell3.bounds.width, height : cell3Height)
             return cell3
         }
        
@@ -139,13 +148,15 @@ extension DetailBoardViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.row == 0){
+        if (indexPath.row == 0){//title
             return 100
-        }else if(indexPath.row == 1){
+        }else if(indexPath.row == 1){ //content
             return 300
+        }else { //comment
+            return 500
         }
-        tableView.rowHeight = UITableView.automaticDimension
-        return tableView.rowHeight
+//        tableView.rowHeight = UITableView.automaticDimension
+//        return 500
     }
   
     

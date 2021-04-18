@@ -11,7 +11,7 @@ class SearchClubViewController: UIViewController, UITextFieldDelegate {
 
     var AllClubList: [Club] = []
     var FilteredClubList: [Club] = []
-    var waitClubList: [WaitClub] = []
+    var waitClubList: [Club] = []
     
     var club_name = ""
     var categry = ""
@@ -59,17 +59,17 @@ class SearchClubViewController: UIViewController, UITextFieldDelegate {
     
     ///dummy
     func addAllClubList(){
-        AllClubList.append(Club(clubImage: "image1", clubName: "다꾸 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-        AllClubList.append(Club(clubImage: "image2", clubName: "떡사모", clubSummary: "클럽 요약입니다2", category: "팬", note1: "공지사항입니다 ~~"))
-        AllClubList.append(Club(clubImage: "image3", clubName: "우비 사랑", clubSummary: "클럽 요약입니다3", category: "스포츠", note1: "공지사항입니다 ~~"))
-        AllClubList.append(Club(clubImage: "image4", clubName: "아아 사랑", clubSummary: "클럽 요약입니다4", category: "영화", note1: "공지사항입니다 ~~"))
-        AllClubList.append(Club(clubImage: "image5", clubName: "샤이니월드", clubSummary: "클럽 요약입니다5", category: "교양", note1: "공지사항입니다 ~~"))
-        AllClubList.append(Club(clubImage: "image6", clubName: "박보검 공식 팬카페", clubSummary: "클럽 요약입니다6", category: "교양", note1: "공지사항입니다 ~~"))
-        AllClubList.append(Club(clubImage: "image7", clubName: "가구 정보 공유 모임", clubSummary: "클럽 요약입니다7", category: "교양", note1: "공지사항입니다 ~~"))
-        
-        for str in AllClubList {
-            FilteredClubList.append(str)
-        }
+//        AllClubList.append(Club(clubImage: "image1", clubName: "다꾸 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        AllClubList.append(Club(clubImage: "image2", clubName: "떡사모", clubSummary: "클럽 요약입니다2", category: "팬", note1: "공지사항입니다 ~~"))
+//        AllClubList.append(Club(clubImage: "image3", clubName: "우비 사랑", clubSummary: "클럽 요약입니다3", category: "스포츠", note1: "공지사항입니다 ~~"))
+//        AllClubList.append(Club(clubImage: "image4", clubName: "아아 사랑", clubSummary: "클럽 요약입니다4", category: "영화", note1: "공지사항입니다 ~~"))
+//        AllClubList.append(Club(clubImage: "image5", clubName: "샤이니월드", clubSummary: "클럽 요약입니다5", category: "교양", note1: "공지사항입니다 ~~"))
+//        AllClubList.append(Club(clubImage: "image6", clubName: "박보검 공식 팬카페", clubSummary: "클럽 요약입니다6", category: "교양", note1: "공지사항입니다 ~~"))
+//        AllClubList.append(Club(clubImage: "image7", clubName: "가구 정보 공유 모임", clubSummary: "클럽 요약입니다7", category: "교양", note1: "공지사항입니다 ~~"))
+//
+//        for str in AllClubList {
+//            FilteredClubList.append(str)
+//        }
     }
     func textFieldShouldClear(_ textField: UITextField) -> Bool { // x 버튼으로 다 지웠을 때
         searchView.resignFirstResponder()
@@ -116,10 +116,13 @@ class SearchClubViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource, SearchClubTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
     func onTouchWaitButton(from cell: SearchClubTableViewCell) {
           let alert = UIAlertController(title: "승인 요청", message: "가입 승인을 요청하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
           let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                      print("okAction clicked")
+                      //print("okAction clicked")
                       // 클럽 이름, .. 정보 가져와서 대기 클럽에 추가
                       // 클럽장이 승인 요청 클럽 승인하면 사용자의 클럽에 클럽 추가
             
@@ -130,15 +133,15 @@ extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource, 
             
             guard let club_Name = cell.clubName.text else {return}
             guard let image_Name = cell.imageName else {return}
-            print(club_Name)
-            print(image_Name)
-            self.waitClubList.append(WaitClub(clubImage: image_Name, clubName: club_Name, clubSummary: "hey", category: "영화", note1: "공지사항 입니다"))
+//            print(club_Name)
+//            print(image_Name)
+//            self.waitClubList.append(Club(clubImage: image_Name, clubName: club_Name, clubSummary: "hey", category: "영화", note1: "공지사항 입니다"))
             self.showToast(message: "\(club_Name) 클럽에 승인 요청을 하였습니다.", font: .boldSystemFont(ofSize: 10))
                   }
           let cancelAction = UIAlertAction(title: "CANCEL", style: .default) {(action) in
 
               //nothing to do
-              print("cancelAction clicked")
+              //print("cancelAction clicked")
 
           }
           alert.addAction(okAction)
@@ -177,26 +180,26 @@ extension SearchClubViewController: UITableViewDelegate, UITableViewDataSource, 
 //        
 //    }
     
-    @objc func didTapButton(){
-        print("did tap button")
-        let alert = UIAlertController(title: "승인 요청", message: "가입 승인을 요청하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                    print("okAction clicked")
-                    // 클럽 이름, .. 정보 가져와서 대기 클럽에 추가
-                    // 클럽장이 승인 요청 클럽 승인하면 사용자의 클럽에 클럽 추가
-
-            
-                }
-        let cancelAction = UIAlertAction(title: "CANCEL", style: .default) {(action) in
-            
-            //nothing to do
-            print("cancelAction clicked")
-            
-        }
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: false, completion: nil)
-    }
+//    @objc func didTapButton(){
+//        //print("did tap button")
+//        let alert = UIAlertController(title: "승인 요청", message: "가입 승인을 요청하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+//        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+//                    //print("okAction clicked")
+//                    // 클럽 이름, .. 정보 가져와서 대기 클럽에 추가
+//                    // 클럽장이 승인 요청 클럽 승인하면 사용자의 클럽에 클럽 추가
+//
+//            
+//                }
+//        let cancelAction = UIAlertAction(title: "CANCEL", style: .default) {(action) in
+//            
+//            //nothing to do
+//            //print("cancelAction clicked")
+//            
+//        }
+//        alert.addAction(okAction)
+//        alert.addAction(cancelAction)
+//        present(alert, animated: false, completion: nil)
+//    }
     
     
 }

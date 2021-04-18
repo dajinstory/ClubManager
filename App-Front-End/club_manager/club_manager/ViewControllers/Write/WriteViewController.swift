@@ -7,56 +7,100 @@
 
 import UIKit
 
-class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class WriteViewController: UIViewController {
+    var allCellsText = [String]()
+    var category = ""
     
+    let titleTextField: UITextField = {
+        let textField = UITextField()
+        textField.font = UIFont.systemFont(ofSize: 20)
+        textField.placeholder = "enter the title"
+        return textField
+    }()
+    
+    let contentTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "enter the content"
+        return textField
+    }()
+    
+    let contentTextView: UITextView = {
+        let textView = UITextView()
+        textView.layer.masksToBounds = true
+        textView.layer.borderColor = UIColor.black.cgColor
+        textView.font = UIFont.systemFont(ofSize: 20)
+        textView.textAlignment = NSTextAlignment.left
+        textView.dataDetectorTypes = UIDataDetectorTypes.all
+        
+        textView.isEditable = true
+        return textView
+    }()
     
    // var imageArray : [Int] = []
     //var imageArray: Array = Array
     
-    private let contentView: UIView = {
-        let contentCView = UIView()
-        return contentCView
-    }()
+//    private let contentView: UIView = {
+//        let contentCView = UIView()
+//        return contentCView
+//    }()
+    var ctgy: String = "게시판 선택"
     
-    private let categoryButton: UIButton = {
+    var categoryButton: UIButton = {
         let button = UIButton()
         button.setTitle("게시판 선택", for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.setTitleColor(UIColor.black, for: .normal)
         button.layer.borderWidth = 2
         return button
     }()
     
-    private var firstView: UIView = {
-        let firstView = UIView()
-        let cameraButton = UIButton(frame: CGRect(x: 10, y: 20, width: 150, height: 50))
-        cameraButton.setTitle("0/10", for: .normal)
-        cameraButton.invalidateIntrinsicContentSize()
-        cameraButton.backgroundColor = .systemBlue
-        cameraButton.layer.borderWidth = 2
-        cameraButton.addTarget(self, action: #selector(didTapGallery), for: .touchUpInside)
-        firstView.layer.cornerRadius = 7
-        firstView.layer.borderWidth = 2
-        firstView.layer.borderColor = UIColor.gray.cgColor
-        return firstView
+    
+    private let FrameTableView: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(TextFieldTableViewCell.self, forCellReuseIdentifier: TextFieldTableViewCell.identifier)
+        return table
     }()
     
-    lazy var titleText: UITextField = {
-        let width: CGFloat = 250
-        let height: CGFloat = 50
-        let posX: CGFloat = (self.view.bounds.width - width)/2
-        let posY: CGFloat = (self.view.bounds.height - height)/2
-        var title = UITextField(frame: CGRect(x: posX, y: posY, width: width, height: height))
-        title.placeholder = "enter the title"
-        title.delegate = self
-        title.borderStyle = .roundedRect
-        return title
-    }()
+//    private var firstView: UIView = {
+//        let firstView = UIView()
+//        let cameraButton = UIButton(frame: CGRect(x: 10, y: 20, width: 150, height: 50))
+//        cameraButton.setTitle("0/10", for: .normal)
+//        cameraButton.invalidateIntrinsicContentSize()
+//        cameraButton.backgroundColor = .systemBlue
+//        cameraButton.layer.borderWidth = 2
+//        cameraButton.addTarget(self, action: #selector(didTapGallery), for: .touchUpInside)
+//        firstView.layer.cornerRadius = 7
+//        firstView.layer.borderWidth = 2
+//        firstView.layer.borderColor = UIColor.gray.cgColor
+//        return firstView
+//    }()
+    
+//    lazy var titleText: UITextField = {
+//        let width: CGFloat = 250
+//        let height: CGFloat = 50
+//        let posX: CGFloat = (self.view.bounds.width - width)/2
+//        let posY: CGFloat = (self.view.bounds.height - height)/2
+//        var title = UITextField(frame: CGRect(x: posX, y: posY, width: width, height: height))
+//        title.placeholder = "enter the title"
+//        title.delegate = self
+//        title.borderStyle = .roundedRect
+//        return title
+//    }()
 
+//    @objc func didTapCategory(){
+//        print("didTapbutton")
+//        let dcVC = detailCategoryViewController()
+//        dcVC.view.backgroundColor = UIColor.white
+//        dcVC.title = "카테고리 선택"
+//        self.navigationController?.pushViewController(dcVC, animated: true)
+//    }
     
     @objc func didTapGallery(){
         print("didTapGallery")
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
-        vc.delegate = self
+        //vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true, completion: nil)
     }
@@ -79,65 +123,192 @@ class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     let imageCollectionView: UICollectionView! = nil
     
 
-    var scrollView: UIScrollView!
+    //var scrollView: UIScrollView!
+    var toolbar = UIToolbar()
+    
+    var testBar = UIToolbar()
+    
+    func setTestBar(){
+        testBar.barTintColor = UIColor.yellow
+    }
+    func setUpKeyBoardToolBar(){
+        toolBarKeyboard.sizeToFit()
+        toolBarKeyboard.barTintColor = UIColor.white
+       
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let albumbar = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(self.didTapAlbum))
+        let tag = UIBarButtonItem(title: "tag", style: .plain, target: self, action: #selector(self.didTapTag))
+        let btnDoneBar = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButton))
+        toolBarKeyboard.items = [albumbar, flexibleSpace, tag, flexibleSpace, btnDoneBar]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+
         title = "글쓰기"
+        print("category \(category)")
+        setTestBar()
+        setUpKeyBoardToolBar() // setup toolbar
+        
+        //titleTextField.inputAccessoryView = toolBarKeyboard
+        contentTextView.inputAccessoryView = toolBarKeyboard
+        
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(didTapClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDone))
+        let tempSave = UIBarButtonItem(title: "임시 저장", style: .plain, target: self, action: #selector(didTapDone))
+        let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDone))
+        
+        navigationItem.rightBarButtonItems = [done, tempSave]
+        //view.addSubview(toolbar)
+    
+        FrameTableView.delegate = self
+        FrameTableView.dataSource = self
+        FrameTableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        view.addSubview(FrameTableView)
         
         
 //        imageCollectionView.delegate = self
 //        imageCollectionView.dataSource = self
         
-        contentView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 2000)
-        categoryButton.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 100)
-        firstView.frame = CGRect(x: 0, y: 0, width: contentView.width, height: 100)
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-        
-        scrollView.clipsToBounds = true
-        scrollView.contentSize = CGSize(width: view.bounds.size.width, height: (scrollView.width * 3) + 20)
+//        contentView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 2000)
+//        categoryButton.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 100)
+//        firstView.frame = CGRect(x: 0, y: 0, width: contentView.width, height: 100)
+//        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+//
+//        scrollView.clipsToBounds = true
+//        scrollView.contentSize = CGSize(width: view.bounds.size.width, height: (scrollView.width * 3) + 20)
         
 
     }
+    
+    @objc func doneButton(){
+        print("doneButton")
+        self.view.endEditing(true)
+    }
+    
+    @objc func didTapAlbum(){
+        print("image picker view")
+    }
+    
+    @objc func didTapTag(){
+        print("did tap tag")
+    }
+    
+//    func setToolbar(){
+//        toolbar.barTintColor = .black
+//
+//        toolbar.translatesAutoresizingMaskIntoConstraints = false
+//        toolbar.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 0).isActive = true
+//        toolbar.bottomAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.bottomAnchor, multiplier: 0).isActive = true
+//        toolbar.trailingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor, multiplier: 0).isActive = true
+//
+//        var items: [UIBarButtonItem] = []
+//
+//        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+//
+//        let toolbarItem1 = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: nil)
+//        let toolbarItem2 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+//        let toolbarItem3 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
+//
+//        items.append(toolbarItem1)
+//        items.append(flexibleSpace)
+//        items.append(toolbarItem2)
+//        items.append(flexibleSpace)
+//        items.append(toolbarItem3)
+//
+//        items.forEach { (item) in
+//            item.tintColor = .orange
+//        }
+//
+//
+//        toolbar.setItems(items, animated: true)
+//    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        
-        contentView.addSubview(firstView)
-        contentView.addSubview(categoryButton)
-        scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
-        
     
     }
+
     
     @objc func didTapClose(){
-        print("didTapClose")
+        let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
+        tabBarViewController.selectedIndex = 0
+        tabBarViewController.modalPresentationStyle = .fullScreen
+        present(tabBarViewController, animated: true)
     }
     
     @objc func didTapDone(){
-        print("didTapDone")
+        guard let titleText = titleTextField.text, let contentText = contentTextView.text else { return }
+        let alertSave = UIAlertController(title: "글 저장", message:  "글 저장을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+  
+        let OKtAction = UIAlertAction(title: "OK", style: .default, handler: { (okClick) in
+            //글 저장 append
+            print("info : \(self.category) \(titleText) \(contentText)")
+        })
+        let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
+
+        alertSave.addAction(OKtAction)
+        alertSave.addAction(cancelAction)
+        self.present(alertSave, animated: true, completion: nil)
     }
     
+    let toolBarKeyboard = UIToolbar()
+   
+}
 
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+extension WriteViewController: UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+    func onTouchTitletTextFlied(from cell: TextFieldTableViewCell) {
+        print("textfield")
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
 
-
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        let cellText = tableView.dequeueReusableCell(withIdentifier: TextFieldTableViewCell.identifier) as! TextFieldTableViewCell
+        
+        if(indexPath.row == 0){
+            cell.addSubview(categoryButton)
+            categoryButton.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 40)
+            return cell
+        }else if(indexPath.row == 1){
+            titleTextField.frame = CGRect(x: 0, y: 40, width: view.bounds.width, height: 70)
+            tableView.addSubview(titleTextField)
+            titleTextField.delegate = self
+            return cellText
+        }else if(indexPath.row == 2){
+//            tableView.addSubview(contentTextField)
+//            contentTextField.frame = CGRect(x: 0, y: 110, width: view.bounds.width, height: view.bounds.height - 100)
+//            contentTextField.delegate = self
+            
+            tableView.addSubview(contentTextView)
+            contentTextView.frame = CGRect(x: 0, y: 110, width: view.bounds.width, height: view.bounds.height - 100)
+            return cellText
+        }
+        
+        return cell
+    }
+    
+    @objc func didTapNu(){
+        print("didTapNu")
+    }
+    
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("textFieldDidBeginEditing \(String(describing: textField.text))")
     }
 
+        
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing \(textField.text!)")
-    }
+            allCellsText.append(textField.text!)
+            print("all cell text : \(allCellsText)")
+        }
+
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn \(textField.text!)")
@@ -145,22 +316,51 @@ class WriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         return true
 
     }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("textFieldShouldEndEditing \(textField.text!)")
+        return true
+    }
 
+        
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        print("textfield can edit \(textField)")
+    }
 
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        if (indexPath.row == 0) {
+            let dcVC = detailCategoryViewController()
+            dcVC.view.backgroundColor = UIColor.white
+            dcVC.title = "카테고리 선택"
+            guard let titleText = titleTextField.text  else {
+                return
+            }
+            guard let contentText = contentTextView.text else {
+                 return
+            }
+            //잠시 저장해두기
+            UserDefaults.standard.setValue(titleText, forKey: "titleText")
+            UserDefaults.standard.setValue(contentText, forKey: "contentText")
+        
+            self.navigationController?.pushViewController(dcVC, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(indexPath.row == 0){
+            return 40
+        }else if(indexPath.row == 1){
+            return 70
+        }else if(indexPath.row == 2){
+            return view.bounds.height - 100
+        }
+        return 0
+    }
 }
 
-//extension WriteViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath.row)
-//        return cell
-//    }
-//
-//
-//}
+
+    
+    
 
 

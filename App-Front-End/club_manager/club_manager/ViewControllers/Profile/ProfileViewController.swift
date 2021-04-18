@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 
@@ -71,12 +72,11 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         layoutTableView.frame = CGRect(x: 0, y: userName.bottom + 20, width: view.bounds.width, height: view.bounds.height - imageView.height - 30)
         
         darkModeSwitch.sizeToFit()
-        darkModeSwitch.frame = CGRect(x: view.frame.size.width - darkModeSwitch.frame.size.width - 20, y: (view.frame.size.height - darkModeSwitch.frame.size.width)/2, width: darkModeSwitch.frame.width, height: darkModeSwitch.frame.height)
         
         view.addSubview(imageView)
         view.addSubview(userName)
         view.addSubview(layoutTableView)
-        view.addSubview(darkModeSwitch)
+
         
         darkModeSwitch.isOn = false
         
@@ -141,13 +141,33 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             cell.textLabel?.text = section1[indexPath.row]
         }else if indexPath.section == 1 {
+            if(indexPath.row == 0){
+                cell.addSubview(darkModeSwitch)
+                darkModeSwitch.frame = CGRect(x: view.frame.size.width - darkModeSwitch.frame.size.width - 20, y: 10, width: darkModeSwitch.frame.width, height: darkModeSwitch.frame.height)
+            }
             cell.textLabel?.text = section2[indexPath.row]
         }else {
             cell.textLabel?.text = section3[indexPath.row]
         }
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //회원 관리
+        if (indexPath.section == 0 && indexPath.row == 0){
+//            let manageVc = UserManageViewController()
+//            self.navigationController?.pushViewController(manageVc, animated: true)
+            //swiftui
+            let swiftUI_UM = UIHostingController(rootView: UserManager(datas: UserManager.getAllUser))
+            swiftUI_UM.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(swiftUI_UM, animated: true)
+        }else if(indexPath.section == 0 && indexPath.row == 1){
+            //회계 장부 권한 가지고 있는지 아닌지 확인
+            //manager이면 -> 열람 o
+            //x -> alert 창 
+            print("회계 장부")
+        }
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }

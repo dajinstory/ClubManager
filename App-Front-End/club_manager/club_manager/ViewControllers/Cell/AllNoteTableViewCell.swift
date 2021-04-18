@@ -45,6 +45,7 @@ class AllNoteTableViewCell: UITableViewCell {
     static func nib() -> UINib{
         return UINib(nibName: "AllNoteTableViewCell", bundle: nil)
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -53,8 +54,8 @@ class AllNoteTableViewCell: UITableViewCell {
     }
     
     func setting(){
-        title.font = .systemFont(ofSize: 19, weight: .regular)
-        title.font = UIFont.boldSystemFont(ofSize: 12.0)
+        //title.font = .systemFont(ofSize: 30, weight: .regular)
+        title.font = UIFont.boldSystemFont(ofSize: 30)
         title.numberOfLines = 0
         
     }

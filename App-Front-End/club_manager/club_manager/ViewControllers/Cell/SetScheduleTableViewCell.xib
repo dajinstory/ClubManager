@@ -13,39 +13,26 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="102" id="KGk-i7-Jjw" customClass="SetScheduleTableViewCell" customModule="club_manager" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도안 만들기 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tm4-tx-L1z" userLabel="Title">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="도안 만들기 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tm4-tx-L1z" userLabel="Title">
                         <rect key="frame" x="92" y="30" width="150" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="150" id="Hvd-dN-BtK"/>
-                            <constraint firstAttribute="height" constant="25" id="xoz-Ue-XmZ"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gI-ga-zFY" userLabel="Date">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gI-ga-zFY" userLabel="Date">
                         <rect key="frame" x="22" y="19" width="50" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="FXm-hF-3yo"/>
-                            <constraint firstAttribute="height" constant="50" id="PZ8-FY-JCB"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemGray6Color"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="2gI-ga-zFY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="TlM-V1-lrJ"/>
-                    <constraint firstItem="Tm4-tx-L1z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="cRW-ie-x9k"/>
-                    <constraint firstItem="Tm4-tx-L1z" firstAttribute="leading" secondItem="2gI-ga-zFY" secondAttribute="trailing" constant="20" id="d7x-s9-idq"/>
-                    <constraint firstAttribute="trailing" secondItem="Tm4-tx-L1z" secondAttribute="trailing" constant="145" id="nyx-0f-Nty"/>
-                    <constraint firstItem="2gI-ga-zFY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="rcQ-dr-5uQ"/>
-                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

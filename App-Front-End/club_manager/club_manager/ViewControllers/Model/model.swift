@@ -19,7 +19,8 @@ struct Storyboard {
 }
 }
 
-struct User {
+struct User: Identifiable {
+    var id: Int
     let userImage: String 
     let userName: String
     let userEmail: String
@@ -31,7 +32,6 @@ struct BoardData{
     let title:String
     let content:String
     let comment: [String]
-    // calculated property
     let count: Int
     let date :Date
 }
@@ -50,6 +50,8 @@ struct StarNote {
 
 // 나의 클럽
 struct Club {
+    var id: Int64
+    var president: Int64
     var clubImage: String
     var clubName: String
     var clubSummary: String
@@ -58,22 +60,22 @@ struct Club {
 }
 
 // 추천 클럽
-struct RecClub {
-    var clubImage: String
-    var clubName: String
-    var clubSummary: String
-    var category: String
-    var note1: String
-}
+//struct RecClub {
+//    var clubImage: String
+//    var clubName: String
+//    var clubSummary: String
+//    var category: String
+//    var note1: String
+//}
 
 //승인 대기 클럽
-struct WaitClub {
-    var clubImage: String
-    var clubName: String
-    var clubSummary: String
-    var category: String
-    var note1: String
-}
+//struct WaitClub {
+//    var clubImage: String
+//    var clubName: String
+//    var clubSummary: String
+//    var category: String
+//    var note1: String
+//}
 
 struct setSchedule {
     var date: Date

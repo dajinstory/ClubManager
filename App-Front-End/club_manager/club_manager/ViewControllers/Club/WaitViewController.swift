@@ -10,7 +10,7 @@ import UIKit
 class WaitViewController: UIViewController {
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 
-    var waitClubList: [WaitClub] = []
+    var waitClubList: [Club] = []
     
 
     
@@ -45,13 +45,13 @@ class WaitViewController: UIViewController {
     
     ///dummy
     func addWaitClubList(){
-        waitClubList.append(WaitClub(clubImage: "image1", clubName: "몰입 캠프", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-        waitClubList.append(WaitClub(clubImage: "image2", clubName: "힐링 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-        waitClubList.append(WaitClub(clubImage: "image3", clubName: "흰소다", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-        waitClubList.append(WaitClub(clubImage: "image4", clubName: "week5", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-        waitClubList.append(WaitClub(clubImage: "image5", clubName: "고독한 캠프", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-        waitClubList.append(WaitClub(clubImage: "image6", clubName: "강사모", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-        waitClubList.append(WaitClub(clubImage: "image7", clubName: "등산 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        waitClubList.append(Club(clubImage: "image1", clubName: "몰입 캠프", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        waitClubList.append(Club(clubImage: "image2", clubName: "힐링 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        waitClubList.append(Club(clubImage: "image3", clubName: "흰소다", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        waitClubList.append(Club(clubImage: "image4", clubName: "week5", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        waitClubList.append(Club(clubImage: "image5", clubName: "고독한 캠프", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        waitClubList.append(Club(clubImage: "image6", clubName: "강사모", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
+//        waitClubList.append(Club(clubImage: "image7", clubName: "등산 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
     }
     
     
