@@ -132,6 +132,12 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        addClubList()
+        addrecClub()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         page = 1
@@ -142,8 +148,6 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         
         navigationItem.rightBarButtonItems = [add, search]
         settingDelegate()
-        addClubList()
-        addrecClub()
         findClub()
         
         contentView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 2000)
@@ -175,11 +179,6 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         recommendView.frame = CGRect(x: 0, y: clubNewsView.bottom + 5, width: contentView.width, height: 500)
         waitView.frame = CGRect(x: 0, y: recommendView.bottom, width: contentView.width, height: 100)
         clubNewsTableView.frame = CGRect(x: 0, y: 50, width: contentView.width, height: clubNewsView.height - 60)
-        clubNewsTableView.backgroundColor = .red
-//        clubNewsTableView.layoutMargins = UIEdgeInsets(top: 0,
-//                                                       left: 30,
-//                                                       bottom: 0,
-//                                                       right: 30)
         
         tagView.frame = CGRect(x: 0, y: 20, width: (contentView.width) * 2, height: 80)
         tagllection.frame = CGRect(x: 10, y: 10, width: tagView.width, height: 40)
@@ -195,12 +194,9 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         makeLayout(layout: layout)
         clubCollectionView.delegate = self
         clubCollectionView.dataSource = self
-        clubCollectionView.backgroundColor = .red
         clubCollectionView.frame = CGRect(x: 10, y: 40, width: contentView.width - 10 , height: 160)
         clubCollectionView.register(clubCollectionViewCell.nib(), forCellWithReuseIdentifier: clubCollectionViewCell.identifier)
         
-        
-        //clubCollectionView.backgroundColor = .clear
 
         
         contentView.addSubview(clubView)
@@ -257,7 +253,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
             
             // Convert HTTP Response Data to a String
-            if let data=data, let dataString = String(data: data, encoding: .utf8) {
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
                 
                 print("[Rest API] getMyClubs : \(dataString)")
                 completionHandler(data)
@@ -313,7 +309,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
                         guard let summary = club["clubSummary"] as? String else {
                             return
                         }
-                        guard let category = club["category"] as? String else {
+                        guard (club["category"] as? String) != nil else {
                             return
                         }
                         
@@ -357,7 +353,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
                         guard let summary = club["clubSummary"] as? String else {
                             return
                         }
-                        guard let category = club["category"] as? String else {
+                        guard (club["category"] as? String) != nil else {
                             return
                         }
                         
@@ -393,7 +389,6 @@ extension ClubViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: clubCollectionViewCell.identifier, for: indexPath) as! clubCollectionViewCell
-        print(self.clubList[indexPath.row])
         cell.configure(with: self.clubList[indexPath.row])
         return cell
     }
@@ -434,20 +429,13 @@ extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("scrollViewDidEndDecelerating")
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = clubNewsTableView.dequeueReusableCell(withIdentifier: ClubNewsTableViewCell.identifier) as! ClubNewsTableViewCell
         
         if tableView == clubNewsTableView {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: ClubNewsTableViewCell.identifier) as! ClubNewsTableViewCell
             cell.configure(with: self.clubList[indexPath.row])
             tableView.contentInset =  UIEdgeInsets(top: 20, left: 30, bottom: 20, right: 30)
-//            cell.leftInset = 100
-//            cell.rightInset = 100
-//            cell.layoutMargins = UIEdgeInsets(top: 20, left: 30, bottom: 20, right: 30)
             return cell
         }else if tableView == rectableView {
             let cellforRec = tableView.dequeueReusableCell(withIdentifier: RecTableViewCell.identifier) as! RecTableViewCell

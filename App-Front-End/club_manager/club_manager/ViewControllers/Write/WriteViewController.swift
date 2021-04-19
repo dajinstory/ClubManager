@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WriteViewController: UIViewController {
+class WriteViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     var allCellsText = [String]()
     var category = ""
     
@@ -36,13 +36,8 @@ class WriteViewController: UIViewController {
         return textView
     }()
     
-   // var imageArray : [Int] = []
-    //var imageArray: Array = Array
-    
-//    private let contentView: UIView = {
-//        let contentCView = UIView()
-//        return contentCView
-//    }()
+    let toolBarKeyboard = UIToolbar()
+
     var ctgy: String = "게시판 선택"
     
     var categoryButton: UIButton = {
@@ -96,41 +91,11 @@ class WriteViewController: UIViewController {
 //        self.navigationController?.pushViewController(dcVC, animated: true)
 //    }
     
-    @objc func didTapGallery(){
-        print("didTapGallery")
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        //vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard (info[UIImagePickerController.InfoKey.editedImage] as? UIImage) != nil else {
-            return
-        }
-//        //collectionview imagecell로 넣기
-//        imageArray.append(
-        //self.imageView.image = selectedImage
-        
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
 
-    let imageCollectionView: UICollectionView! = nil
-    
-
-    //var scrollView: UIScrollView!
     var toolbar = UIToolbar()
     
     var testBar = UIToolbar()
-    
-    func setTestBar(){
-        testBar.barTintColor = UIColor.yellow
-    }
+
     func setUpKeyBoardToolBar(){
         toolBarKeyboard.sizeToFit()
         toolBarKeyboard.barTintColor = UIColor.white
@@ -148,10 +113,8 @@ class WriteViewController: UIViewController {
 
         title = "글쓰기"
         print("category \(category)")
-        setTestBar()
+
         setUpKeyBoardToolBar() // setup toolbar
-        
-        //titleTextField.inputAccessoryView = toolBarKeyboard
         contentTextView.inputAccessoryView = toolBarKeyboard
         
         
@@ -160,24 +123,11 @@ class WriteViewController: UIViewController {
         let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDone))
         
         navigationItem.rightBarButtonItems = [done, tempSave]
-        //view.addSubview(toolbar)
     
         FrameTableView.delegate = self
         FrameTableView.dataSource = self
         FrameTableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         view.addSubview(FrameTableView)
-        
-        
-//        imageCollectionView.delegate = self
-//        imageCollectionView.dataSource = self
-        
-//        contentView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 2000)
-//        categoryButton.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 100)
-//        firstView.frame = CGRect(x: 0, y: 0, width: contentView.width, height: 100)
-//        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-//
-//        scrollView.clipsToBounds = true
-//        scrollView.contentSize = CGSize(width: view.bounds.size.width, height: (scrollView.width * 3) + 20)
         
 
     }
@@ -188,42 +138,76 @@ class WriteViewController: UIViewController {
     }
     
     @objc func didTapAlbum(){
-        print("image picker view")
+        self.presentPhotoActionSheet()
     }
+    
+//    func addImage(img: NSAttributedString){
+//        let fullString = NSMutableAttributedString(string: contentTextView.text)
+//        fullString.append(img)
+//        contentTextView.attributedText = fullString
+//    }
     
     @objc func didTapTag(){
         print("did tap tag")
     }
     
-//    func setToolbar(){
-//        toolbar.barTintColor = .black
-//
-//        toolbar.translatesAutoresizingMaskIntoConstraints = false
-//        toolbar.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 0).isActive = true
-//        toolbar.bottomAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.bottomAnchor, multiplier: 0).isActive = true
-//        toolbar.trailingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor, multiplier: 0).isActive = true
-//
-//        var items: [UIBarButtonItem] = []
-//
-//        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-//
-//        let toolbarItem1 = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: nil)
-//        let toolbarItem2 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
-//        let toolbarItem3 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
-//
-//        items.append(toolbarItem1)
-//        items.append(flexibleSpace)
-//        items.append(toolbarItem2)
-//        items.append(flexibleSpace)
-//        items.append(toolbarItem3)
-//
-//        items.forEach { (item) in
-//            item.tintColor = .orange
-//        }
-//
-//
-//        toolbar.setItems(items, animated: true)
-//    }
+    func presentPhotoActionSheet(){
+        let actionSheet = UIAlertController(title: "Profile picture",
+                                            message: "How would you like to select a picture?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Take Photo",
+                                            style: .default,
+                                            handler: { [weak self] _ in self?.presentCamera()}))
+        actionSheet.addAction(UIAlertAction(title: "Choose Photo",
+                                            style: .default,
+                                            handler: { [weak self] _ in self?.presentPhoto()}))
+        
+        present(actionSheet, animated: true)
+    }
+    
+    func presentCamera(){
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func presentPhoto(){
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+   
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        
+        let image1Attachment = NSTextAttachment()
+        image1Attachment.image = selectedImage
+        let newImageWidth = (contentTextView.bounds.size.width - 20)
+        let scale = newImageWidth/selectedImage.size.width
+        let newImageHeight = selectedImage.size.height * scale
+        image1Attachment.bounds = CGRect.init(x: 0, y: 0, width: newImageWidth, height: newImageHeight)
+        let attString = NSAttributedString(attachment: image1Attachment)
+        contentTextView.textStorage.insert(attString, at: contentTextView.selectedRange.location)
+        let range = NSMakeRange(contentTextView.text.count - 1, 0)
+        contentTextView.scrollRangeToVisible(range)
+        picker.dismiss(animated: true, completion: nil)
+//        self.addImage(img: attString)
+        
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -252,8 +236,6 @@ class WriteViewController: UIViewController {
         alertSave.addAction(cancelAction)
         self.present(alertSave, animated: true, completion: nil)
     }
-    
-    let toolBarKeyboard = UIToolbar()
    
 }
 

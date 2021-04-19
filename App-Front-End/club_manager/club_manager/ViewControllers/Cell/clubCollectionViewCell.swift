@@ -17,7 +17,6 @@ class clubCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .blue
     }
     
     public func configure(with model: Club){
