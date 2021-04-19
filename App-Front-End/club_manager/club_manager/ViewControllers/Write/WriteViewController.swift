@@ -7,10 +7,8 @@
 
 import UIKit
 
-class WriteViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    var allCellsText = [String]()
+class WriteViewController: UIViewController {
     var category = ""
-    
     let titleTextField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 20)
@@ -27,11 +25,11 @@ class WriteViewController: UIViewController, UIImagePickerControllerDelegate & U
     let contentTextView: UITextView = {
         let textView = UITextView()
         textView.layer.masksToBounds = true
+        textView.isScrollEnabled = true
         textView.layer.borderColor = UIColor.black.cgColor
         textView.font = UIFont.systemFont(ofSize: 20)
         textView.textAlignment = NSTextAlignment.left
         textView.dataDetectorTypes = UIDataDetectorTypes.all
-        
         textView.isEditable = true
         return textView
     }()
@@ -49,7 +47,6 @@ class WriteViewController: UIViewController, UIImagePickerControllerDelegate & U
         return button
     }()
     
-    
     private let FrameTableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -57,49 +54,13 @@ class WriteViewController: UIViewController, UIImagePickerControllerDelegate & U
         return table
     }()
     
-//    private var firstView: UIView = {
-//        let firstView = UIView()
-//        let cameraButton = UIButton(frame: CGRect(x: 10, y: 20, width: 150, height: 50))
-//        cameraButton.setTitle("0/10", for: .normal)
-//        cameraButton.invalidateIntrinsicContentSize()
-//        cameraButton.backgroundColor = .systemBlue
-//        cameraButton.layer.borderWidth = 2
-//        cameraButton.addTarget(self, action: #selector(didTapGallery), for: .touchUpInside)
-//        firstView.layer.cornerRadius = 7
-//        firstView.layer.borderWidth = 2
-//        firstView.layer.borderColor = UIColor.gray.cgColor
-//        return firstView
-//    }()
-    
-//    lazy var titleText: UITextField = {
-//        let width: CGFloat = 250
-//        let height: CGFloat = 50
-//        let posX: CGFloat = (self.view.bounds.width - width)/2
-//        let posY: CGFloat = (self.view.bounds.height - height)/2
-//        var title = UITextField(frame: CGRect(x: posX, y: posY, width: width, height: height))
-//        title.placeholder = "enter the title"
-//        title.delegate = self
-//        title.borderStyle = .roundedRect
-//        return title
-//    }()
-
-//    @objc func didTapCategory(){
-//        print("didTapbutton")
-//        let dcVC = detailCategoryViewController()
-//        dcVC.view.backgroundColor = UIColor.white
-//        dcVC.title = "카테고리 선택"
-//        self.navigationController?.pushViewController(dcVC, animated: true)
-//    }
-    
+    var contentString: NSMutableAttributedString? = nil
 
     var toolbar = UIToolbar()
-    
-    var testBar = UIToolbar()
 
     func setUpKeyBoardToolBar(){
         toolBarKeyboard.sizeToFit()
         toolBarKeyboard.barTintColor = UIColor.white
-       
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let albumbar = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(self.didTapAlbum))
         let tag = UIBarButtonItem(title: "tag", style: .plain, target: self, action: #selector(self.didTapTag))
@@ -110,13 +71,12 @@ class WriteViewController: UIViewController, UIImagePickerControllerDelegate & U
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        setupContentText()
 
         title = "글쓰기"
         print("category \(category)")
-
         setUpKeyBoardToolBar() // setup toolbar
         contentTextView.inputAccessoryView = toolBarKeyboard
-        
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(didTapClose))
         let tempSave = UIBarButtonItem(title: "임시 저장", style: .plain, target: self, action: #selector(didTapDone))
@@ -126,11 +86,21 @@ class WriteViewController: UIViewController, UIImagePickerControllerDelegate & U
     
         FrameTableView.delegate = self
         FrameTableView.dataSource = self
+        contentTextView.delegate = self
         FrameTableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         view.addSubview(FrameTableView)
-        
-
     }
+    
+    func setupContentText(){
+        let font = UIFont.systemFont(ofSize: 26)
+        let attributes: [NSAttributedString.Key: Any] = [
+                   .font: font,
+                   .foregroundColor: UIColor.orange
+                   ]
+        contentString = NSMutableAttributedString(string: "",
+                                                         attributes: attributes)
+    }
+  
     
     @objc func doneButton(){
         print("doneButton")
@@ -141,72 +111,8 @@ class WriteViewController: UIViewController, UIImagePickerControllerDelegate & U
         self.presentPhotoActionSheet()
     }
     
-//    func addImage(img: NSAttributedString){
-//        let fullString = NSMutableAttributedString(string: contentTextView.text)
-//        fullString.append(img)
-//        contentTextView.attributedText = fullString
-//    }
-    
     @objc func didTapTag(){
         print("did tap tag")
-    }
-    
-    func presentPhotoActionSheet(){
-        let actionSheet = UIAlertController(title: "Profile picture",
-                                            message: "How would you like to select a picture?", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .cancel,
-                                            handler: nil))
-        actionSheet.addAction(UIAlertAction(title: "Take Photo",
-                                            style: .default,
-                                            handler: { [weak self] _ in self?.presentCamera()}))
-        actionSheet.addAction(UIAlertAction(title: "Choose Photo",
-                                            style: .default,
-                                            handler: { [weak self] _ in self?.presentPhoto()}))
-        
-        present(actionSheet, animated: true)
-    }
-    
-    func presentCamera(){
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func presentPhoto(){
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-   
-        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
-            return
-        }
-        
-        let image1Attachment = NSTextAttachment()
-        image1Attachment.image = selectedImage
-        let newImageWidth = (contentTextView.bounds.size.width - 20)
-        let scale = newImageWidth/selectedImage.size.width
-        let newImageHeight = selectedImage.size.height * scale
-        image1Attachment.bounds = CGRect.init(x: 0, y: 0, width: newImageWidth, height: newImageHeight)
-        let attString = NSAttributedString(attachment: image1Attachment)
-        contentTextView.textStorage.insert(attString, at: contentTextView.selectedRange.location)
-        let range = NSMakeRange(contentTextView.text.count - 1, 0)
-        contentTextView.scrollRangeToVisible(range)
-        picker.dismiss(animated: true, completion: nil)
-//        self.addImage(img: attString)
-        
-    }
-    
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -223,12 +129,12 @@ class WriteViewController: UIViewController, UIImagePickerControllerDelegate & U
     }
     
     @objc func didTapDone(){
-        guard let titleText = titleTextField.text, let contentText = contentTextView.text else { return }
+        guard let titleText = titleTextField.text, let contentText = contentTextView.text, let imageList = contentTextView.textStorage.delegate else { return }
         let alertSave = UIAlertController(title: "글 저장", message:  "글 저장을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
   
         let OKtAction = UIAlertAction(title: "OK", style: .default, handler: { (okClick) in
             //글 저장 append
-            print("info : \(self.category) \(titleText) \(contentText)")
+            print("info : \(self.category) \(titleText) \(contentText) \(imageList)")
         })
         let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
 
@@ -264,10 +170,6 @@ extension WriteViewController: UITableViewDataSource, UITableViewDelegate, UITex
             titleTextField.delegate = self
             return cellText
         }else if(indexPath.row == 2){
-//            tableView.addSubview(contentTextField)
-//            contentTextField.frame = CGRect(x: 0, y: 110, width: view.bounds.width, height: view.bounds.height - 100)
-//            contentTextField.delegate = self
-            
             tableView.addSubview(contentTextView)
             contentTextView.frame = CGRect(x: 0, y: 110, width: view.bounds.width, height: view.bounds.height - 100)
             return cellText
@@ -278,34 +180,6 @@ extension WriteViewController: UITableViewDataSource, UITableViewDelegate, UITex
     
     @objc func didTapNu(){
         print("didTapNu")
-    }
-    
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing \(String(describing: textField.text))")
-    }
-
-        
-    func textFieldDidEndEditing(_ textField: UITextField) {
-            allCellsText.append(textField.text!)
-            print("all cell text : \(allCellsText)")
-        }
-
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn \(textField.text!)")
-        textField.resignFirstResponder()
-        return true
-
-    }
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("textFieldShouldEndEditing \(textField.text!)")
-        return true
-    }
-
-        
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        print("textfield can edit \(textField)")
     }
 
     
@@ -341,6 +215,99 @@ extension WriteViewController: UITableViewDataSource, UITableViewDelegate, UITex
     }
 }
 
+
+extension WriteViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print("textViewDidEndEditing called")
+        //let nsText = NSMutableAttributedString(string: textView.text)
+        //contentString?.append(nsText)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        print("newText : ", newText)
+        return true
+
+        
+    }
+}
+
+extension WriteViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func presentPhotoActionSheet(){
+        let actionSheet = UIAlertController(title: "Profile picture",
+                                            message: "How would you like to select a picture?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Take Photo",
+                                            style: .default,
+                                            handler: { [weak self] _ in self?.presentCamera()}))
+        actionSheet.addAction(UIAlertAction(title: "Choose Photo",
+                                            style: .default,
+                                            handler: { [weak self] _ in self?.presentPhoto()}))
+        
+        present(actionSheet, animated: true)
+    }
+    
+    func presentCamera(){
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func presentPhoto(){
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
+    }
+
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+   
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        
+        let image1Attachment = NSTextAttachment()
+
+        image1Attachment.image = selectedImage
+        
+        let newImageWidth = (contentTextView.bounds.size.width - 20)
+        let scale = newImageWidth/selectedImage.size.width
+        let newImageHeight = selectedImage.size.height * scale
+        image1Attachment.bounds = CGRect.init(x: 0, y: 0, width: newImageWidth, height: newImageHeight)
+       
+        image1Attachment.image = UIImage(cgImage: (image1Attachment.image?.cgImage!)!, scale: scale, orientation: .up)
+        
+        let imgString = NSAttributedString(attachment: image1Attachment)
+        print("imgString : ", imgString)
+        //contentString?.append(imgString)
+        
+//        let contentHeight = contentTextView.contentSize.height
+//        let offSet = contentTextView.contentOffset.x
+//        let contentOffset = contentHeight - offSet
+//        print("contentOffset \(contentOffset)")
+//        contentTextView.contentOffset = CGPoint(x: 0, y: -contentOffset)
+        let combination = NSMutableAttributedString()
+        combination.append(NSMutableAttributedString(string: contentTextView.text))
+        combination.append(imgString)
+        contentTextView.attributedText = combination
+      
+//        let range = NSMakeRange(contentTextView.text.count - 1, 0)
+//        contentTextView.scrollRangeToVisible(range)
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
 
     
     

@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class SearchViewController: UIViewController, UITextFieldDelegate {
+class SearchViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     var allBoardData: [BoardData] = []
     var FilteredBoardData: [BoardData] = []
     
@@ -30,6 +30,9 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+        tapGesture.delegate = self
+        self.view.addGestureRecognizer(tapGesture)
         view.backgroundColor = UIColor.white
         AllNoteTableView.delegate = self
         AllNoteTableView.dataSource = self
@@ -45,7 +48,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(AllNoteTableView)
         
         searchView.frame = CGRect(x: 20, y: 100, width: view.bounds.width - 40, height: 50)
-        AllNoteTableView.frame = CGRect(x: 20, y: searchView.bottom + 10, width: view.bounds.width, height: view.bounds.height - 50)
+        AllNoteTableView.frame = CGRect(x: 0, y: searchView.bottom + 10, width: view.bounds.width, height: view.bounds.height - 50)
        }
     
     
@@ -102,6 +105,11 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         allBoardData.append(BoardData(BoardCategory: ["전체글"], title: "3월 회의 안건", content: "3월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
         allBoardData.append(BoardData(BoardCategory: ["전체글"], title: "4월 회의 안건", content: "4월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
         FilteredBoardData = allBoardData
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     

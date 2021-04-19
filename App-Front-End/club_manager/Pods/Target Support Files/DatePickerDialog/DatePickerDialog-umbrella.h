@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ExtendedVersionNumber;
-FOUNDATION_EXPORT const unsigned char ExtendedVersionString[];
+FOUNDATION_EXPORT double DatePickerDialogVersionNumber;
+FOUNDATION_EXPORT const unsigned char DatePickerDialogVersionString[];
 

@@ -6,15 +6,11 @@
 //
 
 import UIKit
+import DatePickerDialog
 
-//protocol AddCalendarViewcontrollerDelegate
-//{
-//    func AddCalendarViewcontrollerResponse(_ : parameter)
-//}
+
 
 class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
-    
-    //var delegate: AddCalendarViewcontrollerDelegate?
     
     lazy var hour_textField: UITextField = {
         var title = UITextField()
@@ -113,7 +109,6 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        layout()
         title = "일정 추가"
 
         view.backgroundColor = .white
@@ -133,8 +128,7 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        datePicker.backgroundColor = .red
-        datePicker.frame = CGRect(x: 50, y: 200, width: view.bounds.width - 100, height: 100)
+        datePicker.frame = CGRect(x: 0, y: 200, width: view.bounds.width, height: 100)
         
         dateView.frame = CGRect(x: 50, y: datePicker.bottom + 50, width: view.bounds.width - 40, height: 25)
         use_textLabel.frame = CGRect(x: 50, y: 0, width: 100, height: 25)
@@ -146,15 +140,4 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
         add_Button.frame = CGRect(x: view.frame.width/2 - 50, y: title_textField.bottom + 70, width: 100, height: 50)
         
     }
-    
-    func layout(){
-        //NSLayoutConstraint.init(item: )
-    }
-    
-    
-    
-  
-    
-
-
 }
