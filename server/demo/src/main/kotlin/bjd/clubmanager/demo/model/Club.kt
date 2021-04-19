@@ -11,13 +11,17 @@ data class Club (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val name: String,
-    val president: Long
+    val president: Long,
+    val clubSummary: String,
+    val category: String
 ) {
     fun toDTO() : ClubDTO {
         return ClubDTO(
             id = id,
             name = name,
-            president = president
+            president = president,
+            clubSummary = clubSummary,
+            category = category
         )
     }
 }

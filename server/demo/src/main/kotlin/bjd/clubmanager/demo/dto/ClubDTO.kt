@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired
 data class ClubDTO @Autowired constructor(
     val id: Long? = null,
     val name: String,
-    val president: Long
+    val president: Long,
+    val clubSummary: String,
+    val category: String
 ) {
     fun toEntity(): Club {
         return Club(
             name = name,
-            president = president
+            president = president,
+            clubSummary = clubSummary,
+            category = category
         )
     }
 }
