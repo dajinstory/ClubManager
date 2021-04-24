@@ -29,6 +29,15 @@ extension UIView {
         return self.frame.size.width + self.frame.origin.x
     }
     
+    func pinEdgesToSuperView() {
+        guard let superView = superview else { return }
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
+        leftAnchor.constraint(equalTo: superView.leftAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
+        rightAnchor.constraint(equalTo: superView.rightAnchor).isActive = true
+    }
+    
 }
 
 extension UIImage {
@@ -36,6 +45,12 @@ extension UIImage {
         let data: Data? = self.pngData()
         return data?.base64EncodedString(options: .endLineWithLineFeed)
     }
+    
+    func imageResized(to size: CGSize) -> UIImage {
+          return UIGraphicsImageRenderer(size: size).image { _ in
+              draw(in: CGRect(origin: .zero, size: size))
+          }
+      }
 }
 
 extension UIViewController {

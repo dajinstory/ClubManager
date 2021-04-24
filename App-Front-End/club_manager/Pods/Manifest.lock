@@ -6,7 +6,10 @@ PODS:
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
   - DatePickerDialog (4.0)
+  - DropDown (2.3.13)
+  - Dropdowns (3.1.0)
   - FSCalendar (2.8.2)
+  - Gifu (3.3)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
@@ -49,16 +52,23 @@ PODS:
   - KakaoSDKUser (2.4.1):
     - KakaoSDKAuth (= 2.4.1)
     - KakaoSDKCommon (= 2.4.1)
+  - SwiftGifOrigin (1.7.0)
+  - SwiftyGif (5.4.0)
   - TTGTagCollectionView (1.11.1)
 
 DEPENDENCIES:
   - DatePickerDialog
+  - DropDown
+  - Dropdowns
   - FSCalendar
+  - Gifu
   - GoogleSignIn
   - KakaoOpenSDK
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
+  - SwiftGifOrigin (~> 1.7.0)
+  - SwiftyGif
   - TTGTagCollectionView
 
 SPEC REPOS:
@@ -66,7 +76,10 @@ SPEC REPOS:
     - Alamofire
     - AppAuth
     - DatePickerDialog
+    - DropDown
+    - Dropdowns
     - FSCalendar
+    - Gifu
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
@@ -74,13 +87,18 @@ SPEC REPOS:
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
+    - SwiftGifOrigin
+    - SwiftyGif
     - TTGTagCollectionView
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   DatePickerDialog: ccff2f91ff7a018057a4d72fa5ad6de49c8cb0cd
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  Dropdowns: 9a567e54ced34ecdc93d97d865ab6075fde09093
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  Gifu: 97c2a3c3865fbc834ab13f797e2e8e7729a1853c
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
@@ -88,8 +106,10 @@ SPEC CHECKSUMS:
   KakaoSDKAuth: fcba1c9ede431683f5bdd84c835a96981cb115a5
   KakaoSDKCommon: 0912aa0c7db051ae8dc07a35395cf644f7728f95
   KakaoSDKUser: 11955811d99d1ff1f1dfd5428afe69937e31ccef
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
+  SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
   TTGTagCollectionView: 86fcbfa6a7493c9e860b01c2e693cffc8acf6de1
 
-PODFILE CHECKSUM: d776181ddb75c000397c6022b7aedad33c0b7134
+PODFILE CHECKSUM: e6469e757279fb110e6ac228bb813b57cc930bb3
 
 COCOAPODS: 1.10.1

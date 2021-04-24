@@ -42,9 +42,10 @@ class DetailSection3TableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        commnetTavleView.delegate = self
+        
         commnetTavleView.dataSource = self
         commentTextField.delegate = self
+        commnetTavleView.frame = CGRect(x: 0, y: 0, width: contentView.width, height: 1000)
         addSubview(commnetTavleView)
         addSubview(commentTextField)
         addSubview(EnterButton)
@@ -97,8 +98,10 @@ extension DetailSection3TableViewCell: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 100
     }
+    
+    
     
     
 }

@@ -142,8 +142,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = section1[indexPath.row]
         }else if indexPath.section == 1 {
             if(indexPath.row == 0){
-                cell.addSubview(darkModeSwitch)
-                darkModeSwitch.frame = CGRect(x: view.frame.size.width - darkModeSwitch.frame.size.width - 20, y: 10, width: darkModeSwitch.frame.width, height: darkModeSwitch.frame.height)
+                tableView.addSubview(darkModeSwitch)
+                darkModeSwitch.frame = CGRect(x: view.frame.size.width - darkModeSwitch.frame.size.width - 20, y: 220, width: darkModeSwitch.frame.width, height: darkModeSwitch.frame.height)
             }
             cell.textLabel?.text = section2[indexPath.row]
         }else {

@@ -19,6 +19,11 @@ class clubCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        settupFont()
+    }
+    
     public func configure(with model: Club){
         self.myImageView.image = UIImage(named: model.clubImage)
         self.myImageView.contentMode = .scaleAspectFill
@@ -30,7 +35,12 @@ class clubCollectionViewCell: UICollectionViewCell {
         self.myImageView.image = UIImage(named: model.clubImage)
         self.myImageView.contentMode = .scaleAspectFill
         self.myImageView.clipsToBounds = true
-        self.mytextView.text = model.clubName
+        self.mytextView.text = "\(model.clubName) ◯"
+    }
+    
+    func settupFont(){
+        self.mytextView.font = .boldSystemFont(ofSize: 15)
+        
     }
   
 

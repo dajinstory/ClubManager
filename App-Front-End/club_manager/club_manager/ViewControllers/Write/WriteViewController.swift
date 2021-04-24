@@ -63,9 +63,8 @@ class WriteViewController: UIViewController {
         toolBarKeyboard.barTintColor = UIColor.white
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let albumbar = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(self.didTapAlbum))
-        let tag = UIBarButtonItem(title: "tag", style: .plain, target: self, action: #selector(self.didTapTag))
         let btnDoneBar = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButton))
-        toolBarKeyboard.items = [albumbar, flexibleSpace, tag, flexibleSpace, btnDoneBar]
+        toolBarKeyboard.items = [albumbar, flexibleSpace,  flexibleSpace, btnDoneBar]
     }
     
     override func viewDidLoad() {
@@ -79,10 +78,9 @@ class WriteViewController: UIViewController {
         contentTextView.inputAccessoryView = toolBarKeyboard
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(didTapClose))
-        let tempSave = UIBarButtonItem(title: "임시 저장", style: .plain, target: self, action: #selector(didTapDone))
         let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDone))
         
-        navigationItem.rightBarButtonItems = [done, tempSave]
+        navigationItem.rightBarButtonItems = [done]
     
         FrameTableView.delegate = self
         FrameTableView.dataSource = self
@@ -111,9 +109,7 @@ class WriteViewController: UIViewController {
         self.presentPhotoActionSheet()
     }
     
-    @objc func didTapTag(){
-        print("did tap tag")
-    }
+
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -128,14 +124,30 @@ class WriteViewController: UIViewController {
         present(tabBarViewController, animated: true)
     }
     
+    func alertBoardCreateError(){
+        let alert = UIAlertController(title: "생성 실패", message: "모든 정보를 입력해 주세요", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
+    
     @objc func didTapDone(){
-        guard let titleText = titleTextField.text, let contentText = contentTextView.text, let imageList = contentTextView.textStorage.delegate else { return }
+        print("here")
+        guard let titleText = titleTextField.text, let contentText = contentTextView.text else {
+            alertBoardCreateError()
+            return
+        }
+        
         let alertSave = UIAlertController(title: "글 저장", message:  "글 저장을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
   
         let OKtAction = UIAlertAction(title: "OK", style: .default, handler: { (okClick) in
-            //글 저장 append
-            print("info : \(self.category) \(titleText) \(contentText) \(imageList)")
+            //글 저장 append need
+            print("info : \(self.category) \(titleText) \(contentText)")
+            let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
+            tabBarViewController.selectedIndex = 0
+            tabBarViewController.modalPresentationStyle = .fullScreen
+            self.present(tabBarViewController, animated: true)
         })
+        
         let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
 
         alertSave.addAction(OKtAction)

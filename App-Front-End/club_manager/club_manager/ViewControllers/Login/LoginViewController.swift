@@ -6,14 +6,42 @@
 //
 
 import UIKit
+import AuthenticationServices
 import KakaoSDKAuth
 import KakaoSDKUser
 import KakaoOpenSDK
 import GoogleSignIn
 
-class LoginViewController: UIViewController, GIDSignInDelegate {
+class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
+    //for apple login button view
+    private var appleLoginButtonView: UIStackView = {
+        let appleLoginButtonView = UIStackView()
+        appleLoginButtonView.backgroundColor = .systemGray
+        return appleLoginButtonView
+    }()
     
+    //apple login button
+    private let appleLoginButton:ASAuthorizationAppleIDButton = {
+        let appleLoginButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+        appleLoginButton.addTarget(self, action: #selector(appleLoginButtonClick), for: .touchUpInside)
+        return appleLoginButton
+    }()
+    
+    private let kakaoTalkLoginButton:KOLoginButton = {
+        let button = KOLoginButton()
+        button.addTarget(self, action: #selector(onKakaoLoginByAppTouched), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let googleLoginButton: GIDSignInButton = {
+        let button = GIDSignInButton()
+        button.style = .standard
+        return button
+    }()
+
+    //관리자용 Login button
     private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("login", for: .normal)
@@ -23,7 +51,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         return button
     }()
     
-    //연도. 시도시 불러오는 메소드
+
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             if(error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
@@ -35,9 +63,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
         }
         
         // 사용자 정보 가져오기
-            if let userId = user.userID,                  // For client-side use only!
-                let idToken = user.authentication.idToken, // Safe to send to the server
-                let userName = user.profile.name,
+            if let userName = user.profile.name,
                 let userEmail = user.profile.email {
                 
                 getUserByKey( userId: 1, userEmail: userEmail) {
@@ -51,16 +77,12 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
                     }
                 }
-                
-               
             } else {
                 print("Error : User Data Not Found")
             }
         
         self.segueToClub()
     }
-    
-//    typealias CompletionHandler = (_ result:String) -> (Void)
     
     func getUserByKey(userId: Int, userEmail: String, completionHandler: @escaping (_ result: String) -> ()) {
         // check user if already registered
@@ -128,19 +150,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     
     
     
-    private let kakaoTalkLoginButton:KOLoginButton = {
-        let button = KOLoginButton()
-        button.addTarget(self, action: #selector(onKakaoLoginByAppTouched), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let googleLoginButton: GIDSignInButton = {
-        let button = GIDSignInButton()
-        button.style = .standard
-        return button
-    }()
-    
     //kakao login
     @objc func onKakaoLoginByAppTouched(_ sender: Any) {
         if(UserApi.isKakaoTalkLoginAvailable()){ // 이용가능하다면
@@ -156,7 +165,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                         guard token != nil else {
                             return
                         }
-                        //print("login token \(gettoken)")
                         self.setUserInfo()
                     }
                 }
@@ -180,30 +188,69 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
             }
         }
     }
+    
+    //Apple Login
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case  let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let userIdentifier = appleIDCredential.user
+            guard let fullName = appleIDCredential.fullName else { return }
+            guard let email = appleIDCredential.email else { return }
+            print("Apple login")
+            print("User ID : \(userIdentifier)")
+            print("User Email : \(email)")
+            print("User Name : \(fullName)")
+//            Apple login
+//            User ID : 001607.55c65d33ebb84ff184c665342a5eaa79.0712
+//            User Email : spqjf12345@naver.com
+//            User Name : givenName: SoJeong familyName: Jo
+        default:
+            break;
+        }
+        self.segueToClub()
+        
+    }
+    
+    // Apple ID 연동 실패 시
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error.localizedDescription)
+        // Handle error.
+    }
+    
+    @objc func appleLoginButtonClick(){
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
 
     func segueToClub(){
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "Club") else{
             return
         }
-        let navVC = UINavigationController(rootViewController: vc)
-        UIApplication.shared.windows.first?.rootViewController = navVC
+        let nav = UINavigationController(rootViewController: vc)
+        UIApplication.shared.windows.first?.rootViewController = nav
         UIApplication.shared.windows.first?.makeKeyAndVisible()
-
-//        let club = ClubViewController()
-//        self.navigationController?.pushViewController(club, animated: true)
-        
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-      
         title = "Log In"
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.delegate = self
         view.addSubview(kakaoTalkLoginButton)
         view.addSubview(googleLoginButton)
+        view.addSubview(appleLoginButtonView)
         view.addSubview(loginButton)
         
         
@@ -212,10 +259,16 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        kakaoTalkLoginButton.frame = CGRect(x: 0, y: 0, width: 250, height: 40)
-        kakaoTalkLoginButton.center = view.center
-        googleLoginButton.frame = CGRect(x: kakaoTalkLoginButton.frame.minX, y: kakaoTalkLoginButton.bottom + 30, width: 250, height: 40)
-        loginButton.frame = CGRect(x: kakaoTalkLoginButton.frame.minX, y: googleLoginButton.bottom + 30 , width: 250, height: 40)
+        kakaoTalkLoginButton.frame = CGRect(x: 50, y: 300, width: 300, height: 50)
+        googleLoginButton.frame = CGRect(x: 50, y: kakaoTalkLoginButton.bottom + 30, width: 300, height: 90)
+        
+        appleLoginButtonView.frame = CGRect(x: 50, y: googleLoginButton.bottom + 30, width: 300, height: 50)
+        appleLoginButton.frame = CGRect(x: 0, y: 0, width: 300, height: 40)
+        
+        appleLoginButtonView.addArrangedSubview(appleLoginButton)
+        
+        loginButton.frame = CGRect(x: 50, y: appleLoginButtonView.bottom + 30 , width: 300, height: 50)
+        
     }
     
     @objc func didTapLoginButton(){

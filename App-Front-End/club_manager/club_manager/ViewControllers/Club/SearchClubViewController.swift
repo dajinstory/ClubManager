@@ -28,19 +28,19 @@ class SearchClubViewController: UIViewController, UITextFieldDelegate {
     
     lazy var searchView : UITextField = {
         let view = UITextField()
-        view.placeholder = "enter the club name"
+        view.placeholder = "클럽명 입력"
         view.delegate = self
         view.clearButtonMode = .always
-        view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.blue.cgColor
-        view.borderStyle = .roundedRect
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.black.cgColor
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "클럽 찾기"
+        navigationItem.title = "클럽 찾기"
+        
         addAllClubList()
         AllClubTableView.delegate = self
         AllClubTableView.dataSource = self

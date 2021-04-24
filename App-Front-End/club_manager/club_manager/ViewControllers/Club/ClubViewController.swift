@@ -46,10 +46,10 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         clubView.layer.borderColor = UIColor.gray.cgColor
 
         let titleText = UILabel()
-        titleText.text = "Club"
+        titleText.text = "나의 클럽"
         titleText.textAlignment = .left
         titleText.font = .boldSystemFont(ofSize: 20)
-        titleText.frame = CGRect(x: 10, y: 10, width: 100, height: 30)
+        titleText.frame = CGRect(x: 20, y: 10, width: 100, height: 30)
         clubView.addSubview(titleText)
         return clubView
     }()
@@ -63,7 +63,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         titleText.text = "공지사항"
         titleText.textAlignment = .left
         titleText.font = .boldSystemFont(ofSize: 20)
-        titleText.frame = CGRect(x: 10, y: 10, width: 100, height: 30)
+        titleText.frame = CGRect(x: 20, y: 10, width: 100, height: 30)
         clubNewsView.addSubview(titleText)
         
         return clubNewsView
@@ -78,7 +78,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         titleText.text = "이런 동아리는 어때요?"
         titleText.textAlignment = .left
         titleText.font = .boldSystemFont(ofSize: 20)
-        titleText.frame = CGRect(x: 10, y: 10, width: 200, height: 30)
+        titleText.frame = CGRect(x: 20, y: 10, width: 200, height: 30)
         
         recommendView.addSubview(titleText)
         return recommendView
@@ -90,7 +90,6 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         return rectableView
     }()
     
-    var contentOffset:CGFloat = 0
     var page = 0
     var clubNewsTableView: UITableView =  {
         var clubNewsTableView = UITableView()
@@ -112,12 +111,14 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
       
         let button = UIButton()
         button.setTitle("확인하기", for: .normal)
-        button.frame = CGRect(x: 100, y: titleText.bottom + 20, width: 200, height: 30)
+        button.frame = CGRect(x: 120, y: titleText.bottom + 20, width: 200, height: 40)
         button.addTarget(self, action: #selector(didTapWaitButton), for: .touchUpInside)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.backgroundColor = UIColor.black
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.blue.cgColor
-        
+        button.layer.borderColor = UIColor.black.cgColor
+
         view.addSubview(titleText)
         view.addSubview(button)
         
@@ -135,7 +136,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         addClubList()
-        addClubNews()
+        
         addrecClub()
     }
     
@@ -143,13 +144,13 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         super.viewDidLoad()
         page = 1
         view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = UIColor.black
 
         let add = UIBarButtonItem(barButtonSystemItem: .add, target:self, action: #selector(didAddClub))
         let search = UIBarButtonItem(barButtonSystemItem: .search, target:self, action: #selector(didSearchClub))
         
         navigationItem.rightBarButtonItems = [add, search]
         settingDelegate()
-        findClub()
         
         contentView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 2000)
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
@@ -157,14 +158,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         scrollView.contentSize = CGSize(width: view.bounds.size.width, height: (scrollView.width * 3) + 150)
     }
     
-    func findClub(){
-        print(self.clubList.count)
-        print("findClub")
-        for i in self.clubList{
-            print("\(i.category) \(i.clubImage)")
-        }
-    }
-    
+
     func settingDelegate(){
         clubNewsTableView.delegate = self
         clubNewsTableView.dataSource = self
@@ -178,7 +172,7 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         clubView.frame = CGRect(x: 0, y: 0, width: contentView.width, height: 200)
         clubNewsView.frame = CGRect(x: 0, y: clubView.bottom + 5, width: contentView.width, height: 500)
         recommendView.frame = CGRect(x: 0, y: clubNewsView.bottom + 5, width: contentView.width, height: 500)
-        waitView.frame = CGRect(x: 0, y: recommendView.bottom, width: contentView.width, height: 100)
+        waitView.frame = CGRect(x: 0, y: recommendView.bottom, width: contentView.width, height: 150)
         clubNewsTableView.frame = CGRect(x: 0, y: 50, width: contentView.width, height: clubNewsView.height - 60)
         
         tagView.frame = CGRect(x: 0, y: 20, width: (contentView.width) * 2, height: 80)
@@ -303,60 +297,19 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
         task.resume()
     }
     
-    func addClubNews(){
-        getMyClubs(clubs: "1, 2"){
-            result in
-            do {
-                if let clubs = try JSONSerialization.jsonObject(with: result) as?
-                    [Dictionary<String, Any>] {
-                    for club in clubs {
-                        guard let id = club["id"] as? Int64 else {
-                            return
-                        }
-                        guard let president = club["president"] as? Int64 else {
-                            return
-                        }
-                        guard let name = club["name"] as? String else {
-                            return
-                        }
-                        guard let summary = club["clubSummary"] as? String else {
-                            return
-                        }
-                        guard (club["category"] as? String) != nil else {
-                            return
-                        }
-                        
-                        let newClub = Club(
-                            id: id,
-                            president: president,
-                            clubImage:  "image1",
-                            clubName: name,
-                            clubSummary: summary,
-                            category: "생활",
-                            note1: "야호")
-                        print("newClub  \(newClub)")
-                    
-                        self.recClubList.append(newClub)
-                        
-                        DispatchQueue.main.async {
-                            self.rectableView.reloadData()
-                        }
-                        
-                    }
-                }
-            } catch let error as NSError {
-                print("Failed to load: \(error.localizedDescription)")
-            }
-        }
-    }
-    
     func addClubList(){
-        getMyClubs(clubs: "1,2") {
+        getMyClubs(clubs: "1,2,3") {
             result in
+            
     
             do {
                 if let clubs = try JSONSerialization.jsonObject(with: result) as? [Dictionary<String, Any>] {
+                    var i = 1;
+                    var ii = 0;
+                    let note = ["공지사항입니다.", "오늘 회의 소회의실로 변경 되었으니 참고 바라요", "선착순 5명 키트 받아가세요!", "회의실 사용하시고 절전 부탁드립니다"]
+                    let category = ["생활", "스포츠/레저", "스포츠/레저"]
                     for club in clubs {
+                        
                         guard let id = club["id"] as? Int64 else {
                             return
                         }
@@ -376,17 +329,21 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
                         let newClub = Club(
                             id: id,
                             president: president,
-                            clubImage:  "image1",
+                            clubImage:  "image\(i)",
                             clubName: name,
                             clubSummary: summary,
-                            category: "생활",
-                            note1: "야호")
+                            category: category[ii],
+                            note1: note[i])
+                        i = i + 1
+                        ii = ii + 1
+                        
                         print("newClub  \(newClub)")
-                    
+                        
                         self.clubList.append(newClub)
                         
                         DispatchQueue.main.async {
                             self.clubCollectionView?.reloadData()
+                            self.clubNewsTableView.reloadData()
                         }
                         
                     }
@@ -404,6 +361,9 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
             result in
             do {
                 if let clubs = try JSONSerialization.jsonObject(with: result) as? [Dictionary<String, Any>] {
+                    var i = 4;
+                    var ii = 0
+                    let category = ["스포츠/레저", "생활", "스포츠/레저"]
                     for club in clubs {
                         guard let id = club["id"] as? Int64 else {
                             return
@@ -424,22 +384,26 @@ class ClubViewController: UIViewController, UIScrollViewDelegate, UITabBarContro
                         let newClub = Club(
                             id: id,
                             president: president,
-                            clubImage:  "image1",
+                            clubImage:  "image\(i)",
                             clubName: name,
                             clubSummary: summary,
-                            category: "생활",
+                            category: category[ii],
                             note1: "야호")
-                    
+                        i = i + 1;
+                        ii = ii + 1;
                         self.recClubList.append(newClub)
-                        
+                        self.filtered = self.recClubList
+                        DispatchQueue.main.async {
+                            self.rectableView.reloadData()
+                        }
                     }
                 }
             } catch let error as NSError {
                 print("Failed to load: \(error.localizedDescription)")
             }
         }
-        filtered = self.recClubList
-        self.rectableView.reloadData()
+       
+        
     }
     
     func filterRecClubList(tag: String){

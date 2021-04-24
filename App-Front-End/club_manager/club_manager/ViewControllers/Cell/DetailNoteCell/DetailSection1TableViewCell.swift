@@ -19,6 +19,11 @@ class DetailSection1TableViewCell: UITableViewCell {
     
     @IBOutlet weak var count: UILabel!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        settingForLabel()
+    }
+    
     static let identifier = "DetailSection1TableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,20 +33,22 @@ class DetailSection1TableViewCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: "DetailSection1TableViewCell", bundle: nil)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
     
     func configure(modelBoard: BoardData, modelUser: User){
         let dateFormatter = DateFormatter()
-        category.text = modelBoard.BoardCategory[0]
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        category.text = "\(modelBoard.BoardCategory) >"
+        category.textColor = .gray
         title.text = modelBoard.title
         userName.text = modelUser.userName
         date.text = dateFormatter.string(from: modelBoard.date)
-        count.text = "조회수 10"
+        count.text = "조회수 \(modelBoard.count)"
         
+        
+    }
+    
+    func settingForLabel(){
+        self.title.font = UIFont.boldSystemFont(ofSize: 25)
     }
     
 }

@@ -20,5 +20,16 @@ pod "TTGTagCollectionView"
 #datePicker 
 pod 'DatePickerDialog'
 
+#menu
+pod 'Dropdowns'
+
+pod 'DropDown'
+
+#git
+pod 'Gifu'
+pod 'SwiftGifOrigin', '~> 1.7.0'
+
+pod 'SwiftyGif'
+
 
 end

@@ -21,9 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let windowScene = scene as? UIWindowScene{
             let window = UIWindow(windowScene: windowScene)
-            let logNAV = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: "root") as! UINavigationController
-            window.rootViewController = logNAV
-            
+            let logo = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: "logo")
+            window.rootViewController = logo
+            print("scene delegate here")
+
             self.window = window
             window.makeKeyAndVisible()
         }

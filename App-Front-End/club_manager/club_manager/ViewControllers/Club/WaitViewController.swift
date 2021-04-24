@@ -12,10 +12,16 @@ class WaitViewController: UIViewController {
 
     var waitClubList: [Club] = []
     
-
-    
-    
-    
+    var showView: UIView = {
+        let views = UIView()
+        let label = UILabel()
+        label.text = "아직 승인되지 않은 클럽에 대해 ◯ 가 표시되며 \n승인이 거절된 클럽에 대해 ❎가 표시됩니다. "
+        views.addSubview(label)
+        label.frame = CGRect(x: 5, y: 5, width:  300, height: 200)
+        label.numberOfLines = 5
+        label.textColor = UIColor.gray
+        return views
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +31,16 @@ class WaitViewController: UIViewController {
         waitCollectionView.delegate = self
         waitCollectionView.dataSource = self
         
-        waitCollectionView.frame = CGRect(x: 10, y: 50, width: view.width - 10 , height: view.height - 100)
+        waitCollectionView.frame = CGRect(x: 10, y: 100, width: view.width - 10 , height: view.height - 500)
         waitCollectionView.register(clubCollectionViewCell.nib(), forCellWithReuseIdentifier: clubCollectionViewCell.identifier)
         waitCollectionView.backgroundColor = .clear
         view.addSubview(waitCollectionView)
-        addWaitClubList()
+        view.addSubview(showView)
+        showView.frame = CGRect(x: 20, y: view.bottom - 200, width: view.width - 40, height: 200)
+        
+        
+        /// Dumm
+        waitClubList = Dummy.shared.awaitClub(club: waitClubList)
 
         
     }
@@ -43,17 +54,7 @@ class WaitViewController: UIViewController {
         layout.scrollDirection = .vertical
     }
     
-    ///dummy
-    func addWaitClubList(){
-//        waitClubList.append(Club(clubImage: "image1", clubName: "몰입 캠프", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-//        waitClubList.append(Club(clubImage: "image2", clubName: "힐링 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-//        waitClubList.append(Club(clubImage: "image3", clubName: "흰소다", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-//        waitClubList.append(Club(clubImage: "image4", clubName: "week5", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-//        waitClubList.append(Club(clubImage: "image5", clubName: "고독한 캠프", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-//        waitClubList.append(Club(clubImage: "image6", clubName: "강사모", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-//        waitClubList.append(Club(clubImage: "image7", clubName: "등산 모임", clubSummary: "클럽 요약입니다1", category: "교양", note1: "공지사항입니다 ~~"))
-    }
-    
+
     
 
 

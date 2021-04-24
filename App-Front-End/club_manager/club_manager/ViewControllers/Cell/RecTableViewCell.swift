@@ -18,9 +18,13 @@ class RecTableViewCell: UITableViewCell {
     @IBOutlet weak var category: UILabel!
     
     static let identifier = "RecTableViewCell"
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupFont()
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,13 +39,19 @@ class RecTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: Club){
-//        self.recImage.image = UIImage(named: model.clubImage)
-        self.recImage.image = UIImage(systemName: "person.fill")
+        self.recImage.image = UIImage(named: model.clubImage)
         self.title.text = model.clubName
-        self.content.text = model.clubSummary
-        self.category.text = model.category
+        self.content.text = "한줄 설명 : \(model.clubSummary)"
+        self.category.text = "카테고리 : \(model.category)"
+        
         self.category.textColor = UIColor.red
     
+    }
+    
+    func setupFont(){
+        self.title.font = .boldSystemFont(ofSize: 20)
+        self.content.textColor = .systemGray
+        self.category.textColor = UIColor.systemBlue
     }
     
 }

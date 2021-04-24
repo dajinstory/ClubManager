@@ -31,11 +31,12 @@ class AllNoteTableViewCell: UITableViewCell {
     public func configure(with modelBoard: BoardData, modelUser: User){
         self.title.text = modelBoard.title
         let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "MM-dd HH:mm"
+        dateFormat.dateFormat = "YYYY-MM-dd"
         self.dateTime.text = dateFormat.string(from: Date())
         self.userName.text = modelUser.userName
-        self.profileImage.image = UIImage(systemName: "person.crop.circle")
-        self.comment.text = "댓글" 
+        self.profileImage.image = UIImage(named: modelUser.userImage)
+        self.comment.text = "댓글 \( modelBoard.comment.count)"
+       
     }
     
     override func awakeFromNib() {
@@ -55,9 +56,8 @@ class AllNoteTableViewCell: UITableViewCell {
     
     func setting(){
         //title.font = .systemFont(ofSize: 30, weight: .regular)
-        title.font = UIFont.boldSystemFont(ofSize: 30)
+        title.font = UIFont.boldSystemFont(ofSize: 20)
         title.numberOfLines = 0
-        
     }
 
 }

@@ -28,7 +28,7 @@ struct User: Identifiable {
 
 
 struct BoardData{
-    let BoardCategory: [String]
+    let BoardCategory: String
     let title:String
     let content:String
     let comment: [String]

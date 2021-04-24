@@ -21,7 +21,7 @@ class ClubNewsTableViewCell: UITableViewCell {
 
     }
     override func layoutSubviews() {
-        contentView.backgroundColor = .systemGray2
+        settupFont()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -48,6 +48,11 @@ class ClubNewsTableViewCell: UITableViewCell {
         self.ClubTitle.text = model.clubName
         self.ClubContent.text = model.note1
     
+    }
+    
+    func settupFont(){
+        self.ClubContent.tintColor = .darkGray
+        self.ClubTitle.font = .boldSystemFont(ofSize: 15)
     }
     
 }

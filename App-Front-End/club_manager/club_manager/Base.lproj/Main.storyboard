@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fdf-BN-gFz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OR7-ml-wAa">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-731.8840579710145" y="1678.7946428571429"/>
+            <point key="canvasLocation" x="-1028" y="1679"/>
         </scene>
         <!--Club View Controller-->
         <scene sceneID="xGB-SK-JrZ">
@@ -44,10 +44,12 @@
             <objects>
                 <tabBarController storyboardIdentifier="HomeTVC" id="fxV-O7-voO" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Pqv-Zm-zgH"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y26-0x-Gwv">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="y26-0x-Gwv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="nEJ-cu-ODG" kind="relationship" relationship="viewControllers" id="ReF-hq-dGj"/>
@@ -64,7 +66,6 @@
         <!--Home-->
         <scene sceneID="OFa-HL-zEr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cYw-rF-Rxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="nEJ-cu-ODG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house.fill" id="4eW-3d-n3m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H4T-I0-PAL">
@@ -75,6 +76,7 @@
                         <segue destination="vuS-FG-Kcl" kind="relationship" relationship="rootViewController" id="lWs-Ly-Iyv"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYw-rF-Rxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1629" y="180"/>
         </scene>
@@ -226,6 +228,21 @@
             </objects>
             <point key="canvasLocation" x="2769.5652173913045" y="2318.9732142857142"/>
         </scene>
+        <!--Logo View Controller-->
+        <scene sceneID="DrF-C8-aCw">
+            <objects>
+                <viewController storyboardIdentifier="logo" id="OR7-ml-wAa" customClass="LogoViewController" customModule="club_manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xlf-DB-Fwu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ADe-7b-PRJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nm0-Sq-xyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2349" y="1679"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="oSh-PH-mxE">
             <objects>
@@ -252,6 +269,9 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
