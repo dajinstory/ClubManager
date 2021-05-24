@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Home from './routes/Home';
+import Profile from './routes/Profile';
 import Web from './routes/Web';
 import Club from './routes/Club';
 import Post from './routes/Post';
@@ -19,6 +20,7 @@ function App() {
       <Navigation />
       <Switch>
         <Route path="/" exact={true} component={Home}/>
+        <Route path="/profile" exact={true} component={Profile}/>
         <Route path="/web" exact={true} component={Web}/>
         <Route path="/post/:id" render={ ({match}) => {
           return <Post post={ posts.find(p => p.id === parseInt(match.params.id)) } />
