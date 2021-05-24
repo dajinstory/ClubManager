@@ -3,7 +3,9 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import Container from 'react-bootstrap/Container'
-
+// 할때 참고하기
+// https://fullcalendar.io/docs/react
+// https://fullcalendar.io/docs/dateClick
 function Reserve(){
   const setState = (newState) => {
     console.log('ㄱㄹㅎㄷ');
