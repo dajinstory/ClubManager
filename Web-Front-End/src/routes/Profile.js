@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import JAVASCRIPT_KEY from '../.kakao_login_key.js';
-// 참고한 링크 https://reference-m1.tistory.com/368
+// 참고한 링크: [[Front end] SNS 로그인 연동(네이버, 카카오) with React](https://reference-m1.tistory.com/368)
+// 나중에 참고해야 할 링크: [React Router로 사용자 인증하기 (로그인/로그아웃)](https://www.daleseo.com/react-router-authentication/)
 class Profile extends Component {
   componentDidMount(){
     const kakaoScript = document.createElement('script');
