@@ -14,6 +14,10 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
+    var user_Name = ""
+    var user_email = ""
+    var dataManger = DataManger()
+    
     //for apple login button view
     private var appleLoginButtonView: UIStackView = {
         let appleLoginButtonView = UIStackView()
@@ -52,6 +56,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationC
     }()
     
 
+    //로그인 성공시
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             if(error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
@@ -62,86 +67,30 @@ class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationC
             return
         }
         
-        // 사용자 정보 가져오기
+        // 사용자 Post or 정보 가져오기
             if let userName = user.profile.name,
                 let userEmail = user.profile.email {
                 
-                getUserByKey( userId: 1, userEmail: userEmail) {
+                dataManger.getUserByKey( userId: 1, userEmail: userEmail) {
                     result in
-                    if result == "" {
+                    if result == nil {
                         print("[Rest API] Create User\n")
-                        self.postUser(userName: userName, userEmail: userEmail)
+                        self.dataManger.postUser(userName: userName, userEmail: userEmail)
                     }
                     else {
                         print("[Rest API] User Already registered\n")
 
                     }
                 }
+                self.autoLogin(UN: userName, UE: userEmail)
             } else {
                 print("Error : User Data Not Found")
             }
         
+        
         self.segueToClub()
     }
     
-    func getUserByKey(userId: Int, userEmail: String, completionHandler: @escaping (_ result: String) -> ()) {
-        // check user if already registered
-        let url_URL = URL(string: "http://13.124.135.59:47000/user")
-        var request = URLRequest(url: url_URL!)
-        
-        request.httpMethod = "GET"
-        request.setValue(String(userId), forHTTPHeaderField: "id")
-        request.setValue(userEmail, forHTTPHeaderField: "email")
-        
-        let task = URLSession.shared.dataTask(with: request) {
-            (data, response, error) in
-            
-            // Check for Error
-            if let error = error {
-                print("Error took place \(error)")
-                return
-            }
-            
-            // Convert HTTP Response Data to a String
-            if let data=data, let dataString = String(data: data, encoding: .utf8) {
-                
-                print("[Rest API] getUserByKey : \(dataString)")
-    
-                completionHandler(dataString)
-                
-            }
-        }
-        task.resume()
-    }
-    
-        
-    func postUser(userName: String, userEmail: String){
-        let json: [String: Any] = ["name": userName,"email" : userEmail, "clubs" : ""]
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        let url_URL = URL(string: "http://13.124.135.59:47000/user")
-        
-        var request = URLRequest(url: url_URL!)
-    
-        request.httpMethod = "POST"
-        request.httpBody = jsonData
-        request.setValue(" application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            // Check for Error
-            if let error = error {
-                print("Error took place \(error)")
-                return
-            }
-     
-            // Convert HTTP Response Data to a String
-            if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                print("[Rest API] postUser : \(dataString)")
-            }
-        }
-        
-        task.resume()
-    }
     
     // 구글 로그인 연동 해제시
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
@@ -180,9 +129,29 @@ class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationC
                 print("me() success")
                 _ = user
     
-                guard let userName = user?.kakaoAccount?.profile?.nickname else { return }
-                guard let userEmail = user?.kakaoAccount?.email else { return }
-                self.postUser(userName: userName, userEmail: userEmail)
+//                guard let userName = user?.kakaoAccount?.profile?.nickname else { return }
+//                guard let userEmail = user?.kakaoAccount?.email else { return }
+                
+                // 사용자 Post or 정보 가져오기
+                    if let userName = user?.kakaoAccount?.profile?.nickname ,
+                        let userEmail = user?.kakaoAccount?.email {
+                        
+                        self.dataManger.getUserByKey( userId: 1, userEmail: userEmail) {
+                            result in
+                            if result == nil {
+                                print("[Rest API] Create User\n")
+                                self.dataManger.postUser(userName: userName, userEmail: userEmail)
+                            }
+                            else {
+                                print("[Rest API] User Already registered\n")
+
+                            }
+                        }
+                        self.autoLogin(UN: userName, UE: userEmail)
+                    } else {
+                        print("Error : User Data Not Found")
+                    }
+
                 self.segueToClub()
               
             }
@@ -204,6 +173,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationC
             print("User ID : \(userIdentifier)")
             print("User Email : \(email)")
             print("User Name : \(fullName)")
+            
+            self.autoLogin(UN: fullName.givenName! + fullName.familyName!, UE: email)
+            
 //            Apple login
 //            User ID : 001607.55c65d33ebb84ff184c665342a5eaa79.0712
 //            User Email : spqjf12345@naver.com
@@ -211,6 +183,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationC
         default:
             break;
         }
+        
+       
         self.segueToClub()
         
     }
@@ -233,14 +207,18 @@ class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationC
     }
 
     func segueToClub(){
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "Club") else{
-            return
-        }
-        let nav = UINavigationController(rootViewController: vc)
-        UIApplication.shared.windows.first?.rootViewController = nav
+        
+        let vc = UIStoryboard.init(name: "ClubMain", bundle: nil).instantiateViewController(withIdentifier: "ClubViewController")
+        
+        UIApplication.shared.windows.first?.rootViewController = vc
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        checkAutoLogin()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -271,8 +249,26 @@ class LoginViewController: UIViewController, GIDSignInDelegate, ASAuthorizationC
         
     }
     
+    func checkAutoLogin(){
+        if let userName = UserDefaults.standard.string(forKey: "userName") {
+            if let useremail = UserDefaults.standard.string(forKey: "userEmail") {
+               print("has value in userDefaults")
+                self.segueToClub()
+          }
+        }else{
+            print("meet the condition")
+        }
+        
+    }
+    
     @objc func didTapLoginButton(){
         self.segueToClub()
+    }
+    
+    func autoLogin(UN: String, UE: String){
+        print("auto Login did")
+        UserDefaults.standard.set(UN, forKey: "userName")
+        UserDefaults.standard.set(UE, forKey: "userEmail")
     }
 
 }

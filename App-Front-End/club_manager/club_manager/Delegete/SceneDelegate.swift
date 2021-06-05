@@ -23,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let logo = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: "logo")
             window.rootViewController = logo
-            print("scene delegate here")
 
             self.window = window
             window.makeKeyAndVisible()

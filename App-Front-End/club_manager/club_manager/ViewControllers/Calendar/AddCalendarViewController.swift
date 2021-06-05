@@ -10,14 +10,14 @@ import DatePickerDialog
 
 
 
-class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
+class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     lazy var hour_textField: UITextField = {
         var title = UITextField()
         title.delegate = self
         title.borderStyle = .roundedRect
         title.layer.borderWidth = 1
-        title.layer.borderColor = UIColor.blue.cgColor
+        title.layer.borderColor = UIColor.black.cgColor
         return title
     }()
     
@@ -26,16 +26,16 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
         title.delegate = self
         title.borderStyle = .roundedRect
         title.layer.borderWidth = 1
-        title.layer.borderColor = UIColor.blue.cgColor
+        title.layer.borderColor = UIColor.black.cgColor
         return title
     }()
     
     lazy var datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker(frame: CGRect(x: 50, y: 20, width: self.view.frame.width/2, height: 100))
+        let datePicker = UIDatePicker(frame: CGRect(x: 50, y: 20, width: 300, height: 100))
+        datePicker.backgroundColor = .yellow
         datePicker.timeZone = NSTimeZone.local
         datePicker.backgroundColor = UIColor.white
-//        datePicker.layer.cornerRadius = 5.0
-//        datePicker.layer.shadowOpacity = 0.5
+        datePicker.datePickerMode = .date
         return datePicker
     }()
     
@@ -71,7 +71,7 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
         title.placeholder = "enter the title"
         title.delegate = self
         title.layer.borderWidth = 2
-        title.layer.borderColor = UIColor.blue.cgColor
+        title.layer.borderColor = UIColor.black.cgColor
         title.borderStyle = .roundedRect
         return title
     }()
@@ -88,28 +88,42 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
     }()
     
     @objc func didTapAddButton(){
-        let calendarVC = CalendarViewController()
-        calendarVC.setscheduled.append(setSchedule(date: datePicker.date, scTitle: title_textField.text!, scHour: hour_textField.text!, scMinute: minute_textField.text!))
-        self.navigationController?.popToViewController(calendarVC, animated: true)
         
-//        print(datePicker.date)
-//        print(title_textField.text!)
-//        print(hour_textField.text!)
-//        print(minute_textField.text!)
-//        print(datePicker.date.year)
-//        print(datePicker.date.month)
-//        print(datePicker.date.day)
+//        let dataFormatter = DateFormatter()
+//        dataFormatter.dateFormat = "YYYY-MM-dd"
+        guard ((self.title_textField.text?.isEmpty) != nil), ((self.hour_textField.text?.isEmpty) != nil),((self.minute_textField.text) != nil) else {
+            return
+        }
+        let alert = UIAlertController(title: "일정 추가", message: " \(datePicker.date.month)월 \(datePicker.date.day)일 \(title_textField.text!) 일정을 추가하시겠습니까?", preferredStyle: .alert)
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss EEE"
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            (okButton) in
+                let calendarVC = CalendarViewController()
+            calendarVC.setscheduled.append(setSchedule(date: self.datePicker.date, scTitle: self.title_textField.text!, scHour: self.hour_textField.text!, scMinute: self.minute_textField.text!))
+            self.navigationController?.pushViewController(calendarVC, animated: true)
+            
+            })
+        )
+        alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
+        present(alert, animated: true)
         
+        
+//        calendarVC.setscheduled.append(setSchedule(date: datePicker.date, scTitle: title_textField.text!, scHour: hour_textField.text!, scMinute: minute_textField.text!))
+//        self.navigationController?.popToViewController(calendarVC, animated: true)
         
     }
+    
+    
+
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         title = "일정 추가"
+        
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+        tapGesture.delegate = self
+        self.view.addGestureRecognizer(tapGesture)
 
         view.backgroundColor = .white
         view.addSubview(datePicker)
@@ -128,15 +142,22 @@ class AddCalendarViewcontroller: UIViewController, UITextFieldDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        datePicker.frame = CGRect(x: 0, y: 200, width: view.bounds.width, height: 100)
+        datePicker.frame = CGRect(x: 50, y: 200, width: view.bounds.width, height: 100)
         
         dateView.frame = CGRect(x: 50, y: datePicker.bottom + 50, width: view.bounds.width - 40, height: 25)
-        use_textLabel.frame = CGRect(x: 50, y: 0, width: 100, height: 25)
-        hour_textField.frame = CGRect(x: use_textLabel.frame.maxX , y: 0, width: 30, height: 25)
-        hour_textLabel.frame = CGRect(x: hour_textField.frame.maxX, y: 0, width: 50, height: 25)
-        minute_textField.frame = CGRect(x: hour_textLabel.frame.maxX, y: 0, width: 30, height: 25)
-        minute_textLabel.frame = CGRect(x: minute_textField.frame.maxX, y: 0, width: 100, height: 25)
+        use_textLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 25)
+        use_textLabel.font = .boldSystemFont(ofSize: 20)
+        
+        hour_textField.frame = CGRect(x: use_textLabel.frame.maxX , y: 0, width: 50, height: 25)
+        hour_textLabel.frame = CGRect(x: hour_textField.frame.maxX + 5, y: 0, width: 50, height: 25)
+        hour_textLabel.font = .boldSystemFont(ofSize: 20)
+        
+        minute_textField.frame = CGRect(x: hour_textLabel.frame.maxX, y: 0, width: 50, height: 25)
+        minute_textLabel.frame = CGRect(x: minute_textField.frame.maxX + 5, y: 0, width: 100, height: 25)
+        minute_textLabel.font = .boldSystemFont(ofSize: 20)
+        
         title_textField.frame = CGRect(x: 0, y: dateView.bottom + 70, width: view.bounds.width, height: 50)
+        
         add_Button.frame = CGRect(x: view.frame.width/2 - 50, y: title_textField.bottom + 70, width: 100, height: 50)
         
     }

@@ -16,8 +16,7 @@ class DetailSection1TableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     
     @IBOutlet weak var date: UILabel!
-    
-    @IBOutlet weak var count: UILabel!
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -34,15 +33,14 @@ class DetailSection1TableViewCell: UITableViewCell {
         return UINib(nibName: "DetailSection1TableViewCell", bundle: nil)
     }
     
-    func configure(modelBoard: BoardData, modelUser: User){
+    func configure(modelBoard: Post, modelUser: User){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         category.text = "\(modelBoard.BoardCategory) >"
         category.textColor = .gray
         title.text = modelBoard.title
-        userName.text = modelUser.userName
-        date.text = dateFormatter.string(from: modelBoard.date)
-        count.text = "조회수 \(modelBoard.count)"
+        userName.text = modelUser.name
+        date.text =  modelBoard.date
         
         
     }

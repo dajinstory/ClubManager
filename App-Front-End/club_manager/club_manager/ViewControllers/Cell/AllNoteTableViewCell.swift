@@ -28,14 +28,14 @@ class AllNoteTableViewCell: UITableViewCell {
         setting()
     }
     
-    public func configure(with modelBoard: BoardData, modelUser: User){
+    public func configure(with modelBoard: Post, modelUser: User){
         self.title.text = modelBoard.title
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "YYYY-MM-dd"
-        self.dateTime.text = dateFormat.string(from: Date())
-        self.userName.text = modelUser.userName
-        self.profileImage.image = UIImage(named: modelUser.userImage)
-        self.comment.text = "댓글 \( modelBoard.comment.count)"
+        self.dateTime.text = modelBoard.date
+        self.userName.text = modelUser.name
+//        self.profileImage.image = UIImage(named: modelUser.userImage)
+        self.comment.text = "댓글 0"
        
     }
     

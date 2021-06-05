@@ -8,34 +8,34 @@
 import UIKit
 
 class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
-        imageView.tintColor = .lightGray
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFit
-//        imageView.frame = CGRect(x: 40, y: 40, width: 70, height: 70)
-        imageView.layer.cornerRadius = imageView.frame.height/2
-        imageView.layer.borderColor = UIColor.lightGray.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.clipsToBounds = true
-        return imageView
-    }()
+    @IBOutlet weak var profileImage: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        profileImageSetting()
+        
     }
+    
+    func profileImageSetting(){
+        profileImage.image = UIImage(systemName: "person")
+        profileImage.tintColor = .lightGray
+        profileImage.layer.masksToBounds = true
+        profileImage.contentMode = .scaleAspectFit
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.layer.borderColor = UIColor.lightGray.cgColor
+        profileImage.layer.borderWidth = 1
+        profileImage.clipsToBounds = true
+    }
+    
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        imageView.frame = CGRect(x: view.bounds.width/2 - 35, y: 150, width: 70, height: 70)
-        view.addSubview(imageView)
-        
-        
-        imageView.isUserInteractionEnabled = true
+        profileImage.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangedProfilePic))
         gesture.delegate = self
-        imageView.addGestureRecognizer(gesture)
+        profileImage.addGestureRecognizer(gesture)
     }
 
 
@@ -85,7 +85,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
-        self.imageView.image = selectedImage
+        self.profileImage.image = selectedImage
         
     }
     

@@ -40,7 +40,7 @@ class WaitViewController: UIViewController {
         
         
         /// Dumm
-        waitClubList = Dummy.shared.awaitClub(club: waitClubList)
+        //waitClubList = Dummy.shared.awaitClub(club: waitClubList)
 
         
     }

@@ -108,13 +108,7 @@ class WriteViewController: UIViewController {
     @objc func didTapAlbum(){
         self.presentPhotoActionSheet()
     }
-    
 
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    
-    }
 
     
     @objc func didTapClose(){
@@ -140,12 +134,17 @@ class WriteViewController: UIViewController {
         let alertSave = UIAlertController(title: "글 저장", message:  "글 저장을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
   
         let OKtAction = UIAlertAction(title: "OK", style: .default, handler: { (okClick) in
-            //글 저장 append need
-            print("info : \(self.category) \(titleText) \(contentText)")
-            let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
-            tabBarViewController.selectedIndex = 0
-            tabBarViewController.modalPresentationStyle = .fullScreen
-            self.present(tabBarViewController, animated: true)
+            if(self.category != "" && self.titleTextField.text != "" && self.contentTextView.text != ""){
+                //글 저장 append need
+                print("info : \(self.category) \(titleText) \(contentText)")
+                let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
+                tabBarViewController.selectedIndex = 0
+                tabBarViewController.modalPresentationStyle = .fullScreen
+                self.present(tabBarViewController, animated: true)
+            }else {
+                self.alertBoardCreateError()
+            }
+          
         })
         
         let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)

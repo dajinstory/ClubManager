@@ -10,10 +10,29 @@ import DropDown
 
 class AddClubViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    
+    
+    @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    @IBOutlet weak var clubName_Textfield: UITextField!
+    @IBOutlet weak var clubPresident: UITextField!
+    
+    @IBOutlet weak var clubCategory_button: UIButton!
+    
+    @IBOutlet weak var clubSummary_textField: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addbuttonSetting()
+        profileImageSetting()
+        clubName_TextfieldSetting()
+        clubCategory_buttonSetting()
+        clubSummary_textFieldSetting()
+        clubPresident.text = "조소정"
         
-        view.backgroundColor = UIColor.white
+
         navigationItem.title = "클럽 만들기"
         
         
@@ -39,10 +58,10 @@ class AddClubViewController: UIViewController, UIGestureRecognizerDelegate {
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
         
-        clubImageView.isUserInteractionEnabled = true
+        profileImage.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangedProfilePic))
         gesture.delegate = self
-        clubImageView.addGestureRecognizer(gesture)
+        profileImage.addGestureRecognizer(gesture)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,73 +90,52 @@ class AddClubViewController: UIViewController, UIGestureRecognizerDelegate {
         clubCategory_dropDown.anchorView = clubCategory_button
         clubCategory_dropDown.show()
     }
+    
+    func addbuttonSetting(){
+        addButton.setTitle("만들기", for: .normal)
+        addButton.backgroundColor = UIColor.black
+        addButton.setTitleColor(UIColor.white, for: .normal)
+        addButton.addTarget(self, action: #selector(didTapMakeButton), for: .touchUpInside)
+    }
+    
+    func profileImageSetting(){
+        profileImage.image = UIImage(systemName: "square.stack")!
 
-    
-    private let clubImageView: UIImageView = {
-        let imageView = UIImageView()
-        var uiImage = UIImage(systemName: "square.stack")!
+        profileImage.tintColor = .black
+        profileImage.tintColor = .lightGray
+        profileImage.layer.masksToBounds = true
+        profileImage.contentMode = .scaleAspectFit
+        profileImage.layer.borderColor = UIColor.lightGray.cgColor
+        profileImage.layer.borderWidth = 1
+        profileImage.clipsToBounds = true
         
-//        uiImage = uiImage.imageResized(to: )
-        
-        imageView.image = uiImage
-        imageView.tintColor = .black
-        imageView.tintColor = .lightGray
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = imageView.frame.height/2
-        imageView.layer.borderColor = UIColor.lightGray.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.clipsToBounds = true
-        return imageView
-    }()
+    }
     
-    private let enterView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    func clubName_TextfieldSetting(){
+        clubName_Textfield.placeholder = "클럽 이름 입력"
+        clubName_Textfield.layer.borderWidth = 2
+        clubName_Textfield.layer.borderColor = UIColor.black.cgColor
+        clubName_Textfield.layer.cornerRadius = 2
+        clubName_Textfield.borderStyle = .roundedRect
+    }
+    
+    func clubCategory_buttonSetting(){
+        clubCategory_button.setTitle("카테고리 선택 >", for: .normal)
+        clubCategory_button.backgroundColor = UIColor.blue
+        clubCategory_button.setTitleColor(UIColor.white, for: .normal)
+        clubCategory_button.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
     
     
-    var club_president: UIView = {
-        let view = UIView()
-        var label = UILabel(frame: CGRect(x: 0, y: 10, width: 100, height: 21))
-        label.text = "클럽 장"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        view.addSubview(label)
-        return view
-    }()
+    func clubSummary_textFieldSetting(){
+        clubSummary_textField.text = "한줄 소개 입력"
+        clubSummary_textField.textColor = .systemGray
+        clubSummary_textField.layer.borderWidth = 2
+        clubSummary_textField.layer.borderColor = UIColor.black.cgColor
+    }
     
-    var president = UILabel()
-    
-    var clubName_Label: UILabel = {
-        var label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 21))
-        label.text = "클럽 이름"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
-    
-    var clubCategory_Label: UILabel = {
-        var label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 21))
-        label.text = "카테고리"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
-    
-    var clubSummary_Label: UILabel = {
-        var label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 21))
-        label.text = "한 줄 소개"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        return label
-    }()
+ 
 
-    lazy var clubName_Textfield: UITextField = {
-        var title = UITextField()
-        title.placeholder = "클럽 이름 입력"
-        title.layer.borderWidth = 2
-        title.layer.borderColor = UIColor.black.cgColor
-        title.layer.cornerRadius = 2
-        title.borderStyle = .roundedRect
-        return title
-    }()
     
     let clubCategory_dropDown: DropDown = {
         let dropDown = DropDown()
@@ -145,51 +143,18 @@ class AddClubViewController: UIViewController, UIGestureRecognizerDelegate {
         return dropDown
     }()
     
-    var clubCategory_button: UIButton = {
-        var button = UIButton()
-        button.setTitle("카테고리 선택 >", for: .normal)
-        button.backgroundColor = UIColor.blue
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        return button
-    }()
+
     
-    
-//    lazy var clubCategory_textField: UITextField = {
-//        var title = UITextField()
-//        title.placeholder = "카테고리 선택"
-//        title.layer.borderWidth = 2
-//        title.layer.borderColor = UIColor.blue.cgColor
-//        title.borderStyle = .roundedRect
-//        return title
-//    }()
-    
-    lazy var clubSummary_textField: UITextView = {
-        var title = UITextView()
-        title.text = "한줄 소개 입력"
-        title.textColor = .systemGray
-        title.layer.borderWidth = 2
-        title.layer.borderColor = UIColor.black.cgColor
-        return title
-    }()
-    
-    var make_Button: UIButton = {
-        let button = UIButton()
-        button.setTitle("만들기", for: .normal)
-        button.backgroundColor = UIColor.black
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.addTarget(self, action: #selector(didTapMakeButton), for: .touchUpInside)
-        return button
-    }()
+   
     
     @objc func didTapMakeButton(){
-        guard !clubName_Textfield.text!.isEmpty, !president.text!.isEmpty,  !clubSummary_textField.text!.isEmpty else {
+        guard !clubName_Textfield.text!.isEmpty,  !clubSummary_textField.text!.isEmpty else {
                 alertUserLoginError()
                 return
         }
     
-        print("\(clubImageView.image!) \(clubName_Textfield.text!) \(president.text!) \(clubSummary_textField.text!)")
         alertaddedToClubList()
+        //alertUserLoginError()
 
     }
     
@@ -211,59 +176,7 @@ class AddClubViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.endEditing(true)
         return true
     }
-    
 
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        president.text = "조소정"
-        president.font = .boldSystemFont(ofSize: 20)
-        president.textColor = UIColor.systemBlue
-        
-        view.addSubview(clubImageView)
-        view.addSubview(enterView)
-        
-        enterView.addSubview(clubName_Label)
-        enterView.addSubview(clubName_Textfield)
-        
-        enterView.addSubview(club_president)
-        club_president.addSubview(president)
-        
-        
-        enterView.addSubview(clubCategory_Label)
-        enterView.addSubview(clubCategory_button)
-        
-        enterView.addSubview(clubSummary_Label)
-        enterView.addSubview(clubSummary_textField)
-
-        enterView.addSubview(make_Button)
-        
-        let viewHeight:CGFloat = 50
-        let margin:CGFloat = 40
-    
-        
-        clubImageView.frame = CGRect(x: view.bounds.width/2 - 100, y: 100, width: 200, height: 200)
-        enterView.frame = CGRect(x: 0, y: clubImageView.bottom, width: view.width, height: view.height - clubImageView.height)
-    
-        clubName_Label.frame = CGRect(x: 20, y: 20, width: clubName_Label.frame.width, height: viewHeight)
-        
-        clubName_Textfield.frame = CGRect(x: clubName_Label.frame.maxX + 10, y: clubName_Label.frame.minY, width: 200, height: viewHeight)
-        
-        
-        club_president.frame = CGRect(x: 20, y: clubName_Label.bottom + margin , width: view.width - 40, height: viewHeight)
-        president.frame = CGRect(x: 150, y: 0, width: 100, height: viewHeight)
-        
-        clubCategory_Label.frame = CGRect(x: 20, y: club_president.bottom + margin, width: clubCategory_Label.frame.width, height: viewHeight)
-        clubCategory_button.frame = CGRect(x: clubCategory_Label.frame.maxX + 10, y:  club_president.bottom + margin, width: 200, height: viewHeight)
-        
-        clubSummary_Label.frame = CGRect(x: 20, y: clubCategory_Label.bottom + margin, width: clubSummary_Label.frame.width, height: viewHeight)
-
-        clubSummary_textField.frame = CGRect(x: clubSummary_Label.frame.maxX + 10, y: clubCategory_button.bottom + margin, width: 200, height: viewHeight * 2)
-        
-        make_Button.frame = CGRect(x: view.bounds.width/2 - 70, y: clubSummary_textField.bottom + margin, width: 100, height: viewHeight)
-
-    }
     
 
 }
@@ -311,7 +224,7 @@ extension AddClubViewController: UIImagePickerControllerDelegate, UINavigationCo
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
-        self.clubImageView.image = selectedImage
+        self.profileImage.image = selectedImage
         
     }
     

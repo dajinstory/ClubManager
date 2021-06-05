@@ -12,8 +12,14 @@ import FSCalendar
 
 
 class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigationControllerDelegate {
+
+    private let contentView: UIView = {
+        let contentCView = UIView()
+        return contentCView
+    }()
     
     var calendar = FSCalendar()
+    var scrollView: UIScrollView!
     
     private let setScheduledView: UITableView = {
         let setScheduledView = UITableView()
@@ -34,27 +40,39 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         calendar.allowsMultipleSelection = true
 
         setUp()
-        setupData()
+        setscheduled = Dummy.shared.schedule(scd: setscheduled)
+        filtered = setscheduled
         setUpCalendar()
+        print("count : \(setscheduled.count)")
         
-        let share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapshare))
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearch))
+//        let share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapshare))
+//        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearch))
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
         
-       navigationItem.rightBarButtonItems = [add, search, share]
+       navigationItem.rightBarButtonItems = [add]
         
-        view.addSubview(calendar)
-        view.addSubview(setScheduledView)
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+        scrollView.clipsToBounds = true
+        scrollView.contentSize = CGSize(width: view.bounds.size.width, height: (scrollView.width * 2) + 150)
+     
        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        calendar.frame = CGRect(x: 0, y: 100, width: view.bounds.width, height: 300)
-        setScheduledView.frame = CGRect(x: 0, y: calendar.bottom + 10, width: view.bounds.width, height: view.bounds.height - calendar.height - 100)
+        contentView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 2000)
+        calendar.frame = CGRect(x: 0, y: 10, width: view.bounds.width, height: 300)
+        setScheduledView.frame = CGRect(x: 0, y: calendar.bottom + 10, width: view.bounds.width, height: view.bounds.height - calendar.height )
+        
+        contentView.addSubview(calendar)
+        contentView.addSubview(setScheduledView)
+        scrollView.addSubview(contentView)
+        view.addSubview(scrollView)
+
     }
     
     func setUp(){
@@ -87,68 +105,22 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
         //여기에 이벤트 날짜들 적어주면 되겠다.
         //let test = formatter.date(from: "2021-04-03")
         
-      
-        //print("event")
         events = setscheduled.map{$0.date}
-        //print(events)
         
     }
 
-    
-    
-    func setupData(){
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-11")! , scTitle: "일정1", scHour: "2", scMinute: "20"))
-        
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-12")!, scTitle: "일정2", scHour: "3", scMinute: "20"))
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-13")!, scTitle: "일정3", scHour: "2", scMinute: "40"))
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-14")!, scTitle: "일정4", scHour: "2", scMinute: "10"))
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-14")!, scTitle: "일정5", scHour: "2", scMinute: "00"))
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-15")!, scTitle: "일정6", scHour: "2", scMinute: "30"))
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-04-16")!, scTitle: "일정7", scHour: "2", scMinute: "20"))
-        setscheduled.append(setSchedule(date: formatter.date(from: "2021-05-11")!, scTitle: "일정8", scHour: "2", scMinute: "20"))
-        
-//        setscheduled.append(setSchedule(title: "일정2", year: "2021", month: "5", day: "1", date: formatter.date(from: "2021-5-1")!))
-//        setscheduled.append(setSchedule(title: "일정3", year: "2021", month: "6", day: "2", date: formatter.date(from: "2021-6-2")!))
-//        setscheduled.append(setSchedule(title: "일정4", year: "2021", month: "4", day: "27", date: formatter.date(from: "2021-4-27")!))
-//        setscheduled.append(setSchedule(title: "일정5", year: "2021", month: "4", day: "28", date: formatter.date(from: "2021-4-28")!))
-//        setscheduled.append(setSchedule(title: "일정6", year: "2021", month: "5", day: "1", date: formatter.date(from: "2021-5-1")!))
-//        setscheduled.append(setSchedule(title: "일정7", year: "2021", month: "6", day: "28", date: formatter.date(from: "2021-6-28")!))
-//        setscheduled.append(setSchedule(title: "일정8", year: "2021", month: "4", day: "27",date: formatter.date(from: "2021-4-27")!) )
-//        setscheduled.append(setSchedule(title: "일정9", year: "2021", month: "4", day: "29", date: formatter.date(from: "2021-4-29")!))
-//        setscheduled.append(setSchedule(title: "일정10", year: "2021", month: "5", day: "30", date: formatter.date(from: "2021-5-30")!))
-//        setscheduled.append(setSchedule(title: "일정11", year: "2021", month: "6", day: "2", date: formatter.date(from: "2021-6-2")!))
-//        setscheduled.append(setSchedule(title: "일정12", year: "2021", month: "4", day: "4", date: formatter.date(from: "2021-4-4")!))
-        filtered = setscheduled
-    }
-    
-    @objc func didTapshare(){
-        
-    }
-    @objc func didTapSearch(){
-        
-    }
     
     var dateComponents = DateComponents()
     @objc func didTapAdd(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
-        
-//        let addVc = self.storyboard?.instantiateViewController(identifier: "Add")
-//        print("addvc : \(addVc?.restorationIdentifier as Any)")
-        //let addVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Add")
-        
+    
         let addVc = AddCalendarViewcontroller()
         self.navigationController?.pushViewController(addVc, animated: true)
     }
     
     func filtersetDayList(day: String){
         filtered = setscheduled.filter { String($0.date.day) == day}
-//        print("filter")
-//        print(filtered)
     }
 
 }
@@ -156,8 +128,6 @@ class CalendarViewController: UIViewController, EKEventViewDelegate, UINavigatio
 extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.date = date
-
-        //print(date.day)
         
         filtersetDayList(day: "\(date.day)")
         setScheduledView.reloadData()
@@ -165,8 +135,6 @@ extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        print("date")
-//        print(date)
         if self.events.contains(date) {
             return 1
         } else {
@@ -190,6 +158,28 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+  
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    //for delete 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete){
+            let askToDelete = UIAlertController(title: "일정 삭제", message: "\(filtered[indexPath.row].scTitle) 의 일정을 삭제하시겠습니까?", preferredStyle: .alert)
+            
+            askToDelete.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+                self.setScheduledView.beginUpdates()
+                self.setscheduled.remove(at: indexPath.row)
+                self.filtered = self.setscheduled
+                self.setScheduledView.deleteRows(at: [indexPath], with: .fade)
+                self.setScheduledView.endUpdates()
+        }))
+            askToDelete.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
+            present(askToDelete, animated: true)
+        }
     }
     
     

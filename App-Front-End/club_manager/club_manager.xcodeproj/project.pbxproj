@@ -27,7 +27,6 @@
 		8E6C088426282249009CE9C3 /* DetailSection1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C088226282248009CE9C3 /* DetailSection1TableViewCell.swift */; };
 		8E6C088526282249009CE9C3 /* DetailSection1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E6C088326282249009CE9C3 /* DetailSection1TableViewCell.xib */; };
 		8E6C088B26284048009CE9C3 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C088A26284048009CE9C3 /* TextFieldTableViewCell.swift */; };
-		8E8C22A2262C466800BA6B5D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8C22A1262C466800BA6B5D /* API.swift */; };
 		8E8C22D4262DB9BE00BA6B5D /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8C22D2262DB9BE00BA6B5D /* MenuTableViewCell.swift */; };
 		8E8C22D5262DB9BE00BA6B5D /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8C22D3262DB9BE00BA6B5D /* MenuTableViewCell.xib */; };
 		8E8E58782611A14500DB274A /* ClubNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */; };
@@ -37,6 +36,9 @@
 		8E8E58B326130A9E00DB274A /* RecTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58B126130A9E00DB274A /* RecTableViewCell.swift */; };
 		8E8E58B426130A9E00DB274A /* RecTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */; };
 		8E8E58BC261366B100DB274A /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E58BB261366B100DB274A /* AddCalendarViewController.swift */; };
+		8E933876265B77AB002B9C66 /* AddClub.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E933875265B77AB002B9C66 /* AddClub.storyboard */; };
+		8E933878265B8E64002B9C66 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E933877265B8E64002B9C66 /* DataManager.swift */; };
+		8E93387A265B951A002B9C66 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E933879265B951A002B9C66 /* EditProfile.storyboard */; };
 		8E9B84C3260B20C8000FE298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84C2260B20C8000FE298 /* AppDelegate.swift */; };
 		8E9B84C5260B20C8000FE298 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84C4260B20C8000FE298 /* SceneDelegate.swift */; };
 		8E9B84CA260B20C8000FE298 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9B84C8260B20C8000FE298 /* Main.storyboard */; };
@@ -48,6 +50,7 @@
 		8E9B84F2260B32E3000FE298 /* clubCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84F0260B32E3000FE298 /* clubCollectionViewCell.swift */; };
 		8E9B84F3260B32E3000FE298 /* clubCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E9B84F1260B32E3000FE298 /* clubCollectionViewCell.xib */; };
 		8E9B84F7260B3C7A000FE298 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9B84F6260B3C7A000FE298 /* HomeViewController.swift */; };
+		8E9C4744266B731C0006F893 /* ClubMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9C4743266B731C0006F893 /* ClubMain.storyboard */; };
 		8EA8416126170CFC00502C8A /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8416026170CFC00502C8A /* WriteViewController.swift */; };
 		8EA8416626183B2800502C8A /* SetScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8416426183B2800502C8A /* SetScheduleTableViewCell.swift */; };
 		8EA8416726183B2800502C8A /* SetScheduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EA8416526183B2800502C8A /* SetScheduleTableViewCell.xib */; };
@@ -78,7 +81,6 @@
 		8E6C088226282248009CE9C3 /* DetailSection1TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSection1TableViewCell.swift; sourceTree = "<group>"; };
 		8E6C088326282249009CE9C3 /* DetailSection1TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailSection1TableViewCell.xib; sourceTree = "<group>"; };
 		8E6C088A26284048009CE9C3 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
-		8E8C22A1262C466800BA6B5D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8E8C22D2262DB9BE00BA6B5D /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		8E8C22D3262DB9BE00BA6B5D /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		8E8E58762611A14400DB274A /* ClubNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubNewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -88,6 +90,9 @@
 		8E8E58B126130A9E00DB274A /* RecTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecTableViewCell.swift; sourceTree = "<group>"; };
 		8E8E58B226130A9E00DB274A /* RecTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecTableViewCell.xib; sourceTree = "<group>"; };
 		8E8E58BB261366B100DB274A /* AddCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
+		8E933875265B77AB002B9C66 /* AddClub.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddClub.storyboard; sourceTree = "<group>"; };
+		8E933877265B8E64002B9C66 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		8E933879265B951A002B9C66 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		8E9B84BF260B20C8000FE298 /* club_manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = club_manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9B84C2260B20C8000FE298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9B84C4260B20C8000FE298 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 		8E9B84F0260B32E3000FE298 /* clubCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clubCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E9B84F1260B32E3000FE298 /* clubCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clubCollectionViewCell.xib; sourceTree = "<group>"; };
 		8E9B84F6260B3C7A000FE298 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8E9C4743266B731C0006F893 /* ClubMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClubMain.storyboard; sourceTree = "<group>"; };
 		8EA8416026170CFC00502C8A /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		8EA8416426183B2800502C8A /* SetScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		8EA8416526183B2800502C8A /* SetScheduleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetScheduleTableViewCell.xib; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 			children = (
 				8E42FE39261ABC6500763B61 /* model.swift */,
 				8E6C087326272E2F009CE9C3 /* Dummy.swift */,
+				8E933877265B8E64002B9C66 /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 				8E42FE41261AC5DC00763B61 /* EditProfileViewController.swift */,
 				8E6C0870262728BB009CE9C3 /* UserManageViewController.swift */,
 				8E6C087926280B81009CE9C3 /* UserManager.swift */,
+				8E933879265B951A002B9C66 /* EditProfile.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -255,15 +263,14 @@
 		8E9B84C1260B20C8000FE298 /* club_manager */ = {
 			isa = PBXGroup;
 			children = (
+				8E42FE38261ABC4100763B61 /* Model */,
+				8E9C4742266B40700006F893 /* Storyboard */,
 				8E2AA6362633F87B0006B0E6 /* club_manager.entitlements */,
 				8E9B84E1260B245D000FE298 /* Utils */,
 				8E9B84D9260B2106000FE298 /* ViewControllers */,
 				8E9B84D7260B20D3000FE298 /* Delegete */,
-				8E9B84C8260B20C8000FE298 /* Main.storyboard */,
 				8E9B84CB260B20CB000FE298 /* Assets.xcassets */,
-				8E9B84CD260B20CB000FE298 /* LaunchScreen.storyboard */,
 				8E9B84D0260B20CB000FE298 /* Info.plist */,
-				8E8C22A1262C466800BA6B5D /* API.swift */,
 			);
 			path = club_manager;
 			sourceTree = "<group>";
@@ -287,7 +294,6 @@
 				8E42FF7326217CFE00763B61 /* Home */,
 				8E42FF7126217C7D00763B61 /* Club */,
 				8E42FF3326200C1900763B61 /* Login */,
-				8E42FE38261ABC4100763B61 /* Model */,
 				8E9B84EF260B32C9000FE298 /* Cell */,
 			);
 			path = ViewControllers;
@@ -322,6 +328,17 @@
 				8E42FF852621934000763B61 /* SearchClubTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		8E9C4742266B40700006F893 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8E9B84C8260B20C8000FE298 /* Main.storyboard */,
+				8E9B84CD260B20CB000FE298 /* LaunchScreen.storyboard */,
+				8E933875265B77AB002B9C66 /* AddClub.storyboard */,
+				8E9C4743266B731C0006F893 /* ClubMain.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		CB004EB3FB563905CF3F343D /* Pods */ = {
@@ -399,9 +416,12 @@
 			files = (
 				8E6C088526282249009CE9C3 /* DetailSection1TableViewCell.xib in Resources */,
 				8E9B84F3260B32E3000FE298 /* clubCollectionViewCell.xib in Resources */,
+				8E933876265B77AB002B9C66 /* AddClub.storyboard in Resources */,
 				8EA8416726183B2800502C8A /* SetScheduleTableViewCell.xib in Resources */,
 				8E6C086B2625980B009CE9C3 /* DetailSection3TableViewCell.xib in Resources */,
+				8E9C4744266B731C0006F893 /* ClubMain.storyboard in Resources */,
 				8E9B84CF260B20CB000FE298 /* LaunchScreen.storyboard in Resources */,
+				8E93387A265B951A002B9C66 /* EditProfile.storyboard in Resources */,
 				8E43786A2632D20B00AE5C8A /* club_manager.gif in Resources */,
 				8E9B84CC260B20CB000FE298 /* Assets.xcassets in Resources */,
 				8E9B84CA260B20C8000FE298 /* Main.storyboard in Resources */,
@@ -490,6 +510,7 @@
 				8EA8416626183B2800502C8A /* SetScheduleTableViewCell.swift in Sources */,
 				8E6C086A2625980B009CE9C3 /* DetailSection3TableViewCell.swift in Sources */,
 				8E9B84DE260B233D000FE298 /* ClubViewController.swift in Sources */,
+				8E933878265B8E64002B9C66 /* DataManager.swift in Sources */,
 				8E42FE3A261ABC6500763B61 /* model.swift in Sources */,
 				8E42FE42261AC5DC00763B61 /* EditProfileViewController.swift in Sources */,
 				8E8E58782611A14500DB274A /* ClubNewsTableViewCell.swift in Sources */,
@@ -509,7 +530,6 @@
 				8E9B84F7260B3C7A000FE298 /* HomeViewController.swift in Sources */,
 				8E9B84DB260B214F000FE298 /* LoginViewController.swift in Sources */,
 				8E6C086E2625EE86009CE9C3 /* detailCategoryViewController.swift in Sources */,
-				8E8C22A2262C466800BA6B5D /* API.swift in Sources */,
 				8E42FF862621934000763B61 /* SearchClubTableViewCell.swift in Sources */,
 				8E8C22D4262DB9BE00BA6B5D /* MenuTableViewCell.swift in Sources */,
 			);

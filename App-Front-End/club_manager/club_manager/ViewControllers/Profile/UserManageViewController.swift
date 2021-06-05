@@ -23,14 +23,14 @@ class UserManageViewController: UIViewController {
         FrameTableView.delegate = self
         FrameTableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         view.addSubview(FrameTableView)
-        addUserData()
+       // addUserData()
     }
     
-    func addUserData(){
-        getAllUSerData.append(User(id: 1, userImage: "person.fill", userName: "조소정", userEmail: "spqjf12345@gmail.com"))
-        getAllUSerData.append(User(id: 2, userImage: "person.fill", userName: "공희재", userEmail: "heejay@gmail.com"))
-        getAllUSerData.append(User(id: 3, userImage: "person.fill", userName: "한다진", userEmail: "daginStory@gmail.com"))
-    }
+//    func addUserData(){
+//        getAllUSerData.append(User(id: 1, userImage: "person.fill", userName: "조소정", userEmail: "spqjf12345@gmail.com"))
+//        getAllUSerData.append(User(id: 2, userImage: "person.fill", userName: "공희재", userEmail: "heejay@gmail.com"))
+//        getAllUSerData.append(User(id: 3, userImage: "person.fill", userName: "한다진", userEmail: "daginStory@gmail.com"))
+//    }
     
 
 }
@@ -42,7 +42,7 @@ extension UserManageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = getAllUSerData[indexPath.row].userName
+        //cell.textLabel?.text = getAllUSerData[indexPath.row].userName
         return cell
     }
     
