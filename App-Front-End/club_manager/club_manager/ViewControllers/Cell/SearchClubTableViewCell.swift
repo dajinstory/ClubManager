@@ -47,9 +47,9 @@ class SearchClubTableViewCell: UITableViewCell {
     
     
     public func configure(with model: Club){
-        self.clubImage.image = UIImage(named: model.clubImage)
+        //self.clubImage.image = UIImage(named: model.clubImage)
         self.clubName.text = model.clubName
-        self.imageName = model.clubImage
+        //self.imageName = model.clubImage
 //        self.acceptButton.setTitle("승인 요청", for: .normal)
 //        self.acceptButton.setTitleColor(UIColor.white, for: .normal)
 //        acceptButton.addTarget(self, action: #selector(didTapButton), for: .touchUpOutside)

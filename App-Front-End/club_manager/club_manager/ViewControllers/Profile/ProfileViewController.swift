@@ -10,14 +10,16 @@ import SwiftUI
 
 class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    var user: [User] = []
     private let userName: UILabel = {
         let label = UILabel()
-        label.text = "조소정"
         label.textColor = .black
+        //label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
     
-    private let sec = ["section1", "section2", "section3"]
+    private let sec = ["관리자 모드", "설정", "앱 설정"]
     var section1 = ["회원 관리", "회계 장부"]
     var section2 = ["다크 모드", "알림 설정"]
     var section3 = ["로그 아웃", "회원 탈퇴", "앱 정보"]
@@ -27,12 +29,9 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        //dummy
-        imageView.image = UIImage(systemName: "person")
         imageView.tintColor = .lightGray
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
-//        imageView.frame = CGRect(x: 40, y: 40, width: 70, height: 70)
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.layer.borderColor = UIColor.lightGray.cgColor
         imageView.layer.borderWidth = 1
@@ -47,9 +46,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     private let layoutTableView: UITableView = {
-        let layoutTableView = UITableView(frame: .zero, style: .grouped)
+        let layoutTableView = UITableView(frame: .zero, style: .insetGrouped)
         layoutTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        //layoutTableView.isHidden = true
         return layoutTableView
     }()
     
@@ -59,7 +57,11 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         title = "나의 정보"
         let image = UIImage(systemName: "square.and.arrow.up")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(didTapSetting))
-        getUserProfile()
+        user = Dummy.shared.oneUser(user: user)
+//        imageView.image = UIImage(named: user[0].userImage)
+//        userName.text = user[0].userName
+        let dataManager = DataManger()
+        dataManager.getUserProfile()
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,11 +69,9 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         layoutTableView.delegate = self
         layoutTableView.dataSource = self
         imageView.frame = CGRect(x: view.bounds.width/2 - 35, y: 100, width: 70, height: 70)
-        userName.frame = CGRect(x: view.bounds.width/2 - 35, y: imageView.bottom + 10, width: 50, height: 25)
+        userName.frame = CGRect(x: (imageView.frame.maxX + imageView.frame.minX)/2, y: imageView.bottom + 10, width: 50, height: 25)
         
         layoutTableView.frame = CGRect(x: 0, y: userName.bottom + 20, width: view.bounds.width, height: view.bounds.height - imageView.height - 30)
-        
-        darkModeSwitch.sizeToFit()
         
         view.addSubview(imageView)
         view.addSubview(userName)
@@ -82,33 +82,10 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func getUserProfile(){
-        print("here")
-        let url  = URL(string: "http://13.124.135.59:47000/user")
-        var request = URLRequest(url: url!)
-        request.httpMethod = "GET"
-        request.setValue(" application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            // Check for Error
-                    if let error = error {
-                        print("Error took place \(error)")
-                        return
-                    }
-             
-                    // Convert HTTP Response Data to a String
-                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("Response data string:\n \(dataString)")
-                        //dataString.filter{$0.}
-                    }
-        }
-        task.resume()
-        
-    }
     
     @objc func didTapSetting(){
-        let vc = EditProfileViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let editVC = UIStoryboard.init(name: "EditPrifile", bundle: nil).instantiateViewController(identifier: "editProfile")
+        self.navigationController?.pushViewController(editVC, animated: true)
     }
 
     
@@ -121,9 +98,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return sec.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sec[section]
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return sec[section]
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 0){
@@ -142,12 +119,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = section1[indexPath.row]
         }else if indexPath.section == 1 {
             if(indexPath.row == 0){
+                
                 tableView.addSubview(darkModeSwitch)
-                darkModeSwitch.frame = CGRect(x: view.frame.size.width - darkModeSwitch.frame.size.width - 20, y: 220, width: darkModeSwitch.frame.width, height: darkModeSwitch.frame.height)
+
             }
             cell.textLabel?.text = section2[indexPath.row]
         }else {
             cell.textLabel?.text = section3[indexPath.row]
+            if(indexPath.row == 0){
+                cell.textLabel?.textColor = .red
+            }
         }
         return cell
     }
@@ -158,19 +139,31 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 //            let manageVc = UserManageViewController()
 //            self.navigationController?.pushViewController(manageVc, animated: true)
             //swiftui
-            let swiftUI_UM = UIHostingController(rootView: UserManager(datas: UserManager.getAllUser))
-            swiftUI_UM.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(swiftUI_UM, animated: true)
+//            let swiftUI_UM = UIHostingController(rootView: UserManager(datas: UserManager.getAllUser))
+//            swiftUI_UM.hidesBottomBarWhenPushed = true
+//            self.navigationController?.pushViewController(swiftUI_UM, animated: true)
         }else if(indexPath.section == 0 && indexPath.row == 1){
             //회계 장부 권한 가지고 있는지 아닌지 확인
             //manager이면 -> 열람 o
             //x -> alert 창 
             print("회계 장부")
+        }else if(indexPath.section == 2 && indexPath.row == 0){ //auto log out
+            self.autoLogout()
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
+    func autoLogout(){
+        UserDefaults.standard.removeObject(forKey: "userName")
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        print("did called")
+        
+        let loginVC = LoginViewController()
+        let loginNavVC = UINavigationController(rootViewController: loginVC)
+        UIApplication.shared.windows.first?.rootViewController = loginNavVC
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
     
 }

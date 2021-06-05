@@ -25,14 +25,14 @@ class clubCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with model: Club){
-        self.myImageView.image = UIImage(named: model.clubImage)
+        //self.myImageView.image = UIImage(named: model.clubImage)
         self.myImageView.contentMode = .scaleAspectFill
         self.myImageView.clipsToBounds = true
         self.mytextView.text = model.clubName
     }
     
     public func configureForWait(with model: Club){
-        self.myImageView.image = UIImage(named: model.clubImage)
+        //self.myImageView.image = UIImage(named: model.clubImage)
         self.myImageView.contentMode = .scaleAspectFill
         self.myImageView.clipsToBounds = true
         self.mytextView.text = "\(model.clubName) ◯"

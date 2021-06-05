@@ -7,9 +7,9 @@
 import UIKit
 
 class SearchViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
-    var allBoardData: [BoardData] = []
-    var FilteredBoardData: [BoardData] = []
-    
+    var allBoardData: [Post] = []
+    var FilteredBoardData: [Post] = []
+    var dataManager = DataManger()
     lazy var searchView : UITextField = {
         let view = UITextField()
         view.placeholder = "검색어 입력"
@@ -30,13 +30,13 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UIGestureReco
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        title = "검색"
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
         view.backgroundColor = UIColor.white
         AllNoteTableView.delegate = self
         AllNoteTableView.dataSource = self
-        
         setUpallBoardData()
         
     }
@@ -95,17 +95,18 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UIGestureReco
         return true
     }
     
-    ///dummy
+
     func setUpallBoardData(){
-        let dateFormatter = DateFormatter()
-        let dateToDate = dateFormatter.date(from: "2021.04.11 21:09")
-        allBoardData.append(BoardData(BoardCategory: "전체글", title: "11월 회의 안건", content: "11월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
-        allBoardData.append(BoardData(BoardCategory: "회의록", title: "12월 회의 안건", content: "12월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
-        allBoardData.append(BoardData(BoardCategory: "장부", title: "1월 회의 안건", content: "1월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
-        allBoardData.append(BoardData(BoardCategory: "전체글", title: "2월 회의 안건", content: "2월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
-        allBoardData.append(BoardData(BoardCategory: "전체글", title: "3월 회의 안건", content: "3월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
-        allBoardData.append(BoardData(BoardCategory: "전체글", title: "4월 회의 안건", content: "4월 회의 안건은 ~~ 한 내용입니다", comment: ["00", "11"], count: 1, date: dateToDate ?? Date()))
-        FilteredBoardData = allBoardData
+        print("getPostBoard search ")
+        print(currentStatus.boardId)
+        dataManager.getPostBoardId(clubId: -1, boardId: currentStatus.boardId, completionHandler: { (result) in
+            self.allBoardData = result
+            self.FilteredBoardData = self.allBoardData
+            print(self.allBoardData)
+            DispatchQueue.main.async {
+                self.AllNoteTableView.reloadData()
+            }
+        })
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

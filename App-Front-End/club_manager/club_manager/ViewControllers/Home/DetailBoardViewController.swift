@@ -9,8 +9,8 @@ import UIKit
 
 class DetailBoardViewController: UIViewController {
     
-    var note: [BoardData] = []
-    var userData: [User] = []
+    var noteData: Post = Post(BoardCategory: 0, id: 0, title: "", content: "", comments: "", date: "", views: 0, userId: 0)
+    var userData: User = User(id: 0, email: "", name: "", clubs: "")
     
     var FrameTableView: UITableView = {
         var table = UITableView()
@@ -39,15 +39,15 @@ class DetailBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        
         view.addSubview(FrameTableView)
         FrameTableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 200)
         FrameTableView.dataSource = self
         FrameTableView.delegate = self
-        getUserInfo()
 
         initRefresh()
         
-        contentTextview.text = "오늘 회의 소회의실로 변경되었습니다 확인 부탁드려요 😀 \n\n"
+        contentTextview.text = noteData.content
         contentTextview.font = .systemFont(ofSize: 30)
         contentTextview.frame = CGRect(x: 10, y: 10, width: view.width - 30, height: view.height - 300)
         makeContentView()
@@ -56,16 +56,11 @@ class DetailBoardViewController: UIViewController {
 
     }
     
-    func getUserInfo(){
-        userData.append(User(id: 1, userImage: "multiply.circle.fil", userName: "조소정", userEmail: "spqjf12345"))
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
     
     func initRefresh(){
-        print("init")
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(didPullRefresh(refresh:)), for: .valueChanged)
         refresh.attributedTitle = NSAttributedString(string: "refresh ..")
@@ -119,20 +114,16 @@ extension DetailBoardViewController: UITableViewDelegate, UITableViewDataSource 
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("index \(indexPath.row)")
         let cell1 = tableView.dequeueReusableCell(withIdentifier: DetailSection1TableViewCell.identifier) as! DetailSection1TableViewCell
         let cell2 = tableView.dequeueReusableCell(withIdentifier: "cell")!
         let cell3 = tableView.dequeueReusableCell(withIdentifier: DetailSection3TableViewCell.identifier) as! DetailSection3TableViewCell
         if(indexPath.row == 0){
-            print("1")
-            cell1.configure(modelBoard: note[0], modelUser: userData[0])
+            cell1.configure(modelBoard: noteData, modelUser: userData)
             return cell1
         }else if(indexPath.row == 1){
-            print("2")
             cell2.addSubview(contentTextview)
             return cell2
         }else if(indexPath.row == 2){
-            print("3")
             let cell3Height:CGFloat = 500
             cell3.size(width: cell3.bounds.width, height : cell3Height)
             return cell3

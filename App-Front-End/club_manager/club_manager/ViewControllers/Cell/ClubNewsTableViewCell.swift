@@ -44,9 +44,9 @@ class ClubNewsTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: Club){
-        self.ClubImage.image = UIImage(named: model.clubImage)
+        //self.ClubImage.image = UIImage(named: model.clubImage)
         self.ClubTitle.text = model.clubName
-        self.ClubContent.text = model.note1
+        //self.ClubContent.text = model.note1
     
     }
     

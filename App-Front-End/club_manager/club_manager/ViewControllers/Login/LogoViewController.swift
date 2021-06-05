@@ -16,8 +16,6 @@ class LogoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(logoView)
-        print("logo view did load")
-        //logoView.frame = CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
         logoView.pinEdgesToSuperView()
         logoView.logoGifImageView.delegate = self
     }

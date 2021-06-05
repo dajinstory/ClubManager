@@ -39,7 +39,7 @@ class RecTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: Club){
-        self.recImage.image = UIImage(named: model.clubImage)
+        //self.recImage.image = UIImage(named: model.clubImage)
         self.title.text = model.clubName
         self.content.text = "한줄 설명 : \(model.clubSummary)"
         self.category.text = "카테고리 : \(model.category)"
