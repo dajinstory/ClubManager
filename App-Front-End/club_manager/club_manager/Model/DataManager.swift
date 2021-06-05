@@ -209,6 +209,33 @@ class DataManger {
         task.resume()
     }
     
+    func createPost(clubId: Int64, boardId: Int64, title: String, content: String, writer: Int64, comments: String, date: Date, views: Int64){
+        let json: [String: Any] = ["clubId": clubId, "boardId" : boardId, "title" : title, "content": content, "writer": writer, "comments": "", "date": Date(), "views": 0]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        let url_URL = URL(string: "\(APIAddress.address)/post")
+        
+        var request = URLRequest(url: url_URL!)
+    
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.setValue(" application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            // Check for Error
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+     
+            // Convert HTTP Response Data to a String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                print("[Rest API] postUser : \(dataString)")
+            }
+        }
+        
+        task.resume()
+    }
 
     
 

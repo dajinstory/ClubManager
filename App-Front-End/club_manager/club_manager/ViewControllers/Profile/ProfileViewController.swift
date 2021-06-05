@@ -73,8 +73,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         layoutTableView.frame = CGRect(x: 0, y: userName.bottom + 20, width: view.bounds.width, height: view.bounds.height - imageView.height - 30)
         
-        darkModeSwitch.sizeToFit()
-        
         view.addSubview(imageView)
         view.addSubview(userName)
         view.addSubview(layoutTableView)
@@ -121,8 +119,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = section1[indexPath.row]
         }else if indexPath.section == 1 {
             if(indexPath.row == 0){
+                
                 tableView.addSubview(darkModeSwitch)
-                darkModeSwitch.frame = CGRect(x: view.frame.size.width - darkModeSwitch.frame.size.width - 20, y: 210, width: darkModeSwitch.frame.width, height: darkModeSwitch.frame.height)
+
             }
             cell.textLabel?.text = section2[indexPath.row]
         }else {

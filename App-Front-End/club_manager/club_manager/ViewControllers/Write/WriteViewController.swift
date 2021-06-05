@@ -16,12 +16,6 @@ class WriteViewController: UIViewController {
         return textField
     }()
     
-    let contentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "enter the content"
-        return textField
-    }()
-    
     let contentTextView: UITextView = {
         let textView = UITextView()
         textView.layer.masksToBounds = true
@@ -57,6 +51,8 @@ class WriteViewController: UIViewController {
     var contentString: NSMutableAttributedString? = nil
 
     var toolbar = UIToolbar()
+    
+    let dataManager = DataManger()
 
     func setUpKeyBoardToolBar(){
         toolBarKeyboard.sizeToFit()
@@ -125,7 +121,6 @@ class WriteViewController: UIViewController {
     }
     
     @objc func didTapDone(){
-        print("here")
         guard let titleText = titleTextField.text, let contentText = contentTextView.text else {
             alertBoardCreateError()
             return
@@ -134,8 +129,10 @@ class WriteViewController: UIViewController {
         let alertSave = UIAlertController(title: "글 저장", message:  "글 저장을 완료하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
   
         let OKtAction = UIAlertAction(title: "OK", style: .default, handler: { (okClick) in
-            if(self.category != "" && self.titleTextField.text != "" && self.contentTextView.text != ""){
+            if(self.category != "" && titleText != "" && contentText != ""){
                 //글 저장 append need
+                dataManager.createPost(clubId: currentStatus.clubId, boardId: currentStatus.boardId, title: titleText, content: contentText, writer: currentStatus.userId, comments: "", date: Date(), views: 0)
+                
                 print("info : \(self.category) \(titleText) \(contentText)")
                 let tabBarViewController = UIStoryboard(name: Constants.Storyboard.mainStoryBoard, bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarController) as! UITabBarController
                 tabBarViewController.selectedIndex = 0
