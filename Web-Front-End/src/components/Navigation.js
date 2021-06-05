@@ -28,9 +28,9 @@ function Navigation() {
         <img src={profile} width="25" alt="profile"/>{` `}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item href="#/profile">Profile</Dropdown.Item>
+          {/* <Dropdown.Item onClick={kakaoLoginHandler}>카카오로그인</Dropdown.Item> */}
+          {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>
       <LinkContainer to="/web">
