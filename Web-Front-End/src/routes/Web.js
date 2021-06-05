@@ -13,8 +13,10 @@ import posts from '../dummy-data/posts.js';
 import clubs from '../dummy-data/clubs.js';
 
 function Web(){
-  return (
-    <>
+  const isLoggedIn = localStorage.getItem('kakao_9aafa9f8986748aa3a7c4a065fecafda');
+  const whenNotLoggedIn = <h1>Go away</h1>;
+  const whenLoggedIn = 
+  <>
     <Container style={{ marginTop: '2em'}}>
       <h4 style={{ marginBottom: '1em'}}>내 모임</h4>
       <div className="thumbnail-container">
@@ -42,6 +44,12 @@ function Web(){
       })}
       </Row>
     </Container>
+  </>
+  ;
+  
+  return (
+    <>
+    {isLoggedIn? whenLoggedIn : whenNotLoggedIn }
     </>
   )
 }
